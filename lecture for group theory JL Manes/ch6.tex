@@ -108,8 +108,9 @@ of \cref{ch:topology}. The translation group lets us break them into finite piec
   \draw[-{Stealth},thick] (0,0)--(1,0) node[below right]{$\vec{a}_1$};
   \draw[-{Stealth},thick] (0,0)--(0.5,0.8660254) node[above]{$\vec{a}_2$};
   \fill (0,0) circle (0.035) node[below left,font=\scriptsize]{$O$};
-  \node[red!70!black,font=\scriptsize,right] at ($(30:0.57735)+(0.03,0)$) {A};
-  \node[green!50!black,font=\scriptsize,above] at ($(90:0.57735)+(0,0.02)$) {B};
+  % each atom has three bonds; put the label in the gap between two of them
+  \node[red!70!black,font=\scriptsize,anchor=south,inner sep=2pt] at (30:0.57735) {A};
+  \node[green!50!black,font=\scriptsize,anchor=south east,inner sep=1.5pt] at (90:0.57735) {B};
   \end{scope}
 \end{tikzpicture}
 \caption{The honeycomb lattice. The origin $O$ is the centre of a hexagon (Wyckoff

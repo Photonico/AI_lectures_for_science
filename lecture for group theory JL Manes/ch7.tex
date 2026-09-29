@@ -363,17 +363,21 @@ for free.
   every axis plot/.append style={thick}]
 \addplot[blue!70!black] table[x=x,y=lo]{graphene_pi.dat};
 \addplot[red!70!black] table[x=x,y=hi]{graphene_pi.dat};
-\node[font=\scriptsize,anchor=west] at (axis cs:0.05,-3.85) {$\irr{A}_1$};
-\node[font=\scriptsize,anchor=west] at (axis cs:0.05,2.65) {$\irr{B}_1$};
-\node[font=\scriptsize,anchor=south] at (axis cs:4.1888,0.45) {$\irr{E}$};
-\node[font=\scriptsize,anchor=north] at (axis cs:6.2832,-0.95) {$\irr{B}_1$};
-\node[font=\scriptsize,anchor=south] at (axis cs:6.2832,1.3) {$\irr{A}_1$};
-\node[font=\scriptsize,blue!70!black] at (axis cs:2.1,-2.3) {$\irr{A}'$};
-\node[font=\scriptsize,red!70!black] at (axis cs:2.1,1.85) {$\irr{A}''$};
-\node[font=\scriptsize,blue!70!black] at (axis cs:5.25,-0.75) {$\irr{A}''$};
-\node[font=\scriptsize,red!70!black] at (axis cs:5.25,1.35) {$\irr{A}'$};
-\node[font=\scriptsize,blue!70!black] at (axis cs:8.1,-2.35) {$\irr{A}'$};
-\node[font=\scriptsize,red!70!black] at (axis cs:8.1,2.1) {$\irr{A}'$};
+% labels at the high-symmetry points sit on the vertical grid lines: white background
+\tikzset{pt/.style={font=\scriptsize,fill=white,inner sep=1.5pt}}
+\node[pt,anchor=west]  at (axis cs:0.08,-3.95) {$\irr{A}_1$};
+\node[pt,anchor=west]  at (axis cs:0.08,2.75) {$\irr{B}_1$};
+\node[pt,anchor=south] at (axis cs:4.1888,0.6) {$\irr{E}$};
+\node[pt,anchor=north] at (axis cs:6.2832,-1.0) {$\irr{B}_1$};
+\node[pt,anchor=south] at (axis cs:6.2832,1.4) {$\irr{A}_1$};
+% labels on the lines: each sits on the free side of its (monotonic) curve
+\tikzset{ln/.style={font=\scriptsize,inner sep=2pt}}
+\node[ln,blue!70!black,anchor=north west] at (axis cs:2.13,-2.06) {$\irr{A}'$};
+\node[ln,red!70!black,anchor=south west]  at (axis cs:2.13,1.88)  {$\irr{A}''$};
+\node[ln,blue!70!black,anchor=north east] at (axis cs:5.27,-0.51) {$\irr{A}''$};
+\node[ln,red!70!black,anchor=south east]  at (axis cs:5.27,0.99)  {$\irr{A}'$};
+\node[ln,blue!70!black,anchor=north east] at (axis cs:8.13,-2.48) {$\irr{A}'$};
+\node[ln,red!70!black,anchor=south east]  at (axis cs:8.13,2.05)  {$\irr{A}'$};
 \end{axis}
 \end{tikzpicture}
 \caption{The $\uppi$ bands of graphene in a tight-binding model with nearest- ($t$) and
