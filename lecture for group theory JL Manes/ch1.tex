@@ -1,0 +1,480 @@
+\chapter{Symmetries, degeneracies and representations}\label{ch:intro}
+
+\begin{watch}{\lec{1}}
+Why group theory \ts{1}{51}{0:51} $\cdot$
+continuous vs discrete symmetries \ts{1}{193}{3:13} $\cdot$
+methane: what group theory predicts \ts{1}{824}{13:44} $\cdot$
+the idea of a representation \ts{1}{1394}{23:14} $\cdot$
+Wigner's theorem \ts{1}{2278}{37:58} $\cdot$
+the group $\Cv{3}$ and the vector representation \ts{1}{2528}{42:08} $\cdot$
+definition of a representation \ts{1}{2784}{46:24} $\cdot$
+reducible vs irreducible \ts{1}{4302}{71:42} $\cdot$
+equivalent representations \ts{1}{4990}{83:10}
+\end{watch}
+
+\section{Why group theory?}
+
+Group theory is the systematic way of extracting \emph{all} the consequences of the
+symmetry of a physical system, reliably and efficiently. Its computations are simple
+(mostly sums and products of integers) but the concepts need care.
+
+In condensed matter we deal almost exclusively with \emph{space-time} symmetries:
+rotations, reflections, inversion, lattice translations and time reversal. Internal
+symmetries ($\U{1}$, $\SU{2}$ isospin, $\SU{3}$ colour) belong mostly to high-energy
+physics. A second classification is more important for the method:
+
+\begin{description}
+\item[Continuous symmetries] such as $\SO{3}$ are Lie groups. A finite rotation is
+the exponential of an infinitesimal one,
+\begin{equation}\label{eq:rotexp}
+  \hat{U}(\vec{\theta}) = \exp\!\Bigl(-\frac{\ii}{\hbar}\,\vec{\theta}\cdot\hat{\vec{L}}\Bigr),
+\end{equation}
+so invariance of the Hamiltonian, $\hat{U}\hat{H}\hat{U}\herm=\hat{H}$ for all
+angles, implies at first order $[\hat{H},\hat{\vec{L}}]=0$: a \emph{conservation law}.
+Degeneracies and selection rules then follow from the conservation law and the
+algebra of the generators, without any group theory. The $(2l+1)$-fold degeneracy
+of the levels of a central potential and the dipole selection rule
+$\Delta l=\pm1$ are derived this way in every quantum-mechanics course.
+\item[Discrete symmetries] such as the finite set of rotations and reflections that
+leave a molecule or a crystal invariant have no infinitesimal elements, hence no
+generators and no conservation laws. There is no Noether theorem for them.
+To go from symmetry to degeneracies and selection rules we must jump directly,
+and the bridge is the representation theory of finite groups: characters, their
+orthogonality, projection operators.
+\end{description}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.6cm,>=Stealth,every node/.style={font=\small}]
+\node (s1) {continuous symmetry};
+\node[below=0.9cm of s1] (c1) {conservation law};
+\node[below=0.9cm of c1] (d1) {degeneracies, selection rules};
+\draw[->] (s1)--node[right]{Noether} (c1);
+\draw[->] (c1)--node[right,font=\footnotesize]{algebra of generators} (d1);
+\node[right=3.4cm of s1] (s2) {discrete symmetry};
+\node[below=2.3cm of s2] (d2) {degeneracies, selection rules};
+\draw[->,thick,blue!60!black] (s2)--node[right,text width=2.4cm,font=\footnotesize]{representation theory of finite groups} (d2);
+\end{tikzpicture}
+\end{center}
+
+In this course we never need Lie-algebra techniques such as roots, Dynkin diagrams
+or Young tableaux. From the rotation group we only need its irreducible representations,
+which we obtain elementarily in \cref{ch:spin}. All the groups we meet are discrete
+subgroups of $\Og{3}$ (rotations, reflections, inversion), lattice translations, and
+time reversal.
+
+\section{What group theory predicts: the vibrations of methane}\label{sec:methane}
+
+The methane molecule $\mathrm{CH_4}$ has its four hydrogen atoms at the vertices of a
+regular tetrahedron with the carbon atom at the centre. Its symmetry group, the
+tetrahedral group $\Td$, has 24 elements.
+
+Without symmetry considerations we can only say the following. Each of the five
+atoms can move in three directions, so a distortion of the molecule is a vector with
+$15$ components. In the harmonic approximation the frequencies are obtained by
+diagonalising a real symmetric $15\times15$ matrix, which gives at most $15$ distinct
+frequencies. Six of them vanish: three uniform translations and three rigid
+rotations do not stretch any bond (these are the \emph{zero modes} of a non-linear
+molecule). So at most nine non-zero frequencies remain.
+
+A group-theory computation, which after \cref{ch:building} will take you five minutes
+with pencil and paper, says much more:
+
+\begin{keyresult}[What group theory says about $\mathrm{CH_4}$ and $\mathrm{CH_3D}$]
+\begin{itemize}
+\item $\mathrm{CH_4}$ has exactly \textbf{four} distinct vibrational frequencies,
+      with degeneracies $1$, $2$, $3$ and $3$ ($1+2+3+3=9$).
+\item All four are Raman active; only the two triply degenerate ones are infrared
+      active; the molecule has no microwave (pure rotational) spectrum.
+\item In deuterated methane $\mathrm{CH_3D}$ each triply degenerate frequency splits
+      into one non-degenerate and one doubly degenerate frequency: six distinct
+      frequencies, three non-degenerate and three doubly degenerate, all of them
+      Raman and infrared active; $\mathrm{CH_3D}$ is also microwave active.
+\end{itemize}
+\end{keyresult}
+
+The result of the computation is written as
+\begin{equation}\label{eq:CH4result}
+\begin{aligned}
+  \GM  &= \irr{A}_1\oplus\irr{E}\oplus\irr{T}_1\oplus 3\,\irr{T}_2 &&(\dim 15),\\
+  \GV  &= \irr{T}_2 &&(\dim 3),\qquad \GR = \irr{T}_1 \quad(\dim 3),\\
+  \Gvib &= \GM\ominus\GV\ominus\GR = \irr{A}_1\oplus\irr{E}\oplus 2\,\irr{T}_2 &&(\dim 9).
+\end{aligned}
+\end{equation}
+Every symbol here is a \emph{representation}: a rule telling how some kind of object
+transforms under the symmetry operations. Loosely:
+\begin{itemize}
+\item $\GV$, the \emph{vector representation}, tells how ordinary (polar) vectors
+      transform: a set of $3\times3$ matrices, one per symmetry operation.
+\item $\GR$, the \emph{rotational} or \emph{axial-vector representation}, tells how
+      pseudovectors (angular momentum, magnetic field) transform. It coincides with
+      $\GV$ on proper rotations and differs by a sign on improper operations
+      (reflections, inversion), because $\vec{L}=\vec{r}\times\vec{p}$ does not change
+      sign under inversion while $\vec{r}$ and $\vec{p}$ do.
+\item $\GM$, the \emph{mechanical representation}, tells how an arbitrary distortion
+      of the molecule (a 15-component vector) transforms: $15\times15$ matrices.
+\item $\Gvib$, the \emph{vibrational representation}, acts on the 9-dimensional
+      space of pure vibrations, obtained by removing uniform translations (which
+      transform as vectors) and rigid rotations (which transform as axial vectors).
+\end{itemize}
+The symbols $\irr{A}_1$, $\irr{A}_2$, $\irr{E}$, $\irr{T}_1$, $\irr{T}_2$ are the five
+\emph{irreducible representations} (irreps) of $\Td$. Unlike $\GV$ or $\GM$ they do not
+describe any particular object; they are abstract building blocks. Their dimension is
+read off the letter: $\irr{A}$ and $\irr{B}$ are one-dimensional, $\irr{E}$ is
+two-dimensional, $\irr{T}$ is three-dimensional.
+
+\begin{keyresult}[How to read a decomposition (Wigner's theorem)]
+If the representation carried by the eigenvectors of a symmetric operator (here
+the dynamical matrix, later the Hamiltonian) decomposes as
+$\Gamma=\bigoplus_\mu m_\mu\,\Gamma^{(\mu)}$, then
+\begin{itemize}
+\item the \textbf{multiplicity} $m_\mu$ is the number of distinct eigenvalues
+      associated with the irrep $\Gamma^{(\mu)}$;
+\item the \textbf{dimension} $d_\mu$ of the irrep is the degeneracy of each of them.
+\end{itemize}
+\end{keyresult}
+For $\mathrm{CH_4}$, $\Gvib=\irr{A}_1\oplus\irr{E}\oplus2\,\irr{T}_2$ gives one
+non-degenerate, one doubly degenerate and two triply degenerate frequencies. For
+$\mathrm{CH_3D}$ the symmetry group is the smaller group $\Cv{3}$ and
+$\Gvib=3\,\irr{A}_1\oplus3\,\irr{E}$ (\cref{sec:mechanical}). We prove Wigner's
+theorem in an explicit example in \cref{sec:wigner}; the general proof rests on
+Schur's lemma (\cref{sec:schur}).
+
+\begin{remark}
+Group theory tells you which frequencies must be degenerate, how many distinct ones
+there are, and which matrix elements must vanish. It never tells you the numerical
+values of the frequencies: those need physical input (force constants).
+\end{remark}
+
+\section{Groups}\label{sec:groups}
+
+\begin{definition}
+A \emph{group} is a set $G$ with a composition law $\circ$ such that
+\begin{enumerate}
+\item $g_1\circ g_2\in G$ for all $g_1,g_2\in G$ (closure);
+\item $(g_1\circ g_2)\circ g_3=g_1\circ(g_2\circ g_3)$ (associativity);
+\item there is a neutral element $e$ with $e\circ g=g\circ e=g$;
+\item every $g$ has an inverse $g^{-1}$ with $g\circ g^{-1}=g^{-1}\circ g=e$.
+\end{enumerate}
+The number of elements $\abs{G}$ is the \emph{order} of the group.
+\end{definition}
+For a group of symmetry operations, $g_1\circ g_2$ means ``apply $g_2$ first, then
+$g_1$''. The composition law can be anything: for the translation group it is vector
+addition, $\vec{t}_1\circ\vec{t}_2=\vec{t}_1+\vec{t}_2$. Symmetry operations are
+denoted as follows (Schoenflies notation):
+\begin{itemize}
+\item $E$: identity (do nothing). Not to be confused with the irrep $\irr{E}$.
+\item $C_n$: rotation by $2\cpi/n$; $C_n^{+}$ counterclockwise, $C_n^{-}$ clockwise
+      (seen from the tip of the axis).
+\item $\sigma$: reflection in a plane; $\sv$ vertical (containing the main axis),
+      $\sh$ horizontal, $\sd$ diagonal.
+\item $I$: inversion, $\vec{r}\mapsto-\vec{r}$.
+\item $S_n$: rotoreflection, a rotation $C_n$ followed by reflection in the plane
+      perpendicular to the axis (\cref{sec:pointops}).
+\end{itemize}
+
+\subsection{The group \texorpdfstring{$\Cv{3}$}{C3v}}
+
+Replacing one hydrogen of methane by deuterium leaves a triangular pyramid with the
+deuterium on top. Its symmetry group $\Cv{3}$ (crystallographic symbol $3m$) has six
+elements (\cref{fig:c3v}): the identity $E$, the rotations $C_3^{\pm}$ by
+$\pm120^\circ$ about the vertical $z$ axis, and three vertical mirror planes
+$\sigma_{\mathrm{d}1},\sigma_{\mathrm{d}2},\sigma_{\mathrm{d}3}$, each containing the
+$z$ axis and one hydrogen atom. We choose the $x$ axis inside
+$\sigma_{\mathrm{d}1}$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=2.0,>=Stealth]
+  \foreach \a/\n in {0/1,120/2,240/3}{
+    \draw[dashed,gray] (\a:-1.45)--(\a:1.45);
+    \node[font=\small] at (\a:1.72) {$\sigma_{\mathrm{d}\n}$};
+    \fill[white,draw=black] (\a:1) circle (0.09);
+    \node[font=\scriptsize] at ($(\a:1)+(\a+90:0.2)$) {H$_\n$};
+  }
+  \draw[thick] (0:1)--(120:1)--(240:1)--cycle;
+  \fill (0,0) circle (0.06);
+  \node[font=\scriptsize,below right] at (0.02,-0.02) {C, D};
+  \draw[->] (0,0)--(0.7,0) node[below right,font=\small]{$x$};
+  \draw[->] (0,0)--(0,0.7) node[above,font=\small]{$y$};
+  \draw[->,blue!60!black] (200:0.4) arc (200:280:0.4);
+  \node[blue!60!black,font=\small] at (240:0.6) {$C_3^+$};
+\end{tikzpicture}
+\caption{The group $\Cv{3}$ seen from above ($z$ out of the page). The deuterium
+atom sits above the carbon on the $z$ axis; the three hydrogens lie below. The
+mirror $\sigma_{\mathrm{d}i}$ contains the $z$ axis and hydrogen H$_i$.}
+\label{fig:c3v}
+\end{figure}
+
+Its multiplication table (row $g$, column $h$, entry $g h$, i.e.\ $h$ applied first)
+is
+\begin{equation}\label{eq:c3vtable}
+\begin{array}{c|cccccc}
+ & E & C_3^+ & C_3^- & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3}\\\hline
+E & E & C_3^+ & C_3^- & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3}\\
+C_3^+ & C_3^+ & C_3^- & E & \sigma_{\mathrm{d}3} & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2}\\
+C_3^- & C_3^- & E & C_3^+ & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3} & \sigma_{\mathrm{d}1}\\
+\sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3} & E & C_3^+ & C_3^-\\
+\sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3} & \sigma_{\mathrm{d}1} & C_3^- & E & C_3^+\\
+\sigma_{\mathrm{d}3} & \sigma_{\mathrm{d}3} & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2} & C_3^+ & C_3^- & E
+\end{array}
+\end{equation}
+The group is \emph{not} commutative: $C_3^+\sigma_{\mathrm{d}1}=\sigma_{\mathrm{d}3}$
+but $\sigma_{\mathrm{d}1}C_3^+=\sigma_{\mathrm{d}2}$. Each row and each column
+contains every element exactly once (the \emph{rearrangement theorem}).
+
+\section{Subgroups, cosets and Lagrange's theorem\beyondmark}\label{sec:cosets}
+
+The lectures skip the structural part of group theory. Space groups, little groups and
+induced representations use it constantly, so the starred sections supply it where it
+first becomes useful.
+
+A subset $H\subseteq G$ that is itself a group under the same law is a
+\emph{subgroup}. For a finite subset it suffices to check closure.
+
+\begin{definition}
+For $g\in G$ the \emph{left coset} of $H$ is $gH=\{gh:h\in H\}$; the right coset is
+$Hg$.
+\end{definition}
+Two left cosets are either identical or disjoint ($g_1H\cap g_2H\neq\emptyset$ implies
+$g_2^{-1}g_1\in H$, hence $g_1H=g_2H$), and each contains $\abs{H}$ elements. So $G$ is a
+disjoint union of cosets,
+\[
+G=g_1H\cup g_2H\cup\dots\cup g_nH,\qquad n=\abs{G}/\abs{H}.
+\]
+\begin{theorem}[Lagrange]
+The order of a subgroup divides the order of the group. The integer
+$[G:H]=\abs{G}/\abs{H}$ is the \emph{index} of $H$.
+\end{theorem}
+Consequences: the order of every element (the smallest $n$ with $g^n=e$) divides
+$\abs{G}$; a group of prime order is cyclic. $\Cv{3}$ ($\abs{G}=6$) can only have
+subgroups of order $1,2,3,6$: $\{E\}$, the three $\{E,\sigma_{\mathrm{d}i}\}$, $C_3$, and
+$\Cv{3}$ itself.
+
+\section{Representations}\label{sec:reps}
+
+\subsection{The vector representation of \texorpdfstring{$\Cv{3}$}{C3v}}
+
+A rotation or reflection acts linearly on vectors, so it is described by a
+$3\times3$ matrix acting on the column of components $(v_x,v_y,v_z)\T$. With the axes
+of \cref{fig:c3v}:
+\begin{equation}\label{eq:VC3v}
+\begin{gathered}
+\mat{V}(E)=\one,\qquad
+\mat{V}(\sigma_{\mathrm{d}1})=\begin{pmatrix}1&0&0\\0&-1&0\\0&0&1\end{pmatrix},\\[4pt]
+\mat{V}(C_3^{+})=\begin{pmatrix}-\frac12&-\frac{\sqrt3}{2}&0\\ \frac{\sqrt3}{2}&-\frac12&0\\0&0&1\end{pmatrix},\qquad
+\mat{V}(C_3^{-})=\begin{pmatrix}-\frac12&\frac{\sqrt3}{2}&0\\ -\frac{\sqrt3}{2}&-\frac12&0\\0&0&1\end{pmatrix},\\[4pt]
+\mat{V}(\sigma_{\mathrm{d}2})=\begin{pmatrix}-\frac12&-\frac{\sqrt3}{2}&0\\ -\frac{\sqrt3}{2}&\frac12&0\\0&0&1\end{pmatrix},\qquad
+\mat{V}(\sigma_{\mathrm{d}3})=\begin{pmatrix}-\frac12&\frac{\sqrt3}{2}&0\\ \frac{\sqrt3}{2}&\frac12&0\\0&0&1\end{pmatrix}.
+\end{gathered}
+\end{equation}
+The mirror $\sigma_{\mathrm{d}1}$ contains the $x$ and $z$ axes, so it only reverses
+$v_y$. How to construct the other matrices without memorising formulas is explained
+in \cref{sec:active}. The matrices reproduce the multiplication table; for example
+$\mat{V}(C_3^+)\mat{V}(C_3^+)=\mat{V}(C_3^-)$, because two rotations by $120^\circ$
+make a rotation by $240^\circ=-120^\circ$.
+
+\subsection{Definition}
+
+\begin{definition}
+A (linear) \emph{representation} $\Gamma$ of a group $G$ on a vector space $L$
+assigns to each $g\in G$ an invertible linear operator $\mat{D}(g)$ on $L$ such that
+\begin{equation}\label{eq:homom}
+  \mat{D}(g_1)\,\mat{D}(g_2)=\mat{D}(g_1 g_2)\qquad\text{for all } g_1,g_2\in G.
+\end{equation}
+The dimension of $L$ is the \emph{dimension} of the representation. Choosing a basis
+of $L$, each $\mat{D}(g)$ becomes a matrix.
+\end{definition}
+Whatever the composition law of the group (vector addition for translations), the
+operators of a representation are always composed by \emph{matrix multiplication}.
+From \eqref{eq:homom} it follows that $\mat{D}(e)=\one$ and
+$\mat{D}(g^{-1})=\mat{D}(g)^{-1}$.
+
+\begin{itemize}
+\item The assignment $\mat{D}(g)=1$ (a $1\times1$ matrix) for every $g$ satisfies
+      \eqref{eq:homom}. It is the \emph{identity} or \emph{trivial} representation,
+      called $\irr{A}_1$ in $\Cv{3}$ and $\Td$. It is not useless: it describes
+      invariant quantities.
+\item A representation is \emph{faithful} if different elements get different
+      matrices. The vector representation of $\Cv{3}$ is faithful; the trivial one is
+      not. Faithfulness is not required.
+\item There are infinitely many representations (any dimension, any basis). The
+      central task of the theory is to classify them and to reduce any given one to
+      a few standard pieces.
+\end{itemize}
+
+\section{Reducible and irreducible representations}\label{sec:reducible}
+
+All six matrices \eqref{eq:VC3v} have the same block-diagonal structure: a $2\times2$
+block acting on $(v_x,v_y)$ and a $1\times1$ block acting on $v_z$. Because matrix
+multiplication preserves this structure, each set of blocks is itself a
+representation. The $1\times1$ blocks are all equal to $1$: that is $\irr{A}_1$. The
+$2\times2$ blocks form a two-dimensional representation called $\irr{E}$. We write
+\begin{equation}
+  \GV=\irr{A}_1\oplus\irr{E}.
+\end{equation}
+The symbol $\oplus$ (\emph{direct sum}) does not add matrices of different sizes; it
+means that in a suitable basis all matrices take block-diagonal form with the given
+blocks.
+
+Geometrically: the $z$ axis and the $xy$ plane are \emph{invariant subspaces}. No
+operation of the group takes a vector on the $z$ axis off the axis, nor a vector in
+the plane out of the plane.
+
+\begin{definition}
+A representation on $L$ is \emph{reducible} if $L$ has a proper invariant subspace
+($\neq\{0\},L$) and \emph{irreducible} otherwise.
+\end{definition}
+The representation $\irr{E}$ is irreducible: every line in the $xy$ plane is moved by
+some $C_3$ rotation or some mirror.
+
+For finite groups every representation is equivalent to a unitary one
+(\cref{sec:unitarity}), and for unitary representations the orthogonal complement of an
+invariant subspace is also invariant. Hence a reducible representation always
+splits completely into a direct sum of irreducible ones. This is why irreps are
+\emph{building blocks}.
+
+\section{Equivalent representations}\label{sec:equiv}
+
+The block structure depends on the basis. Rotate the $y$ and $z$ axes by $45^\circ$
+about $x$, i.e.\ change basis with
+\[
+\mat{A}=\begin{pmatrix}1&0&0\\0&\tfrac{1}{\sqrt2}&-\tfrac{1}{\sqrt2}\\0&\tfrac{1}{\sqrt2}&\tfrac{1}{\sqrt2}\end{pmatrix},
+\qquad \mat{W}(g)=\mat{A}\,\mat{V}(g)\,\mat{A}^{-1}.
+\]
+Then, for instance,
+\[
+\mat{W}(C_3^+)=\begin{pmatrix}-\frac12&-\frac{\sqrt6}{4}&-\frac{\sqrt6}{4}\\[2pt]
+\frac{\sqrt6}{4}&\frac14&-\frac34\\[2pt]\frac{\sqrt6}{4}&-\frac34&\frac14\end{pmatrix},
+\qquad
+\mat{W}(\sigma_{\mathrm{d}1})=\begin{pmatrix}1&0&0\\0&0&-1\\0&-1&0\end{pmatrix},
+\]
+and no block structure is visible, although $\mat{W}$ describes exactly the same
+physics in rotated axes.
+
+\begin{definition}
+Two representations $\mat{D}_1$ and $\mat{D}_2$ of $G$ are \emph{equivalent} if there
+is an invertible matrix $\mat{A}$ such that
+$\mat{D}_2(g)=\mat{A}\,\mat{D}_1(g)\,\mat{A}^{-1}$ for all $g\in G$.
+\end{definition}
+Equivalent representations are the same representation written in different bases.
+This raises two practical questions: given a set of matrices, how do we know whether
+it is reducible, and how do we find its irreducible components, without trying
+infinitely many changes of basis? The answer is the theory of characters
+(\cref{ch:building}). It also shows that a finite group has only finitely many
+inequivalent irreps, as many as it has conjugacy classes: $\Cv{3}$ has three and
+$\Td$ has five.
+
+\section{Unitarity and complete reducibility\beyondmark}\label{sec:unitarity}
+
+The lectures state the main theorems of representation theory without proof. The
+starred sections supply the proofs, starting here with the two facts used in
+\cref{sec:reducible}. $G$ is a finite group throughout; sums over $g$ run over all
+elements.
+
+\begin{theorem}
+Every representation of a finite group is equivalent to a unitary one.
+\end{theorem}
+\begin{proof}
+Given $\mat{D}(g)$ on $\mathbb{C}^n$ with the standard inner product $(x,y)=x\herm y$,
+define the averaged inner product
+\[\{x,y\}=\sum_g\bigl(\mat{D}(g)x,\mat{D}(g)y\bigr).\] It is positive
+definite and invariant: $\{\mat{D}(h)x,\mat{D}(h)y\}=\sum_g(\mat{D}(gh)x,\mat{D}(gh)y)=\{x,y\}$
+by the rearrangement theorem. In a basis orthonormal for $\{\cdot,\cdot\}$ the matrices
+are unitary.
+\end{proof}
+
+\begin{theorem}[Maschke]
+If $W$ is an invariant subspace of a unitary representation, so is its orthogonal
+complement $W^\perp$. Hence every representation is a direct sum of irreps.
+\end{theorem}
+\begin{proof}
+If $y\in W^\perp$ and $x\in W$, then $(x,\mat{D}(g)y)=(\mat{D}(g)^{-1}x,y)=0$, because
+$\mat{D}(g)^{-1}x=\mat{D}(g^{-1})x\in W$. Iterate on $W$ and $W^\perp$ until the pieces are
+irreducible (the dimension decreases at each step).
+\end{proof}
+
+\exercisesection
+
+\begin{exercise}\label{ex:1:table}
+Verify three entries of the multiplication table \eqref{eq:c3vtable} by multiplying
+the matrices \eqref{eq:VC3v}: $C_3^+\sigma_{\mathrm{d}1}$,
+$\sigma_{\mathrm{d}1}C_3^+$ and $\sigma_{\mathrm{d}2}\sigma_{\mathrm{d}1}$. Interpret
+the last one geometrically.
+\end{exercise}
+
+\begin{solution}
+With the matrices \eqref{eq:VC3v} (only the upper-left $2\times2$ blocks matter; the
+$zz$ entry is always $1$):
+\[
+\mat{V}(C_3^+)\mat{V}(\sigma_{\mathrm{d}1})=
+\begin{pmatrix}-\frac12&-\frac{\sqrt3}{2}\\ \frac{\sqrt3}{2}&-\frac12\end{pmatrix}
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}=
+\begin{pmatrix}-\frac12&\frac{\sqrt3}{2}\\ \frac{\sqrt3}{2}&\frac12\end{pmatrix}
+=\mat{V}(\sigma_{\mathrm{d}3}),
+\]
+\[
+\mat{V}(\sigma_{\mathrm{d}1})\mat{V}(C_3^+)=
+\begin{pmatrix}-\frac12&-\frac{\sqrt3}{2}\\ -\frac{\sqrt3}{2}&\frac12\end{pmatrix}
+=\mat{V}(\sigma_{\mathrm{d}2}),
+\]
+\[
+\mat{V}(\sigma_{\mathrm{d}2})\mat{V}(\sigma_{\mathrm{d}1})=
+\begin{pmatrix}-\frac12&\frac{\sqrt3}{2}\\ -\frac{\sqrt3}{2}&-\frac12\end{pmatrix}
+=\mat{V}(C_3^-).
+\]
+Geometrically, reflecting first in a line and then in a second line making the angle
+$\alpha$ with it is a rotation by $2\alpha$. From $\sigma_{\mathrm{d}1}$ ($0^\circ$) to
+$\sigma_{\mathrm{d}2}$ ($120^\circ$) the angle is $120^\circ$, so the product is a rotation
+by $240^\circ=-120^\circ$, i.e.\ $C_3^-$.
+\end{solution}
+
+\begin{exercise}\label{ex:1:subgroups}
+List all subgroups of $\Cv{3}$. Which of them are commutative?
+\end{exercise}
+
+\begin{solution}
+By Lagrange's theorem the orders can be $1,2,3,6$: $\{E\}$; the three groups
+$\{E,\sigma_{\mathrm{d}i}\}$; $C_3=\{E,C_3^+,C_3^-\}$; and $\Cv{3}$. All proper subgroups have
+prime or unit order, hence are cyclic and commutative; $\Cv{3}$ itself is not
+commutative.
+\end{solution}
+
+\begin{exercise}\label{ex:1:A2}
+Show that assigning $+1$ to $E,C_3^\pm$ and $-1$ to the three mirrors is a
+representation of $\Cv{3}$ (called $\irr{A}_2$). Is it faithful? Give a physical
+quantity that transforms according to $\irr{A}_2$.
+\end{exercise}
+
+\begin{solution}
+The assignment is $g\mapsto\det\mat{V}(g)$, and $\det$ is multiplicative:
+$\det(\mat{V}(g_1)\mat{V}(g_2))=\det\mat{V}(g_1)\det\mat{V}(g_2)$. (Equivalently: rotation
+times rotation and mirror times mirror are rotations, rotation times mirror is a mirror,
+as the table \eqref{eq:c3vtable} confirms.) It is not faithful: its kernel is $C_3$.
+Quantities transforming as $\irr{A}_2$: the $z$ component of an axial vector ($R_z$,
+$L_z$, $B_z$), which is invariant under the rotations about $z$ and reversed by vertical
+mirrors.
+\end{solution}
+
+\begin{exercise}\label{ex:1:count}
+A planar molecule $\mathrm{BF_3}$ has four atoms. How many vibrational degrees of
+freedom does it have? What about the linear molecule $\mathrm{CO_2}$? (For a linear
+molecule, rotation about the molecular axis does not move the atoms.)
+\end{exercise}
+
+\begin{solution}
+$\mathrm{BF_3}$: $3\times4=12$ degrees of freedom, minus 3 translations and 3 rotations:
+$6$ vibrational. $\mathrm{CO_2}$ (linear): $9-3-2=4$.
+\end{solution}
+
+\begin{exercise}\label{ex:1:equiv}
+Show that the matrices $\mat{W}(g)$ of \cref{sec:equiv} have the same traces as the
+matrices $\mat{V}(g)$. Then prove that $\tr(\mat{A}\mat{B}\mat{A}^{-1})=\tr\mat{B}$
+for any invertible $\mat{A}$.
+\end{exercise}
+
+\begin{solution}
+$\tr\mat{W}(C_3^+)=-\tfrac12+\tfrac14+\tfrac14=0=\tr\mat{V}(C_3^+)$ and
+$\tr\mat{W}(\sigma_{\mathrm{d}1})=1+0+0=1=\tr\mat{V}(\sigma_{\mathrm{d}1})$. In general
+$\tr(\mat{A}\mat{B}\mat{A}^{-1})=\tr(\mat{A}^{-1}\mat{A}\mat{B})=\tr\mat{B}$ by the cyclic
+property $\tr(\mat{X}\mat{Y})=\sum_{ij}X_{ij}Y_{ji}=\tr(\mat{Y}\mat{X})$.
+\end{solution}

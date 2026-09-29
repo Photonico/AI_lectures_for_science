@@ -1,0 +1,459 @@
+\chapter{Space groups and their representations}\label{ch:space}
+
+\begin{watch}{\lec{6}}
+Complex irreps and bilinear invariants \ts{6}{3}{0:03} $\cdot$
+$\Cv{4}$ versus $C_4$ \ts{6}{314}{5:14} $\cdot$
+circular polarisation and time reversal \ts{6}{1081}{18:01} $\cdot$
+from atoms to crystals; the bands of graphene \ts{6}{1519}{25:19} $\cdot$
+symmetry-enforced vs accidental degeneracies \ts{6}{1775}{29:35} $\cdot$
+irreps of the translation group \ts{6}{2724}{45:24} $\cdot$
+the Brillouin zone as the set of irreps \ts{6}{3232}{53:52} $\cdot$
+Bloch's theorem as Wigner's theorem \ts{6}{3295}{54:55} $\cdot$
+Bloch sums from orbitals \ts{6}{3832}{63:52} $\cdot$
+space groups, symmorphic and non-symmorphic \ts{6}{4217}{70:17} $\cdot$
+star and little group \ts{6}{4661}{77:41} $\cdot$
+small representations \ts{6}{5175}{86:15}
+\end{watch}
+
+\section{Complex representations and bilinear invariants}\label{sec:complexinv}
+
+So far all irreps were real. When an irrep is complex, the invariant scalar product
+of two copies must be the \emph{hermitian} one, $\sum_iz_i^{*}w_i$, because the matrices
+are unitary rather than orthogonal. Two consequences:
+\begin{itemize}
+\item a bilinear invariant pairs an irrep with its complex conjugate, as in
+      \eqref{eq:ninv};
+\item $z^{*}w$ is complex: its real and imaginary parts are two independent real
+      invariants.
+\end{itemize}
+
+Compare $\Cv{4}$ with its rotation subgroup $C_4=\{E,C_4^+,C_2,C_4^-\}$ (rotations about
+$z$ only). $C_4$ is Abelian, every element is a class, so there are four irreps, all
+one-dimensional (the only solution of $\sum d_\mu^2=4$ with four terms):
+\begin{equation}\label{eq:C4table}
+\begin{array}{c|cccc|l}
+C_4 & E & C_4^+ & C_2 & C_4^- & \text{components}\\\hline
+\irr{A} & 1&1&1&1 & E_z\\
+\irr{B} & 1&-1&1&-1 & \\
+{}^{1}\irr{E} & 1&\ii&-1&-\ii & E_+=E_x+\ii E_y\\
+{}^{2}\irr{E} & 1&-\ii&-1&\ii & E_-=E_x-\ii E_y
+\end{array}
+\end{equation}
+\begin{quote}\small
+\emph{Convention.} Here we list vector \emph{components}: the rotation $C_4^+$ maps
+$(E_x,E_y)\mapsto(-E_y,E_x)$, hence $E_+\mapsto\ii E_+$. If instead one lists
+\emph{basis functions} with $(\hat{O}_gf)(\vec{r})=f(g^{-1}\vec{r})$, the function $x+\ii y$
+picks up $-\ii$. The two conventions are complex conjugates of each other; tables
+differ on this point, so check before using one.
+\end{quote}
+Every irrep of an Abelian group is one-dimensional. This will be crucial for the
+translation group.
+
+Physically, $E_\pm$ are circular polarisations. A rotation by $90^\circ$ shifts their
+phase by $\pm90^\circ$. Time reversal reverses the sense of rotation and exchanges
+them. The pair ${}^{1}\irr{E}\oplus{}^{2}\irr{E}$ is therefore glued by time reversal
+into a two-dimensional \emph{physically irreducible} representation, which is why it
+carries the letter $\irr{E}$.
+
+\paragraph{Invariants.} In $\Cv{4}$, $\GV=\irr{A}_1\oplus\irr{E}$ as in $\Cv{3}$, and
+the bilinear invariants of two vectors $\vec{E}$, $\vec{P}$ are $E_zP_z$ and
+$E_xP_x+E_yP_y$. In $C_4$, $\GV=\irr{A}\oplus{}^{1}\irr{E}\oplus{}^{2}\irr{E}$, and
+\[
+E_+^{*}P_+=(E_xP_x+E_yP_y)+\ii\,(E_xP_y-E_yP_x)
+\]
+provides, besides $E_zP_z$, \emph{two} invariants: the in-plane scalar product and
+$(\vec{E}\times\vec{P})_z$. The second is allowed because $C_4$ has no mirrors.
+Groups made only of proper rotations are called \emph{chiral}; they allow such
+``vector-product'' couplings, with physical consequences such as optical activity.
+
+\paragraph{Checking symmetry-adapted coordinates.} To verify that given coordinates
+belong to an irrep, transform them with the \emph{generators} only (for $C_4$, just
+$C_4^+$; for $\Cv{4}$, $C_4^+$ and one mirror); every other element is a product of
+generators. For a multidimensional irrep compare with the tabulated matrices, since
+the character is not enough.
+
+\section{From molecules to crystals}
+
+A crystal is a ``molecule'' (a set of atoms, the basis) repeated at the points of a
+Bravais lattice
+\[
+\vec{t}=n_1\vec{a}_1+n_2\vec{a}_2+n_3\vec{a}_3,\qquad n_i\in\mathbb{Z}.
+\]
+For graphene the basis consists of two carbon atoms, A and B, identical but with
+different environments (\cref{fig:honeycomb}). The crystal is invariant under all
+lattice translations, which form the Abelian \emph{translation group} $\Tgroup$.
+Taken literally, a perfect crystal has infinitely many degrees of freedom and its
+representations are infinite dimensional. These are the \emph{band representations}
+of \cref{ch:topology}. The translation group lets us break them into finite pieces.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \def\s{1.7320508}
+  % hexagon centres at t = n1 a1 + n2 a2 with a1=(1,0), a2=(1/2,sqrt3/2) (scale a=1.6)
+  \begin{scope}[scale=1.6]
+  \foreach \n in {-2,...,2}{\foreach \m in {-2,...,2}{
+    \pgfmathsetmacro{\cx}{\n+0.5*\m}\pgfmathsetmacro{\cy}{0.8660254*\m}
+    \pgfmathtruncatemacro{\inside}{(abs(\cx)<2.3) && (abs(\cy)<1.6) ? 1 : 0}
+    \ifnum\inside=1
+      \foreach \k in {0,...,5}{
+        \draw[gray!60] ($(\cx,\cy)+(30+60*\k:0.57735)$)--($(\cx,\cy)+(90+60*\k:0.57735)$);}
+      \fill[red!70!black] ($(\cx,\cy)+(30:0.57735)$) circle (0.045);
+      \fill[red!70!black] ($(\cx,\cy)+(150:0.57735)$) circle (0.045);
+      \fill[red!70!black] ($(\cx,\cy)+(270:0.57735)$) circle (0.045);
+      \fill[green!50!black] ($(\cx,\cy)+(90:0.57735)$) circle (0.045);
+      \fill[green!50!black] ($(\cx,\cy)+(210:0.57735)$) circle (0.045);
+      \fill[green!50!black] ($(\cx,\cy)+(330:0.57735)$) circle (0.045);
+    \fi}}
+  \draw[-{Stealth},thick] (0,0)--(1,0) node[below right]{$\vec{a}_1$};
+  \draw[-{Stealth},thick] (0,0)--(0.5,0.8660254) node[above]{$\vec{a}_2$};
+  \fill (0,0) circle (0.035) node[below left,font=\scriptsize]{$O$};
+  \node[red!70!black,font=\scriptsize,right] at ($(30:0.57735)+(0.03,0)$) {A};
+  \node[green!50!black,font=\scriptsize,above] at ($(90:0.57735)+(0,0.02)$) {B};
+  \end{scope}
+\end{tikzpicture}
+\caption{The honeycomb lattice. The origin $O$ is the centre of a hexagon (Wyckoff
+position $1a$, site symmetry $\Cv{6}$). The atoms of sublattice A (red) sit at
+$\vec{q}_{\mathrm{A}}=\tfrac13(\vec{a}_1+\vec{a}_2)$ and those of sublattice B (green) at
+$\vec{q}_{\mathrm{B}}=\tfrac23(\vec{a}_1+\vec{a}_2)$ plus lattice vectors (Wyckoff position
+$2b$, site symmetry $\Cv{3}$). Lattice constant $a=\abs{\vec{a}_1}$.}
+\label{fig:honeycomb}
+\end{figure}
+
+\section{Irreducible representations of the translation group}
+
+Since $\Tgroup$ is Abelian, its irreps are one-dimensional: to each translation a
+unimodular complex number (a phase), with $D(\vec{t}_1)D(\vec{t}_2)=D(\vec{t}_1+\vec{t}_2)$.
+The only continuous functions turning sums into products are exponentials, so
+\begin{equation}\label{eq:Tirrep}
+D^{\vec{k}}(\vec{t})=\ee^{-\ii\vec{k}\cdot\vec{t}}
+\end{equation}
+for some wave vector $\vec{k}$. (Imposing Born--von K\'arm\'an periodic boundary
+conditions on a crystal of $N$ cells makes $\vec{k}$ discrete, with $N$ allowed values;
+nothing else changes.)
+
+Introduce the reciprocal basis, $\vec{a}_i\cdot\vec{b}_j=2\cpi\,\delta_{ij}$, and write
+$\vec{k}=\sum_ik_i\vec{b}_i$. Then $\vec{k}\cdot\vec{t}=2\cpi\sum_ik_in_i$. If
+$\vec{G}=\sum_im_i\vec{b}_i$ with integer $m_i$ (a reciprocal-lattice vector),
+$\ee^{-\ii\vec{G}\cdot\vec{t}}=1$ for every $\vec{t}$. Hence $\vec{k}$ and $\vec{k}+\vec{G}$
+label the same irrep: they are \emph{equivalent}, written $\vec{k}\equiv\vec{k}+\vec{G}$.
+
+\begin{keyresult}[The Brillouin zone]
+The inequivalent irreps of $\Tgroup$ are in one-to-one correspondence with the points
+of any primitive cell of the reciprocal lattice. The first Brillouin zone is the
+most symmetric such cell. \emph{The Brillouin zone is the set of irreps of the
+translation group}, and $\vec{k}$ (``crystal momentum'') is a label of an irrep, just as
+$l$ labels an irrep of $\SO{3}$.
+\end{keyresult}
+
+\section{Bloch's theorem is Wigner's theorem}
+
+Let the translation operators act on functions as $(\hat{T}_{\vec{t}}\psi)(\vec{r})=
+\psi(\vec{r}-\vec{t})$ (active convention: the function is moved by $+\vec{t}$). A
+function belongs to the irrep $\vec{k}$ if
+$\hat{T}_{\vec{t}}\psi=\ee^{-\ii\vec{k}\cdot\vec{t}}\psi$, i.e.\
+$\psi(\vec{r}+\vec{t})=\ee^{\ii\vec{k}\cdot\vec{t}}\psi(\vec{r})$. The general solution is
+\begin{equation}
+\psi_{\vec{k}}(\vec{r})=\ee^{\ii\vec{k}\cdot\vec{r}}\,u_{\vec{k}}(\vec{r}),\qquad
+u_{\vec{k}}(\vec{r}+\vec{t})=u_{\vec{k}}(\vec{r}).
+\end{equation}
+Since the Hamiltonian of a crystal commutes with $\Tgroup$, its eigenfunctions can be
+chosen to belong to irreps of $\Tgroup$ (Wigner). That is all Bloch's theorem says.
+(Bradley and Cracknell use the passive convention, with the opposite sign of the
+exponent in \eqref{eq:Tirrep}.)
+
+\subsection{Bloch sums}
+Place an orbital $\varphi_\alpha$ at position $\vec{q}_\alpha$ of every cell and form
+\begin{equation}\label{eq:blochsum}
+\Phi_{\alpha\vec{k}}(\vec{r})=\sum_{\vec{t}}\ee^{\ii\vec{k}\cdot\vec{t}}\,
+\varphi_\alpha(\vec{r}-\vec{t}-\vec{q}_\alpha).
+\end{equation}
+Relabelling the sum shows $\hat{T}_{\vec{t}'}\Phi_{\alpha\vec{k}}=\ee^{-\ii\vec{k}\cdot\vec{t}'}
+\Phi_{\alpha\vec{k}}$: the Bloch sum belongs to the irrep $\vec{k}$. With this
+convention $\Phi_{\alpha,\vec{k}+\vec{G}}=\Phi_{\alpha\vec{k}}$. Bloch sums are
+``Bloch-like'' waves: eigenfunctions of translations but not in general of $\hat{H}$.
+
+Because $\hat{H}$ is invariant, it has no matrix elements between inequivalent irreps
+of $\Tgroup$ (\cref{sec:countinv}). With $N_{\mathrm{o}}$ orbitals per cell, the
+$\infty\times\infty$ tight-binding problem in real space splits into one
+$N_{\mathrm{o}}\times N_{\mathrm{o}}$ problem at each $\vec{k}$, giving $N_{\mathrm{o}}$ bands.
+Different points of the Brillouin zone do not talk to each other. This is the only
+use of symmetry you can make without group theory. To go further we need the rest of
+the space group.
+
+\section{Space groups}
+
+A space-group element combines a point operation $R$ (rotation, reflection,
+rotoinversion) with a translation $\vec{v}$. In Seitz notation
+\begin{equation}
+\seitz{R}{\vec{v}}\,\vec{r}=R\vec{r}+\vec{v},
+\end{equation}
+first $R$, then the translation. From this,
+\begin{equation}\label{eq:seitz}
+\seitz{R_1}{\vec{v}_1}\seitz{R_2}{\vec{v}_2}=\seitz{R_1R_2}{\vec{v}_1+R_1\vec{v}_2},\qquad
+\seitz{R}{\vec{v}}^{-1}=\seitz{R^{-1}}{-R^{-1}\vec{v}}.
+\end{equation}
+The pure translations $\seitz{E}{\vec{t}}$ form a normal subgroup $\Tgroup$, and the set
+of rotational parts forms the \emph{point group} $\bar{G}\cong G/\Tgroup$
+(\cref{sec:normal,sec:semidirect}).
+
+\begin{definition}
+A space group is \emph{symmorphic} if, for a suitable origin, every element has the
+form $\seitz{R}{\vec{t}}$ with $\vec{t}\in\Tgroup$; equivalently, $G$ contains the point
+group $\bar{G}$ as a subgroup, $G=\Tgroup\rtimes\bar{G}$. Otherwise it is
+\emph{non-symmorphic}: some operations come only with a fractional translation that
+no choice of origin removes. These are \emph{glide planes} (reflection plus a half
+translation parallel to the plane) and \emph{screw axes} (rotation $C_n$ plus a
+translation $\tfrac{p}{n}\vec{t}$ along the axis).
+\end{definition}
+In three dimensions there are 230 space groups, of which 73 are symmorphic. In two
+dimensions there are 17 plane (wallpaper) groups, 13 of them symmorphic; the
+honeycomb lattice has the symmorphic plane group $p6mm$. Its three-dimensional
+analogue, used in the lecture and in the Bilbao tables, is $P6mm$ (No.~183). For
+symmorphic groups the representation theory reduces to that of point groups; for
+non-symmorphic groups it is subtler but fully tabulated.
+
+\subsection{Semidirect products\beyondmark}\label{sec:semidirect}
+The translation subgroup $\Tgroup$ is normal (\cref{sec:normal}):
+$\seitz{R}{\vec{v}}\seitz{E}{\vec{t}}\seitz{R}{\vec{v}}^{-1}=\seitz{E}{R\vec{t}}$, and
+$R\vec{t}$ is again a lattice vector (\cref{ex:6:seitz}). The quotient $G/\Tgroup$ is
+isomorphic to the point group $\bar{G}$: the coset of $\seitz{R}{\vec{v}}$ is determined
+by $R$ alone.
+
+If $G$ has a normal subgroup $N$ and a subgroup $H$ with $N\cap H=\{e\}$ and $NH=G$,
+then $G=N\rtimes H$ is a \emph{semidirect product}: $H$ acts on $N$ by conjugation.
+(When $H$ is normal too, this is the direct product of \cref{sec:directproduct}.)
+Examples: $\Cv{3}=C_3\rtimes\{E,\sd\}$; a symmorphic space group is
+$\Tgroup\rtimes\bar{G}$, the point group acting on the lattice by rotation.
+
+Non-symmorphic space groups are \emph{not} semidirect products: $\bar{G}$ is still the
+quotient $G/\Tgroup$ but is not a subgroup of $G$, because some rotations only occur
+combined with fractional translations. This is the structural reason why their
+representation theory needs projective representations (see the box on non-symmorphic
+groups in \cref{sec:star}).
+
+\subsection{Space-group operations move \texorpdfstring{$\vec{k}$}{k}}
+Let $g=\seitz{R}{\vec{v}}$ act on functions by $(\hat{O}_g\psi)(\vec{r})=\psi(g^{-1}\vec{r})$.
+From \eqref{eq:seitz}, $g^{-1}\seitz{E}{\vec{t}}g=\seitz{E}{R^{-1}\vec{t}}$. Hence, if
+$\psi$ belongs to $\vec{k}$,
+\[
+\hat{T}_{\vec{t}}\,\hat{O}_g\psi=\hat{O}_g\hat{T}_{R^{-1}\vec{t}}\psi
+=\ee^{-\ii\vec{k}\cdot R^{-1}\vec{t}}\,\hat{O}_g\psi
+=\ee^{-\ii(R\vec{k})\cdot\vec{t}}\,\hat{O}_g\psi :
+\]
+\emph{$\hat{O}_g$ maps the irrep $\vec{k}$ of $\Tgroup$ onto the irrep $R\vec{k}$.}
+
+\section{Star, little group and small representations}\label{sec:star}
+
+\begin{definition}
+\begin{itemize}
+\item The \emph{star} of $\vec{k}$ is the set of inequivalent vectors
+      $\{R\vec{k}\,:\,R\in\bar{G}\}$.
+\item The \emph{little group} $G_{\vec{k}}$ is the set of $g=\seitz{R}{\vec{v}}\in G$
+      with $R\vec{k}\equiv\vec{k}$, i.e.\ $R\vec{k}=\vec{k}+\vec{G}$ for some reciprocal
+      vector $\vec{G}$. Its point parts form the \emph{little co-group}
+      $\bar{G}_{\vec{k}}\subset\bar{G}$.
+\item A \emph{small representation} is an irrep of $G_{\vec{k}}$ in which the
+      translations are represented by $\ee^{-\ii\vec{k}\cdot\vec{t}}\,\one$.
+\end{itemize}
+\end{definition}
+The equivalence ``up to $\vec{G}$'' is essential: for graphene the corner $K$ of the
+hexagonal zone is carried by $C_3$ to another corner that differs from it by a
+reciprocal-lattice vector, so $C_3$ belongs to the little co-group of $K$
+(\cref{ch:bands}).
+
+Why the little group matters: the Bloch states at a given $\vec{k}$ are mapped onto
+themselves by $G_{\vec{k}}$, and the $N_{\mathrm{o}}\times N_{\mathrm{o}}$ Hamiltonian
+$\mat{H}(\vec{k})$ commutes with the small representation. By Wigner's theorem the
+energy levels at $\vec{k}$ are labelled by small irreps, and their degeneracies are the
+dimensions of those irreps. For bilinear quantities (Hamiltonians, optical matrix
+elements between states at the same $\vec{k}$) only small representations are needed.
+Full space-group irreps are needed for electron--phonon processes, superstructures
+and similar problems. They are obtained by \emph{induction} from small irreps and
+have dimension (size of the star)$\times$(dimension of the small irrep).
+
+\begin{keyresult}[Small irreps of symmorphic groups]
+If $G$ is symmorphic, the small irreps at $\vec{k}$ are
+\begin{equation}\label{eq:smallsym}
+D^{\vec{k},\mu}\bigl(\seitz{R}{\vec{t}}\bigr)=\ee^{-\ii\vec{k}\cdot\vec{t}}\,
+\mat{D}^{(\mu)}(R),\qquad R\in\bar{G}_{\vec{k}},\ \vec{t}\in\Tgroup,
+\end{equation}
+where $\mat{D}^{(\mu)}$ runs over the irreps of the little co-group (a point group).
+They are labelled like point-group irreps, or as $\Gamma_1,\Gamma_2,\dots$,
+$K_1,K_2,\dots$ in the Bilbao convention.
+\end{keyresult}
+
+\begin{beyond}[Beyond the lectures: non-symmorphic groups]
+For $g=\seitz{R}{\vec{v}}\in G_{\vec{k}}$ with fractional $\vec{v}$, try
+$\mat{\Delta}(g)=\ee^{-\ii\vec{k}\cdot\vec{v}}\mat{D}(R)$. Since
+$g_1g_2=\seitz{R_1R_2}{\vec{v}_1+R_1\vec{v}_2}$, the product
+$\mat{\Delta}(g_1)\mat{\Delta}(g_2)=\ee^{-\ii\vec{k}\cdot(\vec{v}_1+\vec{v}_2)}\mat{D}(R_1)\mat{D}(R_2)$
+must equal $\ee^{-\ii\vec{k}\cdot(\vec{v}_1+R_1\vec{v}_2)}\mat{D}(R_1R_2)$. The two phases
+differ by $\ee^{-\ii\vec{k}\cdot\vec{v}_2+\ii\vec{k}\cdot R_1\vec{v}_2}=
+\ee^{\ii(R_1^{-1}\vec{k}-\vec{k})\cdot\vec{v}_2}$. If every $R\in\bar{G}_{\vec{k}}$ fixes
+$\vec{k}$ exactly (always the case inside the zone), this factor is $1$ and $\mat{D}$
+is an ordinary irrep of $\bar{G}_{\vec{k}}$. On the zone boundary,
+$R_1^{-1}\vec{k}=\vec{k}+\vec{G}_1$ and the factor $\ee^{\ii\vec{G}_1\cdot\vec{v}_2}$ can
+differ from $1$ when $\vec{v}_2$ is fractional. Then $\mat{D}$ must be a
+\emph{projective} representation of the little co-group. This is how glides and screws
+force bands to stick together on the zone boundary (\cref{ex:6:glide}).
+\end{beyond}
+
+\section{Degeneracies: enforced or accidental?}\label{sec:accidental}
+
+Look at a first-principles band structure of graphene (\cref{fig:grapheneTB} shows the
+$\uppi$ bands). Its bands carry labels of small irreps at $\Gamma$, $K$, $M$ and along the
+lines joining them. Two kinds of degeneracy appear:
+\begin{itemize}
+\item \emph{Symmetry-enforced}: at $K$ two bands meet because they carry a
+      two-dimensional small irrep. Any Hamiltonian with the symmetry of graphene must
+      have a degeneracy there: the Dirac point.
+\item \emph{Accidental}: along a symmetry line two bands with \emph{different}
+      one-dimensional irreps cross. Group theory permits the crossing (the
+      Hamiltonian cannot couple different irreps) but does not require it.
+      Moving the bands changes where they cross, or removes the crossing.
+\end{itemize}
+Two further observations. At an isolated high-symmetry point an accidental
+degeneracy requires fine-tuning of the energies to infinite precision, so it has
+probability zero. If you find one numerically, either the precision is insufficient
+or you have missed a symmetry. Along a line, $\vec{k}$ is a continuous parameter, and
+crossings of different irreps happen generically. Two bands of the \emph{same} irrep
+generically repel (avoided crossing), because they can be coupled.
+
+Near a degeneracy the bands disperse linearly unless a symmetry forbids the linear
+term. Group theory also decides this, through the method of invariants
+(\cref{sec:kp}).
+
+\section{Time reversal in crystals\beyondmark}\label{sec:TRcrystal}
+
+\Cref{sec:TR} treated time reversal for an atom or a molecule. In a crystal it also
+acts on the wave vector.
+
+\subsection{Time reversal and Bloch states}
+Complex conjugation turns $\ee^{\ii\vec{k}\cdot\vec{r}}u_{\vec{k}}$ into
+$\ee^{-\ii\vec{k}\cdot\vec{r}}u^{*}_{\vec{k}}$: time reversal maps $\vec{k}$ to $-\vec{k}$.
+Hence
+\begin{itemize}
+\item $E_n(\vec{k})=E_n(-\vec{k})$ (without spin), or $E_{n\uparrow}(\vec{k})=E_{n\downarrow}(-\vec{k})$
+      and in general Kramers pairs at $\vec{k}$ and $-\vec{k}$ (with spin);
+\item at the \emph{time-reversal-invariant momenta} (TRIM), $\vec{k}\equiv-\vec{k}$ (in
+      graphene: $\Gamma$ and the three $M$ points), time reversal maps the states at
+      $\vec{k}$ onto themselves. With $\TR^2=-1$ every band is then Kramers degenerate;
+      in the presence of inversion symmetry as well, every band is doubly degenerate
+      at every $\vec{k}$.
+\end{itemize}
+$K$ and $K'=-K$ in graphene are exchanged by time reversal; $K$ is not a TRIM.
+
+At a TRIM of a symmorphic space group, the test of \cref{sec:herring} applies to the
+little co-group. For general $\vec{k}$ and non-symmorphic groups the same question is
+answered by Herring's criterion, a sum of $\chi\bigl((\TR g)^2\bigr)$ over the elements
+$g$ that map $\vec{k}$ to $-\vec{k}$; see Bradley--Cracknell.
+
+\subsection{Magnetic groups}\label{sec:magnetic}
+In a magnetically ordered crystal time reversal alone is broken, but a combination
+$\TR g$ with a spatial operation $g$ may survive. For example, an antiferromagnet can be
+invariant under $\TR$ combined with a translation or with inversion. The groups that
+contain such antiunitary elements are the \emph{magnetic} (Shubnikov) groups: 1651
+magnetic space groups in three dimensions, of four types (no $\TR$ at all; $\TR$ itself,
+the ``grey'' groups; $\TR$ only combined with point operations; $\TR$ combined with a
+translation). Their representation theory uses Wigner's \emph{corepresentations}, whose
+degeneracies are again decided by tests of the type above. The Bilbao server tabulates
+their irreducible corepresentations and band representations (magnetic topological
+quantum chemistry).
+
+\exercisesection
+
+\begin{exercise}\label{ex:6:C4v}
+Show that $(\vec{E}\times\vec{P})_z=E_xP_y-E_yP_x$ is invariant under $C_4$ but changes
+sign under the mirrors of $\Cv{4}$. To which irrep of $\Cv{4}$ does it belong?
+\end{exercise}
+
+\begin{solution}
+Under $C_4^+$, $(E_x,E_y)\to(-E_y,E_x)$ and likewise for $\vec{P}$:
+$E_x'P_y'-E_y'P_x'=(-E_y)P_x-E_x(-P_y)=E_xP_y-E_yP_x$. Under the mirror
+$x\to-x$: $(-E_x)P_y-E_y(-P_x)=-(E_xP_y-E_yP_x)$. So it is invariant under the rotations
+and odd under the mirrors: $\irr{A}_2$ of $\Cv{4}$, like $R_z$.
+\end{solution}
+
+\begin{exercise}\label{ex:6:recip}
+For the hexagonal lattice $\vec{a}_1=a(1,0)$, $\vec{a}_2=a(\tfrac12,\tfrac{\sqrt3}{2})$:
+(a) find $\vec{b}_1,\vec{b}_2$; (b) show that $K=\tfrac23\vec{b}_1+\tfrac13\vec{b}_2$ is a
+corner of the Brillouin zone with $\abs{K}=4\cpi/(3a)$, and that $M=\tfrac12\vec{b}_1$ is
+the midpoint of an edge; (c) show that the six corners fall into two classes of three
+equivalent points, $K$ and $K'\equiv-K$, and that $K\not\equiv K'$.
+\end{exercise}
+
+\begin{solution}
+(a) $\vec{b}_1=\tfrac{2\cpi}{a}(1,-\tfrac{1}{\sqrt3})$, $\vec{b}_2=\tfrac{2\cpi}{a}(0,\tfrac{2}{\sqrt3})$,
+$\abs{\vec{b}_i}=\tfrac{4\cpi}{\sqrt3a}$.
+(b) $K=\tfrac23\vec{b}_1+\tfrac13\vec{b}_2=(\tfrac{4\cpi}{3a},0)$. The zone is a hexagon with
+inradius $\abs{\vec{b}}/2=\tfrac{2\cpi}{\sqrt3a}$ and circumradius
+$\tfrac{2\cpi}{\sqrt3a}/\cos30^\circ=\tfrac{4\cpi}{3a}=\abs{K}$: $K$ is a corner. $M=\vec{b}_1/2$
+has $\abs{M}$ equal to the inradius and lies on the edge bisector: the midpoint of an
+edge.
+(c) $C_3^+K-K=\tfrac{4\cpi}{3a}(-\tfrac32,\tfrac{\sqrt3}{2})=-\vec{b}_1$, so $C_3K\equiv K$; the
+corners at $0^\circ,120^\circ,240^\circ$ are equivalent, and so are those at
+$60^\circ,180^\circ,300^\circ$ (equivalent to $K'=-K$). But $K'-K=-2K=(-\tfrac{8\cpi}{3a},0)$
+would need $m_1=-\tfrac43$ in $m_1\vec{b}_1+m_2\vec{b}_2$: not a reciprocal vector, so
+$K\not\equiv K'$.
+\end{solution}
+
+\begin{exercise}\label{ex:6:seitz}
+Prove the composition and inverse rules \eqref{eq:seitz}. Show that
+$g\seitz{E}{\vec{t}}g^{-1}=\seitz{E}{R\vec{t}}$ for $g=\seitz{R}{\vec{v}}$, so that
+$\Tgroup$ is a normal subgroup.
+\end{exercise}
+
+\begin{solution}
+$\seitz{R_1}{\vec{v}_1}\seitz{R_2}{\vec{v}_2}\vec{r}=R_1(R_2\vec{r}+\vec{v}_2)+\vec{v}_1
+=R_1R_2\vec{r}+\vec{v}_1+R_1\vec{v}_2$.
+$\seitz{R^{-1}}{-R^{-1}\vec{v}}\seitz{R}{\vec{v}}\vec{r}=R^{-1}(R\vec{r}+\vec{v})-R^{-1}\vec{v}=\vec{r}$.
+Finally
+$\seitz{R}{\vec{v}}\seitz{E}{\vec{t}}\seitz{R^{-1}}{-R^{-1}\vec{v}}
+=\seitz{R}{\vec{v}+R\vec{t}}\seitz{R^{-1}}{-R^{-1}\vec{v}}=\seitz{E}{R\vec{t}}$, and $R\vec{t}$ is a
+lattice vector because $R$ maps the lattice onto itself.
+\end{solution}
+
+\begin{exercise}\label{ex:6:bloch}
+Verify from \eqref{eq:blochsum} that $\hat{T}_{\vec{t}'}\Phi_{\alpha\vec{k}}=
+\ee^{-\ii\vec{k}\cdot\vec{t}'}\Phi_{\alpha\vec{k}}$ and $\Phi_{\alpha,\vec{k}+\vec{G}}=
+\Phi_{\alpha\vec{k}}$. What changes if the phase $\ee^{\ii\vec{k}\cdot(\vec{t}+\vec{q}_\alpha)}$
+is used instead?
+\end{exercise}
+
+\begin{solution}
+$\hat{T}_{\vec{t}'}\Phi_{\alpha\vec{k}}(\vec{r})=\sum_{\vec{t}}\ee^{\ii\vec{k}\cdot\vec{t}}
+\varphi_\alpha(\vec{r}-\vec{t}'-\vec{t}-\vec{q}_\alpha)=\sum_{\vec{s}}\ee^{\ii\vec{k}\cdot(\vec{s}-\vec{t}')}
+\varphi_\alpha(\vec{r}-\vec{s}-\vec{q}_\alpha)=\ee^{-\ii\vec{k}\cdot\vec{t}'}\Phi_{\alpha\vec{k}}$
+with $\vec{s}=\vec{t}+\vec{t}'$. Since $\ee^{\ii\vec{G}\cdot\vec{t}}=1$, $\Phi_{\alpha,\vec{k}+\vec{G}}=\Phi_{\alpha\vec{k}}$.
+With the phase $\ee^{\ii\vec{k}\cdot(\vec{t}+\vec{q}_\alpha)}$ each Bloch sum is multiplied by
+$\ee^{\ii\vec{k}\cdot\vec{q}_\alpha}$: the translation property is unchanged, but now
+$\Phi_{\alpha,\vec{k}+\vec{G}}=\ee^{\ii\vec{G}\cdot\vec{q}_\alpha}\Phi_{\alpha\vec{k}}$, so $\mat{H}(\vec{k})$ is
+periodic only up to a diagonal unitary transformation. Both conventions are in use.
+The one with $\vec{q}_\alpha$ makes $\mat{H}(\vec{k})$ reflect the positions of the orbitals
+(useful for Berry phases); the other makes it periodic.
+\end{solution}
+
+\begin{exercise}[a glide line]\label{ex:6:glide}
+The plane group $pg$ (rectangular lattice $a\vec{e}_x$, $b\vec{e}_y$) is generated by
+translations and the glide $g=\seitz{m_x}{\tfrac{b}{2}\vec{e}_y}$, where
+$m_x\colon(x,y)\mapsto(-x,y)$. (a) Show that $g^2=\seitz{E}{b\vec{e}_y}$. (b) On the line
+$k_x=0$, Bloch states can be chosen as eigenstates of $\hat{O}_g$; find the possible
+eigenvalues as functions of $k_y$. (c) Follow an eigenvalue continuously from
+$k_y=-\cpi/b$ to $k_y=\cpi/b$ and show that the two eigenvalue branches are exchanged:
+bands on this line come in connected pairs.
+\end{exercise}
+
+\begin{solution}
+(a) $g^2=\seitz{m_x^2}{\tfrac{b}{2}\vec{e}_y+m_x\tfrac{b}{2}\vec{e}_y}=\seitz{E}{b\vec{e}_y}$, since
+$m_x$ leaves $\vec{e}_y$ unchanged.
+(b) On $k_x=0$, $m_x\vec{k}=\vec{k}$, so $g$ is in the little group and $\hat{O}_g$ can be
+diagonalised together with $\hat{H}$. Its eigenvalues satisfy
+$\lambda^2=\ee^{-\ii k_yb}$ (the eigenvalue of $\hat{T}_{b\vec{e}_y}$), so
+$\lambda_\pm(k_y)=\pm\ee^{-\ii k_yb/2}$.
+(c) $\lambda_+(-\cpi/b)=\ee^{\ii\cpi/2}=\ii$ and $\lambda_+(\cpi/b)=\ee^{-\ii\cpi/2}=-\ii=\lambda_-(-\cpi/b)$.
+Since $k_y=\cpi/b$ and $k_y=-\cpi/b$ are the same point, a band that starts in the
+branch $\lambda_+$ at $-\cpi/b$ arrives in the branch $\lambda_-$: it cannot close on itself
+and must connect to a partner. Bands along this line come in connected pairs, a
+consequence of the fractional translation.
+\end{solution}

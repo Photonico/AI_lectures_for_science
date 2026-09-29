@@ -1,0 +1,387 @@
+\chapter{Operations with representations I: tensors and invariants}\label{ch:ops1}
+\chaptermark{Tensors and invariants}
+
+\begin{watch}{\lec{3}}
+Components vs vectors, active vs passive \ts{3}{259}{4:19} $\cdot$
+the column recipe for matrices \ts{3}{710}{11:50} $\cdot$
+pseudovectors and mirrors \ts{3}{969}{16:09} $\cdot$
+molecular polarizability \ts{3}{1919}{31:59} $\cdot$
+invariants from irreps \ts{3}{2359}{39:19} $\cdot$
+molecular vibrations: Lagrangian and dynamical matrix \ts{3}{3246}{54:06} $\cdot$
+the potential energy of $\mathrm{CH_4}$ in symmetry-adapted coordinates \ts{3}{4192}{69:52} $\cdot$
+Wigner's theorem seen explicitly \ts{3}{5017}{83:37} $\cdot$
+product representations \ts{3}{5205}{86:45}
+\end{watch}
+
+\section{How to build representation matrices}\label{sec:active}
+
+\subsection{Active and passive}
+Two opposite conventions exist. In the \emph{active} view, which we always use, the
+symmetry operation moves the object (vector, molecule, wave function) and the
+coordinate axes stay fixed. In the \emph{passive} view the axes are moved and the
+object stays, which is equivalent to moving the object by the inverse operation.
+Some classic books (for example Bradley--Cracknell for translations) use the passive
+convention; mixing the two is a common source of sign errors.
+
+Do not confuse the \emph{coordinate system} (the axes, fixed) with the
+\emph{coordinates} of a vector (its components, which change when the vector is
+moved).
+
+\subsection{The column recipe}
+Representation matrices act on columns of components,
+\[
+(v_x',v_y',v_z')\T=\mat{V}(g)\,(v_x,v_y,v_z)\T.
+\]
+Applying $\mat{V}(g)$ to the basis vector $\vec{e}_1=(1,0,0)\T$ returns the first
+column. Hence:
+\begin{keyresult}[Column recipe]
+The $j$-th column of $\mat{D}(g)$ contains the components of the transformed basis
+vector $g\,\vec{e}_j$.
+\end{keyresult}
+This works for every representation and every basis, and avoids general formulas
+for rotation or reflection matrices. As an example, construct
+$\mat{V}(\sigma_{\mathrm{d}2})$ for $\Cv{3}$ (\cref{fig:c3v}); the mirror line makes
+$120^\circ$ with the $x$ axis.
+\begin{itemize}
+\item $\vec{e}_x$ (angle $0^\circ$) is reflected to the direction at $240^\circ$:
+      $g\vec{e}_x=(-\tfrac12,-\tfrac{\sqrt3}{2},0)$.
+\item $\vec{e}_y$ (angle $90^\circ$) is reflected to $150^\circ$:
+      $g\vec{e}_y=(-\tfrac{\sqrt3}{2},\tfrac12,0)$.
+\item $\vec{e}_z$ lies in the mirror and is unchanged.
+\end{itemize}
+Placing these as columns reproduces $\mat{V}(\sigma_{\mathrm{d}2})$ in \eqref{eq:VC3v}.
+
+\subsection{Pseudovectors, again}
+The axial-vector matrices are $\mat{R}(g)=\det\mat{V}(g)\,\mat{V}(g)$: identical to
+$\mat{V}(g)$ for proper rotations, opposite for improper operations. For instance
+$\mat{R}(\sigma_{\mathrm{d}1})=\diag(-1,1,-1)$ reverses the components of a
+pseudovector lying in the mirror ($x$, $z$) and keeps the normal one ($y$).
+
+\section{Tensors and their invariance}
+
+A physical property of a molecule or crystal in equilibrium is typically a tensor.
+Our first example is the electric \emph{polarizability} $\alpha_{ij}$, which relates
+the induced dipole to an applied field:
+\begin{equation}
+  p_i=\alpha_{ij}E_j\qquad\text{(sum over repeated indices).}
+\end{equation}
+A rank-2 tensor transforms like a product of coordinates, $x_ix_j$: one factor of
+$\mat{V}$ for each index,
+\begin{equation}\label{eq:tensortransf}
+  \alpha'_{ij}=V_{ik}V_{jl}\,\alpha_{kl}\qquad\Longleftrightarrow\qquad
+  \mat{\alpha}'=\mat{V}\mat{\alpha}\mat{V}\T=\mat{V}\mat{\alpha}\mat{V}^{-1},
+\end{equation}
+where we used that $\mat{V}(g)$ is orthogonal. If $g$ is a symmetry, the molecule looks
+the same after the operation and its polarizability cannot change,
+$\mat{\alpha}'=\mat{\alpha}$. Equivalently $[\mat{\alpha},\mat{V}(g)]=0$ for all
+$g\in G$.
+
+The brute-force approach writes the most general symmetric $3\times3$ matrix and
+imposes these commutation relations. That is feasible for $\mat{\alpha}$, tedious for
+the $6\times6$ elastic tensor, and hopeless for the $15\times15$ dynamical matrix of
+methane. Group theory offers a shortcut.
+
+\section{Invariants}\label{sec:invariants}
+
+Contract the tensor into a scalar. The energy of the molecule in a static field is
+\begin{equation}
+  U=-\tfrac12\,\alpha_{ij}E_iE_j .
+\end{equation}
+Being a property of the molecule, $U$ must be invariant under $G$; being quadratic in
+$\vec{E}$, it must be a linear combination of the independent \emph{quadratic
+invariants} that can be built from the components of $\vec{E}$. Group theory tells us
+all of them.
+
+\begin{keyresult}[Quadratic invariants]
+Decompose the vector space into irreps with symmetry-adapted coordinates.
+Let all irreps be unitary and \emph{real} (orthogonal matrices). Then:
+\begin{enumerate}
+\item within each irrep the squared norm $\sum_i x_i^2$ is invariant, and it is the
+      only quadratic invariant built from that irrep alone;
+\item if an irrep occurs twice, with coordinates $x_i$ and $y_i$ written \emph{in the
+      same basis} (same matrices), the scalar product $\sum_i x_iy_i$ is an additional
+      invariant;
+\item products of coordinates belonging to inequivalent irreps are never invariant.
+\end{enumerate}
+\end{keyresult}
+Point 1 follows from unitarity: an orthogonal transformation preserves the norm.
+That the norm is the \emph{only} invariant, and that inequivalent irreps give none,
+is a consequence of Schur's lemma (\cref{sec:schur}), as shown in \cref{sec:bilinear}.
+For complex irreps the recipe changes slightly (\cref{sec:complexinv}).
+
+\begin{example}[Polarizability of $\mathrm{CH_3D}$]
+In $\Cv{3}$, $\GV=\irr{A}_1\oplus\irr{E}$ with coordinates $E_z$ ($\irr{A}_1$) and
+$(E_x,E_y)$ ($\irr{E}$). The quadratic invariants are $E_z^2$ and $E_x^2+E_y^2$, so
+\[
+U=-\tfrac12\bigl[a(E_x^2+E_y^2)+bE_z^2\bigr],\qquad
+\mat{\alpha}=\begin{pmatrix}a&0&0\\0&a&0\\0&0&b\end{pmatrix}.
+\]
+Any molecule or crystal with symmetry $\Cv{3}$ has a polarizability determined by two
+constants. Group theory cannot give their values.
+\end{example}
+
+\begin{example}[Polarizability of $\mathrm{CH_4}$]
+In $\Td$, $\GV=\irr{T}_2$ is irreducible. The only quadratic invariant is
+$E_x^2+E_y^2+E_z^2$, so $\mat{\alpha}=a\one$: the polarizability of methane is
+isotropic, although the molecule is not spherical. (This fact decides its rotational
+Raman spectrum, \cref{sec:raman}.)
+\end{example}
+
+\section{Molecular vibrations}\label{sec:vibrations}
+
+Let $\vec{R}_a^{0}$ be the equilibrium position of atom $a$ (measured from the
+centre of mass) and $\vec{u}_a$ its displacement. Collect the displacements in the
+$3N$-vector $\mat{u}$. In the harmonic approximation
+\begin{equation}
+  L=\tfrac12\,\dot{\mat{u}}\T\mat{M}\,\dot{\mat{u}}-\tfrac12\,\mat{u}\T\mat{\Phi}\,\mat{u},
+\end{equation}
+with the diagonal mass matrix $\mat{M}=\diag(m_1,m_1,m_1,m_2,\dots)$ and the matrix of
+force constants $\Phi_{ai,bj}=\partial^2V/\partial u_{ai}\partial u_{bj}$ at
+equilibrium. The equations of motion $\mat{M}\ddot{\mat{u}}+\mat{\Phi}\mat{u}=0$ with
+$\mat{u}(t)=\Real(\mat{n}\,\ee^{-\ii\omega t})$ give the generalised eigenvalue
+problem $\mat{\Phi}\mat{n}=\omega^2\mat{M}\mat{n}$. With mass-weighted coordinates
+$\mat{w}=\mat{M}^{1/2}\mat{u}$ it becomes an ordinary one,
+\begin{equation}
+  \mat{D}\,\mat{w}=\omega^2\mat{w},\qquad \mat{D}=\mat{M}^{-1/2}\mat{\Phi}\mat{M}^{-1/2}.
+\end{equation}
+The real symmetric \emph{dynamical matrix} $\mat{D}$ has $3N$ eigenvalues $\omega^2$
+and orthonormal eigenvectors (the \emph{normal modes}). In the original variables
+the modes are orthogonal with respect to the metric $\mat{M}$.
+
+The $3N$-dimensional space splits into three $\mat{M}$-orthogonal invariant subspaces:
+\begin{itemize}
+\item translations, $\vec{u}_a=\vec{t}$ for all $a$ (transform as $\GV$);
+\item rigid rotations, $\vec{u}_a=\vec{\varphi}\times\vec{R}_a^0$ (transform as $\GR$);
+\item pure vibrations, defined by the six constraints
+      $\sum_am_a\vec{u}_a=0$ (no displacement of the centre of mass) and
+      $\sum_am_a\vec{R}_a^0\times\vec{u}_a=0$ (no angular momentum at linear order).
+\end{itemize}
+The first two cost no potential energy, $\omega=0$. The third is awkward to describe
+explicitly, and group theory never needs to: it only uses its character
+$\chiM-\chiV-\chiR$.
+
+A symmetry operation only exchanges atoms of the same mass, so $\mat{M}(g)$ commutes
+with the mass matrix, $\mat{M}(g)\mat{M}=\mat{M}\,\mat{M}(g)$. By the same argument as
+for the polarizability, $\mat{D}=\mat{M}(g)\,\mat{D}\,\mat{M}(g)\T$: the dynamical matrix
+is an invariant rank-2 tensor on the space of distortions.
+
+\section{Wigner's theorem, seen explicitly}\label{sec:wigner}
+
+Take methane, $\Gvib=\irr{A}_1\oplus\irr{E}\oplus2\,\irr{T}_2$, and assume we use
+symmetry-adapted vibrational coordinates:
+\[
+\underbrace{q_1}_{\irr{A}_1},\qquad
+\underbrace{(q_2,q_3)}_{\irr{E}},\qquad
+\underbrace{(q_4,q_5,q_6)}_{\irr{T}_2},\qquad
+\underbrace{(q_7,q_8,q_9)}_{\irr{T}_2},
+\]
+where the two $\irr{T}_2$ triplets transform with \emph{identical} matrices. (How to
+find such coordinates with projection operators is explained in \cref{sec:projectors}.) The
+potential energy is an invariant quadratic form, so by \cref{sec:invariants} it must
+be
+\begin{equation}\label{eq:VCH4}
+  2V=a\,q_1^2+b\,(q_2^2+q_3^2)+c\,(q_4^2+q_5^2+q_6^2)+d\,(q_7^2+q_8^2+q_9^2)
+     +2e\,(q_4q_7+q_5q_8+q_6q_9).
+\end{equation}
+Five constants, instead of the $45$ independent entries of a general symmetric
+$9\times9$ matrix. Now reorder the coordinates, pairing the first component of the
+first triplet with the first component of the second, and so on:
+$(q_1;\,q_2;\,q_3;\,q_4,q_7;\,q_5,q_8;\,q_6,q_9)$. In this order the matrix of the
+quadratic form is block diagonal,
+\begin{equation}
+\mat{D}_{\mathrm{vib}}=
+\diag\Bigl(a,\ b,\ b,\
+\begin{pmatrix}c&e\\e&d\end{pmatrix},
+\begin{pmatrix}c&e\\e&d\end{pmatrix},
+\begin{pmatrix}c&e\\e&d\end{pmatrix}\Bigr).
+\end{equation}
+Its eigenvalues are $a$ (once), $b$ (twice) and the two eigenvalues
+$\omega_\pm^2$ of the $2\times2$ block (three times each): four distinct frequencies
+with degeneracies $1,2,3,3$. The mechanism is general:
+
+\begin{keyresult}[Wigner's theorem, block form]
+If an invariant hermitian operator acts on a space carrying
+$\bigoplus_\mu m_\mu\Gamma^{(\mu)}$, then in a symmetry-adapted basis (ordered as
+above) it consists, for each irrep $\mu$, of one $m_\mu\times m_\mu$ block repeated
+$d_\mu$ times. Hence $m_\mu$ distinct eigenvalues, each $d_\mu$-fold degenerate.
+\end{keyresult}
+The same statement with ``Hamiltonian'' for ``dynamical matrix'' is the basis of all
+quantum-mechanical applications: energy levels are labelled by irreps, and the
+degeneracy of a level equals the dimension of its irrep, unless two levels coincide
+\emph{accidentally}.
+
+\begin{remark}[Symmetry-adapted vs normal coordinates]
+In \eqref{eq:VCH4}, $q_1,q_2,q_3$ are already normal coordinates (their blocks are
+$1\times1$). The $\irr{T}_2$ normal coordinates are linear combinations such as
+$Q_4=\cos\phi\,q_4+\sin\phi\,q_7$ that diagonalise the $2\times2$ block; symmetry
+alone cannot fix the mixing angle $\phi$.
+\end{remark}
+
+\section{Projection operators\beyondmark}\label{sec:projectors}
+
+Wigner's theorem is used in a symmetry-adapted basis. Projection operators construct
+such a basis from any starting vector. Let $\Gamma$ act on a space $L$ with operators
+$\hat{O}_g$, and define
+\begin{equation}\label{eq:projector}
+\hat{P}^{(\mu)}=\frac{d_\mu}{\abs{G}}\sum_g\chi^{(\mu)}(g)^{*}\,\hat{O}_g,\qquad
+\hat{P}^{(\mu)}_{ij}=\frac{d_\mu}{\abs{G}}\sum_gD^{(\mu)}_{ij}(g)^{*}\,\hat{O}_g .
+\end{equation}
+\begin{theorem}
+$\hat{P}^{(\mu)}$ is the projector onto the subspace of $L$ that transforms as
+$\Gamma^{(\mu)}$ (all its copies). If $\phi$ is any vector, $\phi_i=\hat{P}^{(\mu)}_{ii}\phi$
+(no sum) is either zero or the $i$-th partner of a basis transforming exactly with the
+matrices $\mat{D}^{(\mu)}$, and the other partners are $\phi_j=\hat{P}^{(\mu)}_{ji}\phi$.
+\end{theorem}
+The proof applies $\hat{P}^{(\mu)}_{ij}$ to a symmetry-adapted basis and uses the great
+orthogonality theorem \eqref{eq:GOT}. In practice:
+\begin{enumerate}
+\item Take any trial function (an atomic orbital, a displacement of one atom).
+\item Apply $\hat{P}^{(\mu)}$ to get its $\mu$ component. Repeat with other trial
+      functions until you have $m_\mu d_\mu$ independent results.
+\item For multidimensional irreps, use $\hat{P}^{(\mu)}_{ji}$ (needs the matrices) to
+      generate partners transforming with the tabulated matrices. This is required for
+      the invariant constructions of \cref{sec:invariants}.
+\end{enumerate}
+
+\begin{example}[Three hydrogen orbitals in $\Cv{3}$]
+Let $h_1,h_2,h_3$ be the $1s$ orbitals of the three hydrogens of $\mathrm{CH_3D}$. The
+operations permute them: $C_3^+\colon h_1\to h_2\to h_3\to h_1$, and
+$\sigma_{\mathrm{d}1}$ fixes $h_1$ and swaps $h_2\leftrightarrow h_3$. The permutation
+character is $(3,0,1)$, so the span is $\irr{A}_1\oplus\irr{E}$. Projecting $h_1$:
+\begin{align*}
+\hat{P}^{(\irr{A}_1)}h_1&=\tfrac16\,(h_1+h_2+h_3+h_1+h_3+h_2)
+    =\tfrac13(h_1+h_2+h_3),\\
+\hat{P}^{(\irr{E})}h_1&=\tfrac26\,\bigl(2h_1-h_2-h_3+0\bigr)
+    =\tfrac13(2h_1-h_2-h_3).
+\end{align*}
+The second $\irr{E}$ partner is the orthogonal combination $h_2-h_3$ (odd under
+$\sigma_{\mathrm{d}1}$, like $y$). Normalised symmetry-adapted combinations:
+$\tfrac{1}{\sqrt3}(h_1+h_2+h_3)$ for $\irr{A}_1$, and
+$\bigl(\tfrac{1}{\sqrt6}(2h_1-h_2-h_3),\ \tfrac{1}{\sqrt2}(h_2-h_3)\bigr)$ for
+$\irr{E}$, which transform like $(x,y)$.
+\end{example}
+
+\section{Product representations}\label{sec:product}
+
+The nine products $x_ix_j'$ of the components of two vectors span the tensor product
+space $\mathbb{R}^3\otimes\mathbb{R}^3$, and transform as
+$(x_ix_j')'=V_{ik}V_{jl}\,x_kx_l'$. Treating the pair $(ij)$ as a single index, the
+$9\times9$ matrix
+\begin{equation}
+  \bigl[\mat{V}\otimes\mat{V}\bigr]_{(ij),(kl)}=V_{ik}V_{jl}
+\end{equation}
+(the \emph{Kronecker product}) defines the \emph{product representation}
+$\GV\otimes\GV$. More generally, if $\Gamma_1$ acts on $L_1$ and $\Gamma_2$ on
+$L_2$, then $\Gamma_1\otimes\Gamma_2$ acts on $L_1\otimes L_2$ with matrices
+$\mat{D}_1(g)\otimes\mat{D}_2(g)$, of dimension $d_1d_2$. Rank-2 tensors
+``belong to'' $\GV\otimes\GV$. As with the direct sum, the matrices of the product
+representation are not products of the original matrices. Their traces, however,
+are products of the traces (\cref{ch:ops2}):
+\begin{equation}\label{eq:prodchar}
+  \chi_{\Gamma_1\otimes\Gamma_2}(g)=\chi_{\Gamma_1}(g)\,\chi_{\Gamma_2}(g).
+\end{equation}
+
+\section{Bilinear invariants: the general statement}\label{sec:bilinear}
+
+\begin{theorem}\label{thm:bilinear}
+Let $\Gamma^{(\mu)}$ and $\Gamma^{(\nu)}$ be real orthogonal irreps with coordinates
+$x_i$ and $y_j$. A bilinear form $B=\sum_{ij}b_{ij}x_iy_j$ is invariant under $G$ if and
+only if $\mat{b}\,\mat{D}^{(\nu)}(g)=\mat{D}^{(\mu)}(g)\,\mat{b}$ for all $g$. By
+Schur's lemma (\cref{sec:schur}):
+\begin{enumerate}
+\item if $\Gamma^{(\mu)}$ and $\Gamma^{(\nu)}$ are inequivalent, then $\mat{b}=0$: no
+      invariant;
+\item if they are identical (same matrices), then $\mat{b}=\lambda\one$: the only
+      invariant is the scalar product $\sum_ix_iy_i$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Invariance of $B$ under $x\mapsto\mat{D}^{(\mu)}x$, $y\mapsto\mat{D}^{(\nu)}y$ means
+$\mat{D}^{(\mu)\mathrm{T}}\mat{b}\,\mat{D}^{(\nu)}=\mat{b}$, which for orthogonal
+matrices is the intertwining condition above. By Schur I, $\mat{b}=0$ for
+inequivalent irreps. For identical irreps Schur II gives $\mat{b}=\lambda\one$. For real
+irreps Schur II holds over $\mathbb{R}$ as well, because a real matrix commuting with a
+real, absolutely irreducible representation is still a multiple of the identity.
+\end{proof}
+If the two irreps are equivalent but
+written in different bases, $\mat{D}^{(\nu)}=\mat{A}\mat{D}^{(\mu)}\mat{A}^{-1}$,
+there is still one invariant, but it is $x\T\mat{A}^{-1}y$ rather than the scalar
+product. Always write repeated irreps with the same matrices.
+
+The number of independent bilinear invariants in $\Gamma_1\otimes\Gamma_2$ is the
+multiplicity of the identity irrep, $m_{\irr{A}_1}(\Gamma_1\otimes\Gamma_2)=
+\inner{\chi_{\Gamma_1}^{*}}{\chi_{\Gamma_2}}$, which by orthogonality equals $1$ if
+$\Gamma_2\simeq\Gamma_1^{*}$ and $0$ otherwise (\cref{ch:ops2}).
+
+\exercisesection
+
+\begin{exercise}\label{ex:3:sigma3}
+Use the column recipe to construct $\mat{V}(\sigma_{\mathrm{d}3})$ and
+$\mat{V}(C_3^-)$ for $\Cv{3}$, and check them against \eqref{eq:VC3v}.
+\end{exercise}
+
+\begin{solution}
+$\sigma_{\mathrm{d}3}$ is the mirror line at $240^\circ$ (equivalently $60^\circ$). A
+direction at angle $\theta$ is reflected to $2\cdot240^\circ-\theta$: $\vec{e}_x$
+($0^\circ$) goes to $480^\circ\equiv120^\circ$, $(-\tfrac12,\tfrac{\sqrt3}{2},0)$;
+$\vec{e}_y$ ($90^\circ$) goes to $390^\circ\equiv30^\circ$, $(\tfrac{\sqrt3}{2},\tfrac12,0)$;
+$\vec{e}_z$ is fixed. For $C_3^-$: $\vec{e}_x\to(-\tfrac12,-\tfrac{\sqrt3}{2},0)$ (angle
+$-120^\circ$), $\vec{e}_y\to(\tfrac{\sqrt3}{2},-\tfrac12,0)$ (angle $-30^\circ$). Placing
+these as columns reproduces \eqref{eq:VC3v}.
+\end{solution}
+
+\begin{exercise}\label{ex:3:orthsub}
+Show that uniform translations and rigid rotations are orthogonal to each other and
+to all pure vibrations with respect to the inner product
+$\inner{\mat{u}}{\mat{v}}_M=\mat{u}\T\mat{M}\mat{v}$.
+\end{exercise}
+
+\begin{solution}
+Translation $\vec{t}$ versus any $\mat{v}$:
+$\sum_am_a\vec{t}\cdot\vec{v}_a=\vec{t}\cdot\sum_am_a\vec{v}_a$, which vanishes for rotations
+($\sum_am_a\vec{\varphi}\times\vec{R}_a^0=\vec{\varphi}\times\sum_am_a\vec{R}_a^0=0$, the centre of
+mass being the origin) and for vibrations (first constraint). Rotation versus vibration:
+$\sum_am_a(\vec{\varphi}\times\vec{R}_a^0)\cdot\vec{u}_a=\vec{\varphi}\cdot\sum_am_a\vec{R}_a^0\times\vec{u}_a=0$
+(second constraint).
+\end{solution}
+
+\begin{exercise}[conductivity tensor]\label{ex:3:cond}
+A crystal has point group $\Cv{4}$ (a four-fold axis along $z$ and four vertical
+mirrors). Using quadratic invariants, find the most general symmetric conductivity
+tensor $\sigma_{ij}$. Compare with $\Cv{3}$ and $\Td$.
+\end{exercise}
+
+\begin{solution}
+In $\Cv{4}$, $\GV=\irr{A}_1(z)\oplus\irr{E}(x,y)$, both real. The quadratic invariants are
+$E_z^2$ and $E_x^2+E_y^2$, hence $\mat{\sigma}=\diag(\sigma_\perp,\sigma_\perp,\sigma_\parallel)$
+with two constants, exactly as for $\Cv{3}$ (uniaxial crystals). For $\Td$ (cubic),
+$\mat{\sigma}=\sigma\one$ is isotropic.
+\end{solution}
+
+\begin{exercise}\label{ex:3:NH3pot}
+For $\mathrm{NH_3}$, $\Gvib=2\,\irr{A}_1\oplus2\,\irr{E}$ (\cref{ex:2:NH3}). How many
+independent constants does the most general harmonic potential energy contain?
+Describe the block structure of the dynamical matrix in symmetry-adapted coordinates.
+\end{exercise}
+
+\begin{solution}
+$\Gvib=2\,\irr{A}_1\oplus2\,\irr{E}$. The $\irr{A}_1$ part gives a $2\times2$ symmetric block
+($3$ constants: two squares and one cross term); the $\irr{E}$ part gives a $2\times2$ block
+repeated twice ($3$ constants). Six constants in total, instead of the $21$ of a general
+symmetric $6\times6$ matrix. Two non-degenerate and two doubly degenerate frequencies.
+\end{solution}
+
+\begin{exercise}\label{ex:3:prod}
+For $\Cv{3}$ compute the character of $\irr{E}\otimes\irr{E}$ and decompose it. How
+many independent bilinear invariants can be built from two $\irr{E}$ doublets
+$(x_1,x_2)$ and $(y_1,y_2)$? Write them down.
+\end{exercise}
+
+\begin{solution}
+$\chi_{\irr{E}\otimes\irr{E}}=(4,1,0)$, so
+$m_{\irr{A}_1}=\tfrac16(4+2)=1$, $m_{\irr{A}_2}=\tfrac16(4+2)=1$, $m_{\irr{E}}=\tfrac16(8-2)=1$:
+$\irr{E}\otimes\irr{E}=\irr{A}_1\oplus\irr{A}_2\oplus\irr{E}$. There is one bilinear invariant,
+$x_1y_1+x_2y_2$ (both doublets written with the same real matrices). The $\irr{A}_2$
+combination $x_1y_2-x_2y_1$ is invariant under $C_3$ but changes sign under the mirrors.
+The $\irr{E}$ combination is $(x_1y_1-x_2y_2,\,-x_1y_2-x_2y_1)$.
+\end{solution}

@@ -1,0 +1,462 @@
+\chapter{Spin, double groups and crystal-field splitting}\label{ch:spin}
+
+\begin{watch}{\lec{5} (no captions; times read off the slides)}
+Subduced representations, $\mathrm{CH_4}\to\mathrm{CH_3D}$: first part of the lecture $\cdot$
+irreps of $\SO{3}$ \ts{5}{2940}{49:00} $\cdot$
+splitting of atomic orbitals, weak spin--orbit \ts{5}{3790}{63:10} $\cdot$
+splitting of multiplets, strong spin--orbit \ts{5}{4490}{74:50} $\cdot$
+double groups \ts{5}{4910}{81:50} $\cdot$
+reality of a representation \ts{5}{5620}{93:40}
+\end{watch}
+
+\section{Subgroups and subduction}\label{sec:subduction}
+
+Deuterating one hydrogen of methane lowers the symmetry from $\Td$ to its subgroup
+$\Cv{3}$. A representation $\Gamma$ of $G$ automatically gives a representation of
+any subgroup $H\subset G$: just keep the matrices of the elements of $H$. This is the
+\emph{subduced} (or restricted) representation $\Gamma\!\downarrow\!H$. Its character is
+the restriction of $\chi_\Gamma$ to $H$. An irrep of $G$ is in general reducible
+over $H$, and its decomposition is given by the reduction formula in $H$.
+
+Take $\Cv{3}\subset\Td$ with the three-fold axis along $[111]$ and one of the six
+mirrors of $\Td$ containing that axis. The classes $E$, $2C_3$, $3\sd$ of $\Cv{3}$ lie
+in the classes $E$, $8C_3$, $6\sd$ of $\Td$. Reading the columns of \eqref{eq:Tdchar}:
+\begin{equation}\label{eq:TdC3v}
+\begin{array}{c|ccc|c}
+\Td\downarrow\Cv{3} & E & 2C_3 & 3\sd & \\\hline
+\irr{A}_1 & 1 & 1 & 1 & \irr{A}_1\\
+\irr{A}_2 & 1 & 1 & -1 & \irr{A}_2\\
+\irr{E} & 2 & -1 & 0 & \irr{E}\\
+\irr{T}_1 & 3 & 0 & -1 & \irr{A}_2\oplus\irr{E}\\
+\irr{T}_2 & 3 & 0 & 1 & \irr{A}_1\oplus\irr{E}
+\end{array}
+\end{equation}
+Such tables are called \emph{correlation} or \emph{subduction} tables. Applied to methane:
+\[
+\Gvib(\mathrm{CH_4})\!\downarrow\!\Cv{3}=\irr{A}_1\oplus\irr{E}\oplus2(\irr{A}_1\oplus\irr{E})
+=3\,\irr{A}_1\oplus3\,\irr{E}=\Gvib(\mathrm{CH_3D}).
+\]
+Each triply degenerate frequency splits into one non-degenerate and one doubly
+degenerate frequency, with no new computation. The general lesson: \emph{lowering the
+symmetry can only split levels}, and subduction tells how.
+
+\section{The rotation group}
+
+\subsection{Irreps of \texorpdfstring{$\SO{3}$}{SO(3)}}
+The spherical harmonics $Y_l^m$, $m=-l,\dots,l$, span a $(2l+1)$-dimensional irrep
+$D_l$ of $\SO{3}$ ($l=0,1,2,\dots$). Every rotation is conjugate to a rotation by the
+same angle about $z$, so the character depends only on the angle $\theta$. Using
+$\hat{L}_z\ket{l,m}=\hbar m\ket{l,m}$,
+\begin{equation}\label{eq:chil}
+\chi_l(\theta)=\sum_{m=-l}^{l}\ee^{-\ii m\theta}
+=\frac{\ee^{\ii(l+1/2)\theta}-\ee^{-\ii(l+1/2)\theta}}{\ee^{\ii\theta/2}-\ee^{-\ii\theta/2}}
+=\frac{\sin\bigl[(l+\tfrac12)\theta\bigr]}{\sin(\theta/2)},
+\end{equation}
+with $\chi_l(0)=2l+1$. (The sign convention of the exponent does not matter: the sum
+is symmetric in $m\to-m$.) Useful values: $\chi_l(\cpi)=(-1)^l$;
+$\chi_l(2\cpi/3)=1,0,-1$ for $l\equiv0,1,2\pmod3$.
+
+\subsection{\texorpdfstring{$\Og{3}$}{O(3)} and parity}
+The full orthogonal group is $\Og{3}=\SO{3}\times\{E,I\}$, and the inversion commutes
+with everything. Each irrep of $\SO{3}$ gives two irreps of $\Og{3}$, $D_l^{+}$ and
+$D_l^{-}$, with $\mat{D}(I)=\pm\one$. An improper element $I\,C(\theta)$ has character
+$\pm\chi_l(\theta)$. Atomic orbitals have the parity of $Y_l^m$, $(-1)^l$:
+$s=D_0^+$, $p=D_1^-$, $d=D_2^+$, $f=D_3^-$. A mirror is $\sigma=IC_2$, so
+$\chi_{D_l^{(-1)^l}}(\sigma)=(-1)^l\chi_l(\cpi)=1$ for every orbital.
+
+\subsection{Direct products\beyondmark}\label{sec:directproduct}
+$\Og{3}=\SO{3}\times\{E,I\}$ is an instance of a general construction. If $G$ has two
+normal subgroups (\cref{sec:normal}) $H$, $K$ with $H\cap K=\{e\}$ and $HK=G$, then
+$G\cong H\times K$ and elements of $H$ commute with those of $K$. The irreps of
+$H\times K$ are products of irreps of the factors, $\Gamma^{(\mu)}_H\otimes
+\Gamma^{(\nu)}_K$, with characters $\chi^{(\mu)}(h)\chi^{(\nu)}(k)$. Other examples:
+$\Oh=O\times\Ci$ (\cref{ex:5:Oh}) and $\Dh{6}=\Cv{6}\times\{E,\sh\}$ (\cref{ch:bands}).
+Tables for such groups are often given only for one factor; the irreps of the full
+group are the $\mathrm{g}$ (even) and $\mathrm{u}$ (odd) copies.
+
+\section{Crystal-field splitting (weak spin--orbit coupling)}\label{sec:crystalfield}
+
+An atom in a molecule or crystal no longer feels a spherically symmetric potential,
+only one invariant under its \emph{local} point group $G$ (its site-symmetry group,
+\cref{sec:sitesym}). If spin--orbit coupling is weak, an $l$ level splits according
+to $D_l^{\pm}\!\downarrow\!G$. For $\Cv{3}$:
+\begin{equation}\label{eq:C3vsplit}
+\begin{array}{c|ccc|l}
+\Cv{3} & E & 2C_3 & 3\sd & \\\hline
+D_0^+ & 1 & 1 & 1 & s\to\irr{a}_1\\
+D_1^- & 3 & 0 & 1 & p\to\irr{a}_1\oplus\irr{e}\\
+D_2^+ & 5 & -1 & 1 & d\to\irr{a}_1\oplus2\,\irr{e}\\
+D_3^- & 7 & 1 & 1 & f\to2\,\irr{a}_1\oplus\irr{a}_2\oplus2\,\irr{e}
+\end{array}
+\end{equation}
+Lower-case labels are customary for one-electron orbitals. The most famous example is
+a $d$ ion in an octahedral environment ($\Oh$): $d\to\irr{e}_{\mathrm{g}}\oplus
+\irr{t}_{2\mathrm{g}}$, the splitting $\Delta_{\mathrm{o}}$ of ligand-field theory
+(\cref{ex:5:Oh}). In a tetrahedral environment $d\to\irr{e}\oplus\irr{t}_2$.
+
+\paragraph{Orbital mixing.} Once the symmetry is lowered, orbitals from different
+$l$ that belong to the same irrep of $G$ may mix. In $\Cv{3}$, $s$, $p_z$ and $d_{z^2}$
+are all $\irr{a}_1$. Strictly speaking there is no ``$p_z$ orbital'' in a crystal, only
+an $\irr{a}_1$ orbital that resembles one. This matters when one builds tight-binding
+models (\cref{sec:sitesym}).
+
+\section{Half-integer angular momentum}\label{sec:doublevalued}
+
+With spin, the relevant angular momenta $j$ can be half-integers. Formula
+\eqref{eq:chil} still gives the character of $D_j$ with $l\to j$, but for half-integer
+$j$ it has a disturbing property:
+\[
+\chi_j(\theta+2\cpi)=-\chi_j(\theta).
+\]
+A rotation by $2\cpi$ multiplies a spinor by $-1$. These are the irreps of $\SU{2}$,
+which covers $\SO{3}$ twice (\cref{sec:su2}); as ``representations'' of $\SO{3}$ they
+are \emph{double valued}.
+
+Try anyway to split a $j=\tfrac12$ or $j=\tfrac32$ level in a $\Cv{3}$ environment
+(strong spin--orbit coupling, so that $j$ is a good quantum number of the free atom).
+For improper elements, the inversion acts trivially on spin and
+$\sigma=IC_2$, so $\chi(\sigma)=\pm\chi_j(\cpi)=0$ for half-integer $j$:
+\[
+\begin{array}{c|ccc}
+\Cv{3} & E & 2C_3 & 3\sd\\\hline
+D_{1/2}^- & 2 & 1 & 0\\
+D_{3/2}^- & 4 & -1 & 0
+\end{array}
+\qquad
+\begin{aligned}
+D_{1/2}^-:&\ m_{\irr{A}_1}=m_{\irr{A}_2}=\tfrac23,\ m_{\irr{E}}=\tfrac13 \quad(!)\\
+D_{3/2}^-:&\ m_{\irr{A}_1}=m_{\irr{A}_2}=\tfrac13,\ m_{\irr{E}}=\tfrac53 \quad(!)
+\end{aligned}
+\]
+Fractional multiplicities: the characters of spinors are not combinations of the
+characters of $\Cv{3}$. The group is too small.
+
+\section{The rotation group and \texorpdfstring{$\SU{2}$}{SU(2)}\beyondmark}\label{sec:su2}
+
+The lecture only needs the characters of the rotation group. A theorist also needs the
+relation between $\SO{3}$ and $\SU{2}$, the Clebsch--Gordan series and the
+Wigner--Eckart theorem; they are summarised here.
+
+\subsection{Rotations}
+A rotation $R(\vec{n},\theta)$ by the angle $\theta\in[0,\cpi]$ about the unit axis $\vec{n}$
+acts on vectors as
+$R\vec{v}=\cos\theta\,\vec{v}+\sin\theta\,\vec{n}\times\vec{v}+(1-\cos\theta)(\vec{n}\cdot\vec{v})\vec{n}$.
+Since $R'R(\vec{n},\theta)R'^{-1}=R(R'\vec{n},\theta)$, all rotations by the same angle
+are conjugate: the classes of $\SO{3}$ are labelled by $\theta$, and characters are
+functions of $\theta$ only. On states, rotations act as
+$\hat{U}(\vec{n},\theta)=\exp(-\ii\theta\,\vec{n}\cdot\hat{\vec{J}}/\hbar)$, and the
+generators satisfy $[\hat{J}_x,\hat{J}_y]=\ii\hbar\hat{J}_z$ and cyclic permutations.
+
+\subsection{\texorpdfstring{$\SU{2}$}{SU(2)} covers \texorpdfstring{$\SO{3}$}{SO(3)} twice}
+Every $\mat{U}\in\SU{2}$ can be written
+\begin{equation}
+\mat{U}(\vec{n},\theta)=\exp\bigl(-\tfrac{\ii}{2}\theta\,\vec{n}\cdot\vec{\sigma}\bigr)
+=\cos\tfrac{\theta}{2}\,\one-\ii\sin\tfrac{\theta}{2}\,\vec{n}\cdot\vec{\sigma},
+\qquad 0\le\theta\le2\cpi .
+\end{equation}
+Acting by conjugation on the traceless hermitian matrices $\vec{v}\cdot\vec{\sigma}$
+(which form a copy of $\mathbb{R}^3$), $\mat{U}(\vec{v}\cdot\vec{\sigma})\mat{U}\herm=
+(R\vec{v})\cdot\vec{\sigma}$ defines a rotation $R(\mat{U})$, with
+$R_{ij}=\tfrac12\tr(\sigma_i\mat{U}\sigma_j\mat{U}\herm)$. The map $\mat{U}\mapsto R(\mat{U})$ is a
+homomorphism onto $\SO{3}$ with kernel $\{\one,-\one\}$ (\cref{sec:normal}):
+$\mat{U}(\vec{n},\theta)$ and $\mat{U}(\vec{n},\theta+2\cpi)=-\mat{U}(\vec{n},\theta)$ give
+the same rotation. In particular
+\begin{equation}
+\mat{U}(\vec{n},2\cpi)=-\one:
+\end{equation}
+a rotation by $2\cpi$ multiplies a spinor by $-1$, and only a rotation by $4\cpi$ is the
+identity. Topologically, $\SU{2}$ is the 3-sphere (simply connected), and
+$\SO{3}=\SU{2}/\{\pm\one\}$ is doubly connected. A closed path of rotations from $0$ to
+$2\cpi$ cannot be shrunk to a point; the same path traversed twice can. This is the
+``belt trick''.
+
+\subsection{Irreps and characters}
+The irreps of $\SU{2}$ are $D_j$, $j=0,\tfrac12,1,\tfrac32,\dots$, of dimension $2j+1$,
+with basis $\ket{j,m}$ and $D_j(\mat{U}(\vec{e}_z,\theta))\ket{j,m}=\ee^{-\ii m\theta}\ket{j,m}$.
+Their characters are \eqref{eq:chil} with $l\to j$, and
+\begin{equation}
+\chi_j(\theta+2\cpi)=(-1)^{2j}\chi_j(\theta).
+\end{equation}
+For integer $j$, $D_j(-\one)=+\one$ and $D_j$ is a genuine representation of $\SO{3}$
+(orbital angular momentum, $j=l$). For half-integer $j$, $D_j(-\one)=-\one$: a
+representation of $\SU{2}$ but only a ``double-valued'' one of $\SO{3}$.
+
+\subsection{Clebsch--Gordan series}
+The product $D_{j_1}\otimes D_{j_2}$ has eigenvalues
+$\ee^{-\ii(m_1+m_2)\theta}$ under $z$ rotations. Collecting the values of $m_1+m_2$ gives
+\begin{equation}
+\chi_{j_1}\chi_{j_2}=\sum_{j=\abs{j_1-j_2}}^{j_1+j_2}\chi_j,\qquad
+D_{j_1}\otimes D_{j_2}=\bigoplus_{j=\abs{j_1-j_2}}^{j_1+j_2}D_j .
+\end{equation}
+For example, a $p$ electron with spin: $D_1\otimes D_{1/2}=D_{3/2}\oplus D_{1/2}$. This is
+the origin of the $j=\tfrac32$, $j=\tfrac12$ multiplets split by spin--orbit coupling. The
+change of basis from $\ket{j_1m_1}\ket{j_2m_2}$ to $\ket{jm}$ is given by the
+Clebsch--Gordan coefficients $\braket{j_1m_1;j_2m_2}{jm}$.
+
+\subsection{The Wigner--Eckart theorem}\label{sec:wignereckart}
+A set of operators $T^{(k)}_q$, $q=-k,\dots,k$, transforming like $\ket{k,q}$ under
+rotations is an \emph{irreducible tensor operator} of rank $k$. Then
+\begin{equation}
+\bra{j,m}T^{(k)}_q\ket{j',m'}=\braket{j'm';kq}{jm}\;
+\frac{\langle j\Vert T^{(k)}\Vert j'\rangle}{\sqrt{2j+1}} .
+\end{equation}
+All $(2j+1)(2k+1)(2j'+1)$ matrix elements are fixed by a single reduced matrix element.
+The Clebsch--Gordan coefficient gives the selection rules $m=m'+q$ and
+$\abs{j-j'}\le k\le j+j'$. The dipole rule $\Delta l=\pm1$ follows from $k=1$ together
+with parity.
+
+For a finite group the statement is the same: matrix elements
+$\bra{\Gamma_f,i}\hat{O}^{\Gamma_O}_a\ket{\Gamma_i,j}$ are products of coupling coefficients
+of $G$ and reduced matrix elements, one reduced element for each copy of $\Gamma_f$ in
+$\Gamma_O\otimes\Gamma_i$ (\cref{sec:raman}).
+
+\section{Double groups}\label{sec:doublegroups}
+
+The cure is to treat the rotation by $2\cpi$ as a group element of its own,
+$\Ebar\equiv C(2\cpi)\neq E$, with $\Ebar^2=E$. The \emph{double group} $G^{\mathrm{D}}$
+contains, for each $g\in G$, the two elements $g$ and $\Ebar g$, so
+$\abs{G^{\mathrm{D}}}=2\abs{G}$. Concretely, $G^{\mathrm{D}}$ is the set of $\SU{2}$
+matrices (times the trivial action of $I$) that project onto $G$. In it:
+\begin{itemize}
+\item $C_n^n=\Ebar$ rather than $E$ (a rotation by $2\cpi$);
+\item $\sigma^2=\Ebar$, since $\sigma=IC_2$ and $C_2^2=\Ebar$;
+\item $g$ and $\Ebar g$ usually fall in different classes (the precise rules, due to
+      Opechowski, are in Bradley--Cracknell).
+\end{itemize}
+Its irreps are of two kinds: the \emph{single-valued} irreps of $G$ (with
+$\mat{D}(\Ebar)=+\one$) and new \emph{double-valued} irreps with $\mat{D}(\Ebar)=-\one$,
+which describe systems with an odd number of electrons (half-integer spin).
+
+\begin{example}[The double group of $\Cv{3}$]
+Order 12, six classes, six irreps ($1+1+4+1+1+4=12$):
+\begin{equation}\label{eq:C3vdouble}
+\begin{array}{c|cccccc|c}
+\Cv{3}^{\mathrm{D}} & E & \Ebar & 2C_3 & 2\bar{C}_3 & 3\sd & 3\bar{\sigma}_{\mathrm{d}} & \text{type}\\\hline
+\irr{A}_1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+\irr{A}_2 & 1 & 1 & 1 & 1 & -1 & -1 & 1\\
+\irr{E} & 2 & 2 & -1 & -1 & 0 & 0 & 1\\
+{}^{1}\bar{\irr{E}} & 1 & -1 & -1 & 1 & \ii & -\ii & 2\\
+{}^{2}\bar{\irr{E}} & 1 & -1 & -1 & 1 & -\ii & \ii & 2\\
+\bar{\irr{E}}_1 & 2 & -2 & 1 & -1 & 0 & 0 & 3\\\hline
+D_{1/2} & 2 & -2 & 1 & -1 & 0 & 0 & \\
+D_{3/2} & 4 & -4 & -1 & 1 & 0 & 0 &
+\end{array}
+\end{equation}
+Now the reduction works:
+$D_{1/2}\!\downarrow\!\Cv{3}^{\mathrm{D}}=\bar{\irr{E}}_1$ and
+$D_{3/2}\!\downarrow\!\Cv{3}^{\mathrm{D}}={}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}\oplus\bar{\irr{E}}_1$.
+The last column is explained in the next section.
+\end{example}
+
+The one-dimensional characters are forced by the group structure: in the double group
+$C_3^3=\Ebar$, so $\chi(C_3)^3=\chi(\Ebar)=-1$; and $\sigma^2=\Ebar$ gives
+$\chi(\sigma)^2=-1$, $\chi(\sigma)=\pm\ii$.
+
+\subsection{Construction, classes and irreps\beyondmark}\label{sec:doublegroupsformal}
+For a point group $G\subset\Og{3}$, the double group $G^{\mathrm{D}}$ is the set of
+pairs $(g,\pm\mat{U}_g)$, where $\mat{U}_g\in\SU{2}$ is a lift of the rotational part of $g$
+(\cref{sec:su2}). The inversion acts trivially on spin, so a mirror $\sigma$ with normal
+$\vec{n}$ is represented by the lift of $C_2(\vec{n})$, $-\ii\,\vec{n}\cdot\vec{\sigma}$, and
+$\sigma^2=\Ebar$. The order is $2\abs{G}$, and $\Ebar=(E,-\one)$ is central. Useful facts:
+\begin{itemize}
+\item \emph{Classes (Opechowski's rules).} $g$ and $\Ebar g$ always lie in different
+      classes, except when $g$ is a two-fold rotation or a reflection and $G$ contains a
+      two-fold rotation or a reflection whose axis (or normal) is perpendicular to that of
+      $g$. For example, in $\Cv{3}$ the mirrors $\sd$ and $\bar{\sigma}_{\mathrm{d}}$ are in
+      different classes, while in $\Cv{2}$ and $\Cv{6}$ they are not.
+\item \emph{Irreps.} Those with $\mat{D}(\Ebar)=+\one$ are the ordinary irreps of $G$. The
+      others, with $\mat{D}(\Ebar)=-\one$, are the double-valued irreps, and
+      $\sum_{\text{double-valued}}d^2=\abs{G}$.
+\item \emph{Electrons.} With spin--orbit coupling the states of an odd number of electrons
+      carry double-valued irreps only. For weak spin--orbit coupling, obtain them as
+      $\Gamma_{\mathrm{orb}}\otimes D_{1/2}$ (\cref{ex:5:SO}).
+\end{itemize}
+
+\section{Reality of a representation}\label{sec:reality}
+
+Given a representation $\mat{D}$, the complex conjugate matrices $\mat{D}^{*}$ also form
+a representation, with character $\chi^{*}$. For an irrep there are three
+possibilities:
+\begin{enumerate}
+\item \emph{real} (type 1): $\mat{D}$ is equivalent to a representation by real
+      matrices;
+\item \emph{complex} (type 2): $\mat{D}^{*}$ is not equivalent to $\mat{D}$
+      ($\chi$ is not real);
+\item \emph{pseudoreal} (type 3): $\mat{D}^{*}$ is equivalent to $\mat{D}$ ($\chi$ is real),
+      yet no basis makes all matrices real.
+\end{enumerate}
+The \emph{Frobenius--Schur indicator} distinguishes them from the character alone:
+\begin{equation}\label{eq:FS}
+\frac{1}{\abs{G}}\sum_{g\in G}\chi(g^2)=
+\begin{cases}+1&\text{real},\\ 0&\text{complex},\\ -1&\text{pseudoreal.}\end{cases}
+\end{equation}
+In the double group of $\Cv{3}$: $\irr{A}_1,\irr{A}_2,\irr{E}$ are real; ${}^{1}\bar{\irr{E}}$
+and ${}^{2}\bar{\irr{E}}$ are complex and conjugate to each other; $\bar{\irr{E}}_1$ is
+pseudoreal (\cref{ex:5:FS}). The spin-$\tfrac12$ representation of $\SU{2}$ itself is the
+prototypical pseudoreal representation: $\sigma_y\mat{U}^{*}\sigma_y=\mat{U}$ for every
+$\mat{U}\in\SU{2}$.
+
+Why this matters: time reversal is antiunitary and effectively relates a
+representation to its complex conjugate. It glues complex-conjugate pairs of irreps
+into degenerate \emph{physically irreducible} representations. For
+${}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}$ this gives the Kramers degeneracy of the
+$j=\tfrac32$ level, which in a $\Cv{3}$ field splits only into two Kramers doublets. It
+also decides when the bilinear invariants of \cref{sec:invariants} come in pairs
+(\cref{sec:complexinv}). See \cref{sec:TR}.
+
+\section{Time reversal\beyondmark}\label{sec:TR}
+
+Time reversal appears in the lectures in two places: in the pairing of
+complex-conjugate irreps (\cref{sec:reality}, and \cref{sec:complexinv} in the next
+chapter) and in band topology (\cref{ch:topology}). This section gives the minimum
+theory for an atom or a molecule; \cref{sec:TRcrystal} adds what changes in a crystal.
+
+\subsection{An antiunitary symmetry}
+By Wigner's theorem on symmetries, a symmetry of quantum mechanics is represented by an
+operator that is either unitary or \emph{antiunitary}: antilinear,
+$\TR(a\psi+b\phi)=a^{*}\TR\psi+b^{*}\TR\phi$, with
+$\braket{\TR\psi}{\TR\phi}=\braket{\psi}{\phi}^{*}$. Time reversal must reverse momenta
+and angular momenta but not positions, and it must preserve $[\hat{x},\hat{p}]=\ii\hbar$.
+This forces antiunitarity. Every antiunitary operator can be written $\TR=\hat{U}K$ with
+$\hat{U}$ unitary and $K$ complex conjugation in a fixed basis.
+\begin{itemize}
+\item \emph{Spinless particles}: $\TR=K$ in the position representation,
+      $(\TR\psi)(\vec{r})=\psi(\vec{r})^{*}$, and $\TR^2=+1$.
+\item \emph{Spin $\tfrac12$}: $\TR=-\ii\sigma_yK$, which reverses $\vec{\sigma}$
+      ($\TR\vec{\sigma}\TR^{-1}=-\vec{\sigma}$), and $\TR^2=-1$.
+\item $N$ electrons: $\TR^2=(-1)^N$.
+\end{itemize}
+
+\subsection{Kramers' theorem}\label{sec:kramers}
+\begin{theorem}[Kramers]
+If $[\hat{H},\TR]=0$ and $\TR^2=-1$, every energy level is at least doubly degenerate.
+\end{theorem}
+\begin{proof}
+$\TR\psi$ has the same energy as $\psi$. If they were the same state,
+$\TR\psi=c\psi$, then $\TR^2\psi=\TR(c\psi)=c^{*}\TR\psi=\abs{c}^2\psi=\psi$,
+contradicting $\TR^2=-1$. In fact the two states are orthogonal: antiunitarity gives
+$\braket{a}{b}=\braket{\TR b}{\TR a}$, and with $a=\psi$, $b=\TR\psi$,
+$\braket{\psi}{\TR\psi}=\braket{\TR^2\psi}{\TR\psi}=-\braket{\psi}{\TR\psi}$, so
+$\braket{\psi}{\TR\psi}=0$.
+\end{proof}
+
+\subsection{Extra degeneracies}\label{sec:herring}
+Time reversal commutes with the point-group operations, so it maps the states of a
+level onto states of the same energy that transform under the complex-conjugate
+representation. It can therefore force two irreps to stick together, or double a
+single one. For a point group $G$ the answer depends on the reality type of the irrep
+(\cref{sec:reality}), measured by the Frobenius--Schur indicator
+$s=\frac{1}{\abs{G}}\sum_g\chi(g^2)$, and on $\TR^2$:
+\begin{equation}
+\begin{array}{lcc}
+\toprule
+\text{reality type of }\Gamma & \TR^2=+1\ \text{(no spin)} & \TR^2=-1\ \text{(spin }\tfrac12)\\
+\midrule
+\text{real } (s=+1) & \text{no extra degeneracy} & \text{doubled: } \Gamma\oplus\Gamma\\
+\text{complex } (s=0) & \Gamma\oplus\Gamma^{*}\ \text{degenerate} & \Gamma\oplus\Gamma^{*}\ \text{degenerate}\\
+\text{pseudoreal } (s=-1) & \text{doubled: } \Gamma\oplus\Gamma & \text{no extra degeneracy}\\
+\bottomrule
+\end{array}
+\end{equation}
+Examples. For spinless electrons in $C_4$ (\cref{sec:complexinv}), the complex pair
+${}^{1}\irr{E}$, ${}^{2}\irr{E}$ becomes a degenerate doublet, the physically
+irreducible representation $\irr{E}$. For spin-$\tfrac12$ electrons in $\Cv{3}$, the
+complex pair ${}^{1}\bar{\irr{E}}$, ${}^{2}\bar{\irr{E}}$ becomes a Kramers doublet, while
+the pseudoreal $\bar{\irr{E}}_1$ is already a doublet and is not doubled again. So a
+$j=\tfrac32$ level at a $\Cv{3}$ site splits into two Kramers doublets.
+
+\exercisesection
+
+\begin{exercise}\label{ex:5:Cs}
+Let $\Cs=\{E,\sigma\}$ be the subgroup of $\Cv{3}$ generated by one mirror, with irreps
+$\irr{A}'$ (even) and $\irr{A}''$ (odd). Construct the subduction table
+$\Cv{3}\to\Cs$.
+\end{exercise}
+
+\begin{solution}
+Keep the columns $E$ and $\sigma$: $\irr{A}_1\to(1,1)=\irr{A}'$,
+$\irr{A}_2\to(1,-1)=\irr{A}''$, $\irr{E}\to(2,0)=\irr{A}'\oplus\irr{A}''$.
+\end{solution}
+
+\begin{exercise}\label{ex:5:Td}
+Show that in a tetrahedral environment $p\to\irr{t}_2$, $d\to\irr{e}\oplus\irr{t}_2$
+and $f\to\irr{a}_1\oplus\irr{t}_1\oplus\irr{t}_2$. Remember that $S_4=\sh C_4$ is
+improper and use $\chi(IC(\theta))=\pm\chi_l(\theta)$.
+\end{exercise}
+
+\begin{solution}
+Write $S_4=\sh C_4=IC(270^\circ)$ and $\sd=IC_2$. Then
+$\chi(S_4)=\pm\chi_l(90^\circ)$ and $\chi(\sd)=\pm\chi_l(180^\circ)$, with the parity sign
+$(-1)^l$. Using \eqref{eq:chil}:
+\[
+\begin{array}{c|ccccc|l}
+ & E & 8C_3 & 3C_2 & 6S_4 & 6\sd & \\\hline
+p\ (l=1) & 3 & 0 & -1 & -1 & 1 & \irr{T}_2\\
+d\ (l=2) & 5 & -1 & 1 & -1 & 1 & \irr{E}\oplus\irr{T}_2\\
+f\ (l=3) & 7 & 1 & -1 & 1 & 1 & \irr{A}_1\oplus\irr{T}_1\oplus\irr{T}_2
+\end{array}
+\]
+For instance for $d$: $m_{\irr{E}}=\tfrac1{24}(10+8+6+0+0)=1$ and
+$m_{\irr{T}_2}=\tfrac1{24}(15+0-3+6+6)=1$.
+\end{solution}
+
+\begin{exercise}[octahedral field]\label{ex:5:Oh}
+Since $d$ orbitals are even under inversion, their splitting in $\Oh=O\times\Ci$ is
+decided by the rotation group $O$, with classes $E$, $8C_3$, $3C_2$, $6C_4$, $6C_2'$
+and character table
+\[
+\begin{array}{c|ccccc}
+O & E & 8C_3 & 3C_2 & 6C_4 & 6C_2'\\\hline
+\irr{A}_1&1&1&1&1&1\\ \irr{A}_2&1&1&1&-1&-1\\ \irr{E}&2&-1&2&0&0\\
+\irr{T}_1&3&0&-1&1&-1\\ \irr{T}_2&3&0&-1&-1&1
+\end{array}
+\]
+Show that $d\to\irr{e}\oplus\irr{t}_2$ (in $\Oh$: $\irr{e}_{\mathrm{g}}\oplus\irr{t}_{2\mathrm{g}}$).
+Which of the two is spanned by $d_{xy},d_{yz},d_{zx}$?
+\end{exercise}
+
+\begin{solution}
+$\chi_2$: $E\to5$, $C_3\to-1$, $C_2\to1$, $C_4\to\sin(5\cpi/4)/\sin(\cpi/4)=-1$,
+$C_2'\to1$. Then $m_{\irr{E}}=\tfrac1{24}(10+8+6)=1$, $m_{\irr{T}_2}=\tfrac1{24}(15-3+6+6)=1$,
+all others $0$: $d\to\irr{e}\oplus\irr{t}_2$, which are $\irr{e}_{\mathrm{g}}\oplus\irr{t}_{2\mathrm{g}}$
+in $\Oh$. The three orbitals $xy,yz,zx$ are permuted among themselves by the cubic
+rotations and span $\irr{t}_{2\mathrm{g}}$; $x^2-y^2$ and $3z^2-r^2$ span $\irr{e}_{\mathrm{g}}$.
+\end{solution}
+
+\begin{exercise}[weak vs strong spin--orbit]\label{ex:5:SO}
+A $p$ electron sits at a $\Cv{3}$ site. (a) Weak spin--orbit coupling: split the
+orbitals first, $p\to\irr{a}_1\oplus\irr{e}$, then multiply by the spin representation
+$D_{1/2}=\bar{\irr{E}}_1$. (b) Strong spin--orbit coupling: split $j=\tfrac12$ and
+$j=\tfrac32$ directly. Show that both orders give the same set of double-group irreps,
+$2\bar{\irr{E}}_1\oplus{}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}$.
+\end{exercise}
+
+\begin{solution}
+(a) $\irr{A}_1\otimes\bar{\irr{E}}_1=\bar{\irr{E}}_1$. The product $\irr{E}\otimes\bar{\irr{E}}_1$
+has characters
+\[
+\bigl(2\cdot2,\ 2\cdot(-2),\ (-1)(1),\ (-1)(-1),\ 0,\ 0\bigr)=(4,-4,-1,1,0,0),
+\]
+equal to ${}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}\oplus\bar{\irr{E}}_1$. Total:
+$2\bar{\irr{E}}_1\oplus{}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}$.
+(b) $D_{1/2}\to\bar{\irr{E}}_1$ and $D_{3/2}\to{}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}\oplus\bar{\irr{E}}_1$:
+the same set. The final labels do not depend on the order in which the perturbations
+are applied; only the energies do.
+\end{solution}
+
+\begin{exercise}\label{ex:5:FS}
+Verify the ``type'' column of \eqref{eq:C3vdouble} with the Frobenius--Schur indicator.
+You need the classes of the squares: $(C_3)^2\in\{2\bar{C}_3\}$,
+$(\bar{C}_3)^2\in\{2\bar{C}_3\}$, $\sigma^2=\bar{\sigma}^2=\Ebar$.
+\end{exercise}
+
+\begin{solution}
+Sum $\chi(g^2)$ over the 12 elements, grouped by class (sizes $1,1,2,2,3,3$), with
+$g^2$ equal to $E$, $E$, $\bar C_3$, $\bar C_3$, $\Ebar$, $\Ebar$ respectively:
+\begin{align*}
+\irr{E}:&\ 2+2+2(-1)+2(-1)+3\cdot2+3\cdot2=12 &&\Rightarrow s=+1,\\
+{}^{1}\bar{\irr{E}}:&\ 1+1+2\cdot1+2\cdot1+3(-1)+3(-1)=0 &&\Rightarrow s=0,\\
+\bar{\irr{E}}_1:&\ 2+2+2(-1)+2(-1)+3(-2)+3(-2)=-12 &&\Rightarrow s=-1.
+\end{align*}
+$\irr{A}_1$ and $\irr{A}_2$ give $s=+1$ trivially.
+\end{solution}

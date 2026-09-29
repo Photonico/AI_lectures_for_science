@@ -1,0 +1,566 @@
+\chapter{Irreducible representations as building blocks}\label{ch:building}
+
+\begin{watch}{\lec{2}}
+Recap and the problem of finding invariant subspaces \ts{2}{498}{8:18} $\cdot$
+traces and characters \ts{2}{1129}{18:49} $\cdot$
+classes \ts{2}{1447}{24:07} $\cdot$
+number of irreps and $\sum d_\mu^2=\abs{G}$ \ts{2}{2017}{33:37} $\cdot$
+orthogonality of characters \ts{2}{2204}{36:44} $\cdot$
+the ``magic formula'' \ts{2}{2461}{41:01} $\cdot$
+computing characters without matrices \ts{2}{3441}{57:21} $\cdot$
+rotoreflections and rotoinversions \ts{2}{3691}{61:31} $\cdot$
+axial vectors \ts{2}{4330}{72:10} $\cdot$
+the mechanical representation \ts{2}{4453}{74:13} $\cdot$
+$\mathrm{CH_3D}$ worked out \ts{2}{5215}{86:55}
+\end{watch}
+
+The aim of this chapter is to derive, with nothing but a character table and a few
+multiplications, the decomposition $\Gvib(\mathrm{CH_3D})=3\,\irr{A}_1\oplus3\,\irr{E}$.
+
+\section{Characters}
+
+Matrices change under a change of basis, but traces do not:
+$\tr(\mat{A}\mat{D}\mat{A}^{-1})=\tr\mat{D}$. Hence equivalent representations have
+the same traces. The converse is far from obvious, and is one of the central
+results of the theory (proved in \cref{sec:proofs}):
+
+\begin{theorem}\label{thm:charequiv}
+Two representations of a finite group are equivalent if and only if
+$\tr\mat{D}_1(g)=\tr\mat{D}_2(g)$ for \emph{every} $g\in G$.
+\end{theorem}
+
+\begin{definition}
+The \emph{character} of a representation $\Gamma$ is the function
+$\chi_\Gamma\colon G\to\mathbb{C}$, $\chi_\Gamma(g)=\tr\mat{D}(g)$.
+\end{definition}
+A character is the whole list of traces, one per group element; the trace of a
+single element is not enough to characterise a representation. Two consequences:
+\begin{itemize}
+\item $\chi(E)=\dim\Gamma$, because $\mat{D}(E)$ is the unit matrix.
+\item If $\Gamma=\Gamma_1\oplus\Gamma_2$ then $\chi_\Gamma=\chi_{\Gamma_1}+\chi_{\Gamma_2}$:
+      the trace of a block-diagonal matrix is the sum of the traces of the blocks.
+\end{itemize}
+For the vector representation of $\Cv{3}$ \eqref{eq:VC3v}, the traces of the full
+matrices, of the $2\times2$ blocks and of the $1\times1$ blocks are
+\[
+\begin{array}{c|cccccc}
+ & E & C_3^+ & C_3^- & \sigma_{\mathrm{d}1} & \sigma_{\mathrm{d}2} & \sigma_{\mathrm{d}3}\\\hline
+\chiV & 3 & 0 & 0 & 1 & 1 & 1\\
+\chi_{\irr{E}} & 2 & -1 & -1 & 0 & 0 & 0\\
+\chi_{\irr{A}_1} & 1 & 1 & 1 & 1 & 1 & 1
+\end{array}
+\]
+and indeed $\chiV=\chi_{\irr{A}_1}+\chi_{\irr{E}}$.
+
+\section{Conjugacy classes}
+
+In the table above $C_3^+$ and $C_3^-$ have equal traces, and so do the three mirrors.
+This is no accident.
+
+\begin{definition}
+Two elements $a,b\in G$ are \emph{conjugate} if $b=g a g^{-1}$ for some $g\in G$.
+Conjugacy is an equivalence relation; its equivalence classes are the
+\emph{(conjugacy) classes} of $G$.
+\end{definition}
+Since $\tr\mat{D}(gag^{-1})=\tr(\mat{D}(g)\mat{D}(a)\mat{D}(g)^{-1})=\tr\mat{D}(a)$,
+\emph{characters are class functions}: constant on each class.
+
+Intuitively, a class collects the elements ``of the same kind'' that are related by
+some symmetry of the group. In $\Cv{3}$:
+\begin{itemize}
+\item $\{E\}$: the identity is always a class by itself.
+\item $\{C_3^+,C_3^-\}$: a vertical mirror turns a counterclockwise rotation into a
+      clockwise one (a rotation seen in a mirror parallel to its axis reverses its
+      sense), $\sigma_{\mathrm{d}1}C_3^+\sigma_{\mathrm{d}1}^{-1}=C_3^-$.
+\item $\{\sigma_{\mathrm{d}1},\sigma_{\mathrm{d}2},\sigma_{\mathrm{d}3}\}$: a $C_3$
+      rotation carries each mirror plane into another,
+      $C_3^+\sigma_{\mathrm{d}1}C_3^-=\sigma_{\mathrm{d}2}$.
+\end{itemize}
+Being ``of the same kind'' is not enough: there must be a group element relating
+them. In a group containing only rotations about $z$ (such as $C_3$), $C_3^+$ and
+$C_3^-$ are \emph{not} conjugate, since nothing reverses the sense of rotation. In
+a commutative (Abelian) group every element is a class by itself.
+
+\subsection{Class sizes and rules of thumb\beyondmark}
+Conjugation $a\mapsto gag^{-1}$ is the change of ``point of view'' by the symmetry $g$.
+The number of elements in the class of $a$ is $\abs{G}/\abs{Z(a)}$, where
+$Z(a)=\{g:ga=ag\}$ is the centraliser; in particular class sizes divide $\abs{G}$.
+Rules of thumb for point groups:
+\begin{itemize}
+\item rotations by the same angle about axes related by a group operation are
+      conjugate;
+\item $C_n^{+}$ and $C_n^{-}$ about the same axis are conjugate if and only if the group
+      contains a $C_2$ perpendicular to the axis or a mirror containing the axis;
+\item mirrors related by a group operation are conjugate.
+\end{itemize}
+
+\section{Normal subgroups, quotient groups and homomorphisms\beyondmark}\label{sec:normal}
+
+\begin{definition}
+A subgroup $N$ is \emph{normal} ($N\trianglelefteq G$) if $gNg^{-1}=N$ for all $g$,
+i.e.\ if it is a union of whole classes. Equivalently, left and right cosets coincide,
+$gN=Ng$.
+\end{definition}
+For a normal subgroup the product of cosets (\cref{sec:cosets}) is well defined,
+$(g_1N)(g_2N)=g_1g_2N$, and the cosets form the \emph{quotient group} $G/N$ of order
+$\abs{G}/\abs{N}$.
+
+\begin{example}
+$C_3=\{E,C_3^+,C_3^-\}$ is normal in $\Cv{3}$ (it is the union of the classes $\{E\}$
+and $\{C_3^\pm\}$). The quotient $\Cv{3}/C_3$ has two elements, ``rotations'' and
+``reflections''. It is isomorphic to $\{+1,-1\}$ under multiplication, which is
+precisely the irrep $\irr{A}_2$ viewed as a homomorphism.
+\end{example}
+The most important example in this course is the translation subgroup of a space
+group, whose quotient is the point group (\cref{sec:semidirect}).
+
+\subsection{Homomorphisms}
+A map $f\colon G\to G'$ with $f(g_1g_2)=f(g_1)f(g_2)$ is a \emph{homomorphism}. Its
+kernel $\Ker f=\{g:f(g)=e'\}$ is a normal subgroup, and
+\begin{theorem}[First isomorphism theorem]
+$G/\Ker f\cong f(G)$.
+\end{theorem}
+A representation is a homomorphism $G\to\GL{n,\mathbb{C}}$. It is faithful exactly when
+its kernel is $\{e\}$. A non-faithful representation of $G$ is a faithful one of
+$G/\Ker$: the irrep $\irr{A}_2$ of $\Cv{3}$ ``lives'' on $\Cv{3}/C_3$. The map
+$\SU{2}\to\SO{3}$ is a homomorphism with kernel $\{\one,-\one\}$, so
+$\SO{3}\cong\SU{2}/\{\pm\one\}$ (\cref{sec:su2}).
+
+\section{Character tables}
+
+Because characters are class functions, they are tabulated by class, with the number
+of elements of each class written in front of its symbol:
+\begin{equation}\label{eq:C3vchar}
+\begin{array}{c|ccc|l}
+\Cv{3} & E & 2C_3 & 3\sd & \text{basis functions}\\\hline
+\irr{A}_1 & 1 & 1 & 1 & z,\ x^2+y^2,\ z^2\\
+\irr{A}_2 & 1 & 1 & -1 & R_z\\
+\irr{E} & 2 & -1 & 0 & (x,y),\ (R_x,R_y),\ (x^2-y^2,\,xy),\ (xz,\,yz)
+\end{array}
+\end{equation}
+The last column lists functions or quantities that transform according to each irrep;
+$R_i$ denote components of an axial vector.
+
+\begin{theorem}\label{thm:classcount}
+For a finite group $G$:
+\begin{enumerate}
+\item the number of inequivalent irreps equals the number of conjugacy classes;
+\item $\sum_\mu d_\mu^2=\abs{G}$ (Burnside).
+\end{enumerate}
+\end{theorem}
+For $\Cv{3}$: three classes, hence three irreps, with $d_1^2+d_2^2+d_3^2=6$. The only
+solution in positive integers is $1,1,2$. Infinitely many representations of any
+dimension, and all of them are built from just these three blocks. For $\Td$
+($24$ elements, five classes): $1+1+4+9+9=24$, dimensions $1,1,2,3,3$.
+
+You never need to construct character tables yourself: they are tabulated in
+Bradley and Cracknell and in the \texttt{POINT} program of the Bilbao
+Crystallographic Server. The table of $\Td$ is
+\begin{equation}\label{eq:Tdchar}
+\begin{array}{c|ccccc|l}
+\Td & E & 8C_3 & 3C_2 & 6S_4 & 6\sd & \text{basis functions}\\\hline
+\irr{A}_1 & 1 & 1 & 1 & 1 & 1 & x^2+y^2+z^2\\
+\irr{A}_2 & 1 & 1 & 1 & -1 & -1 & \\
+\irr{E} & 2 & -1 & 2 & 0 & 0 & (2z^2-x^2-y^2,\ x^2-y^2)\\
+\irr{T}_1 & 3 & 0 & -1 & 1 & -1 & (R_x,R_y,R_z)\\
+\irr{T}_2 & 3 & 0 & -1 & -1 & 1 & (x,y,z),\ (yz,xz,xy)
+\end{array}
+\end{equation}
+
+\section{Orthogonality and the reduction formula}
+
+Characters of a group with $\abs{G}$ elements can be regarded as vectors with
+$\abs{G}$ components, and we give them the natural inner product
+\begin{equation}\label{eq:inner}
+  \inner{\chi}{\chi'}=\frac{1}{\abs{G}}\sum_{g\in G}\chi(g)^{*}\,\chi'(g).
+\end{equation}
+
+\begin{theorem}[Orthogonality of characters]\label{thm:orth}
+If $\chi^{(\mu)}$ and $\chi^{(\nu)}$ are characters of irreps, then
+$\inner{\chi^{(\mu)}}{\chi^{(\nu)}}=\delta_{\mu\nu}$.
+\end{theorem}
+The irreducible characters are therefore an orthonormal set, and since their number
+equals the number of classes they are a basis of the space of class functions. If
+$\Gamma=\bigoplus_\nu m_\nu\Gamma^{(\nu)}$, then $\chi_\Gamma=\sum_\nu m_\nu\chi^{(\nu)}$,
+and projecting on $\chi^{(\mu)}$ gives the multiplicities:
+
+\begin{keyresult}[Reduction formula (the ``magic formula'')]
+\begin{equation}\label{eq:magic}
+  m_\mu=\inner{\chi^{(\mu)}}{\chi_\Gamma}
+      =\frac{1}{\abs{G}}\sum_{g\in G}\chi^{(\mu)}(g)^{*}\chi_\Gamma(g)
+      =\frac{1}{\abs{G}}\sum_{\text{classes }\mathcal{C}}N_{\mathcal{C}}\,
+        \chi^{(\mu)}(\mathcal{C})^{*}\chi_\Gamma(\mathcal{C}),
+\end{equation}
+where $N_{\mathcal{C}}$ is the number of elements of class $\mathcal{C}$. A useful
+corollary: $\Gamma$ is irreducible if and only if $\inner{\chi_\Gamma}{\chi_\Gamma}=1$;
+in general $\inner{\chi_\Gamma}{\chi_\Gamma}=\sum_\mu m_\mu^2$.
+\end{keyresult}
+
+The multiplicities come out as non-negative integers: $m_\mu$ counts diagonal blocks,
+and there is no such thing as half a block or a negative number of blocks. A
+fractional result is a sure sign of an arithmetic mistake (or, as in
+\cref{sec:doublevalued}, of using the wrong group).
+
+\begin{remark}[The most common mistake]
+The sum in \eqref{eq:magic} runs over \emph{elements}, not classes. When using a
+table organised by classes, multiply each term by the class size $N_{\mathcal{C}}$.
+A practical trick: write the class sizes above the columns before starting.
+\end{remark}
+
+\begin{example}[Decomposing $\GV$ of $\Cv{3}$]
+With $\chiV=(3,0,1)$ on the classes $(E,2C_3,3\sd)$ and the table \eqref{eq:C3vchar}:
+\begin{align*}
+m_{\irr{A}_1}&=\tfrac16\,(1\cdot3\cdot1+2\cdot0\cdot1+3\cdot1\cdot1)=1,\\
+m_{\irr{A}_2}&=\tfrac16\,(1\cdot3\cdot1+2\cdot0\cdot1+3\cdot1\cdot(-1))=0,\\
+m_{\irr{E}}&=\tfrac16\,(1\cdot3\cdot2+2\cdot0\cdot(-1)+3\cdot1\cdot0)=1.
+\end{align*}
+So $\GV=\irr{A}_1\oplus\irr{E}$, without ever looking for a good basis. Checks:
+$\inner{\chiV}{\chiV}=\frac16(9+0+3)=2=1^2+1^2$.
+\end{example}
+
+\section{Schur's lemma and the orthogonality theorems\beyondmark}\label{sec:proofs}
+
+The lecture states \cref{thm:charequiv,thm:classcount,thm:orth} without proof. All of
+them rest on Schur's lemma. By \cref{sec:unitarity} we may take every representation
+unitary.
+
+\subsection{Schur's lemma}\label{sec:schur}
+
+\begin{lemma}[Schur I]
+Let $\mat{D}^{(1)}$ ($d_1$-dimensional) and $\mat{D}^{(2)}$ ($d_2$-dimensional) be irreps and
+let $\mat{A}$ be a $d_1\times d_2$ matrix with
+$\mat{D}^{(1)}(g)\mat{A}=\mat{A}\mat{D}^{(2)}(g)$ for all $g$ (an \emph{intertwiner}).
+Then either $\mat{A}=0$, or $\mat{A}$ is invertible and the irreps are equivalent.
+\end{lemma}
+\begin{proof}
+$\Ker\mat{A}$ is invariant under $\mat{D}^{(2)}$ (if $\mat{A}x=0$ then
+$\mat{A}\mat{D}^{(2)}x=\mat{D}^{(1)}\mat{A}x=0$). By irreducibility it is $\{0\}$ or everything.
+Likewise the image of $\mat{A}$ is invariant under $\mat{D}^{(1)}$, so it is $\{0\}$ or
+everything. Either $\mat{A}=0$, or $\mat{A}$ is injective and surjective.
+\end{proof}
+
+\begin{lemma}[Schur II]
+A matrix commuting with all matrices of an irrep (over $\mathbb{C}$) is a multiple of
+the identity.
+\end{lemma}
+\begin{proof}
+Let $\lambda$ be an eigenvalue of $\mat{A}$. Then $\mat{A}-\lambda\one$ commutes with the
+irrep and is not invertible, so by Schur I it vanishes.
+\end{proof}
+Schur II is the heart of Wigner's theorem: an invariant Hamiltonian restricted to one
+copy of an irrep is proportional to the identity, so all its $d_\mu$ partner states have
+the same energy.
+
+\subsection{The great orthogonality theorem}
+
+\begin{theorem}\label{thm:GOT}
+For unitary irreps $\mat{D}^{(\mu)}$, $\mat{D}^{(\nu)}$ (chosen identical if equivalent),
+\begin{equation}\label{eq:GOT}
+\sum_{g\in G}D^{(\mu)}_{ij}(g)^{*}\,D^{(\nu)}_{kl}(g)=\frac{\abs{G}}{d_\mu}\,
+\delta_{\mu\nu}\,\delta_{ik}\,\delta_{jl}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For any $d_\nu\times d_\mu$ matrix $\mat{X}$, the average
+$\mat{A}=\sum_g\mat{D}^{(\nu)}(g)\,\mat{X}\,\mat{D}^{(\mu)}(g)^{-1}$ is an intertwiner:
+$\mat{D}^{(\nu)}(h)\mat{A}=\mat{A}\mat{D}^{(\mu)}(h)$ by rearrangement. For $\mu\neq\nu$,
+$\mat{A}=0$ (Schur I). For $\mu=\nu$, $\mat{A}=\lambda\one$ (Schur II), with $\lambda$
+fixed by the trace: $d_\mu\lambda=\tr\mat{A}=\abs{G}\tr\mat{X}$. Now choose $\mat{X}$ with a
+single entry $1$ in position $(l,j)$. Using unitarity,
+$[\mat{D}^{(\mu)}(g)^{-1}]_{ji}=D^{(\mu)}_{ij}(g)^{*}$, the $(k,i)$ element of $\mat{A}$ is
+$\sum_gD^{(\nu)}_{kl}(g)D^{(\mu)}_{ij}(g)^{*}$. It vanishes for $\mu\neq\nu$ and equals
+$\lambda\delta_{ki}=(\abs{G}/d_\mu)\,\delta_{lj}\delta_{ki}$ for $\mu=\nu$, which is
+\eqref{eq:GOT}.
+\end{proof}
+Interpretation: the $\sum_\mu d_\mu^2$ functions $g\mapsto\sqrt{d_\mu/\abs{G}}\,D^{(\mu)}_{ij}(g)$
+are orthonormal in the $\abs{G}$-dimensional space of functions on $G$. Hence
+$\sum_\mu d_\mu^2\le\abs{G}$.
+
+\subsection{Proofs of the character theorems}
+
+Setting $i=j$, $k=l$ in \eqref{eq:GOT} and summing gives the orthogonality of
+characters, \cref{thm:orth}:
+$\frac{1}{\abs{G}}\sum_g\chi^{(\mu)}(g)^{*}\chi^{(\nu)}(g)=\delta_{\mu\nu}$.
+From it follow the reduction formula \eqref{eq:magic} and the irreducibility test
+$\inner{\chi}{\chi}=1$.
+
+\begin{proof}[Proof of \cref{thm:charequiv}]
+By complete reducibility every representation is $\bigoplus m_\mu\Gamma^{(\mu)}$, and
+the multiplicities are determined by the character through \eqref{eq:magic}. Two
+representations with the same character have the same multiplicities, hence are both
+equivalent to the same direct sum.
+\end{proof}
+
+\paragraph{The regular representation.} Let $G$ act on the $\abs{G}$-dimensional space
+with basis $\{e_h\}_{h\in G}$ by $g\,e_h=e_{gh}$. Since $gh\neq h$ unless $g=e$, its
+character is $\chi_{\mathrm{reg}}(e)=\abs{G}$ and $\chi_{\mathrm{reg}}(g)=0$ otherwise. By
+\eqref{eq:magic}, $m_\mu=\frac{1}{\abs{G}}\,\abs{G}\,d_\mu=d_\mu$: \emph{every irrep occurs
+in the regular representation as many times as its dimension}. Counting dimensions,
+$\sum_\mu d_\mu^2=\abs{G}$ (Burnside), which proves part 2 of \cref{thm:classcount}.
+
+\paragraph{Number of irreps.} The characters are class functions, orthonormal, so their
+number is at most the number of classes $n_{\mathrm{c}}$. Completeness of the matrix
+elements (they span all functions on $G$, by Burnside) implies that the characters span
+all class functions, so the number of irreps is exactly $n_{\mathrm{c}}$. An equivalent
+statement is the \emph{second orthogonality relation},
+\begin{equation}
+\sum_\mu\chi^{(\mu)}(\mathcal{C})^{*}\chi^{(\mu)}(\mathcal{C}')
+=\frac{\abs{G}}{N_{\mathcal{C}}}\,\delta_{\mathcal{C}\mathcal{C}'},
+\end{equation}
+orthogonality of the \emph{columns} of a character table. It is a quick check of a
+table: for $\Cv{3}$ the column of $\sd$ gives $1+1+0=2=6/3$.
+
+\section{Computing characters without matrices}\label{sec:pointops}
+
+To use the reduction formula we still need the character of the representation of
+interest. Two observations make this almost free:
+\begin{enumerate}
+\item Characters are class functions: compute one element per class, choosing the
+      easiest.
+\item Traces do not depend on the basis: for each element, use the most convenient
+      axes.
+\end{enumerate}
+
+\subsection{The operations of a point group}
+Besides the identity, a point group contains four kinds of operations:
+\begin{itemize}
+\item proper rotations $C_n^{\pm}$ by $\theta=\pm2\cpi/n$;
+\item reflections $\sigma$;
+\item the inversion $I$;
+\item \emph{rotoreflections} $S_n^{\pm}=\sh C_n^{\pm}$: rotate by $\pm2\cpi/n$, then
+      reflect in the plane perpendicular to the axis.
+\end{itemize}
+Crystallographers (and the Bilbao server) use \emph{rotoinversions} $\bar{n}$ instead:
+rotate by $2\cpi/n$, then invert. The two are related through $\sh=I C_2$
+(reflection in a plane equals inversion times a half-turn about the normal):
+\[
+S_n^{\pm}=\sh C_n^{\pm}=I\,C_2\,C_n^{\pm}=I\,C(\cpi\pm2\cpi/n).
+\]
+For example $S_3^{+}=I\,C_6^{-}=\bar6^{-}$ and $S_4^{+}=\bar4^{-}$: a rotoreflection
+corresponds to a rotoinversion about the same axis but with a different angle and the
+\emph{opposite} sense. Tables in Schoenflies notation (Bradley--Cracknell) use $S_n$;
+tables in international notation use $\bar n$. Check which convention a table uses.
+
+Every improper operation (determinant $-1$) is the inversion times a proper rotation.
+
+\subsection{Character of the vector representation}
+Take the rotation axis as $z$. A rotation by $\theta$ has diagonal elements
+$\cos\theta,\cos\theta,1$; a rotoreflection $S(\theta)=\sh C(\theta)$ has
+$\cos\theta,\cos\theta,-1$. Hence
+\begin{equation}\label{eq:chiV}
+\boxed{\;\chiV\bigl(C(\theta)\bigr)=1+2\cos\theta,\qquad
+\chiV\bigl(S(\theta)\bigr)=-1+2\cos\theta\;}
+\end{equation}
+with the special cases $\chiV(E)=3$, $\chiV(C_2)=-1$, $\chiV(C_3)=0$, $\chiV(C_4)=1$,
+$\chiV(C_6)=2$, $\chiV(\sigma)=\chiV(S(0))=1$, $\chiV(I)=\chiV(S(\cpi))=-3$,
+$\chiV(S_4)=-1$, $\chiV(S_6)=0$, $\chiV(S_3)=-2$.
+
+\subsection{Axial vectors}
+An axial vector (pseudovector) transforms like a vector under proper rotations but
+does not change sign under inversion, $\vec{L}=\vec{r}\times\vec{p}\mapsto
+(-\vec{r})\times(-\vec{p})=\vec{L}$. Since every improper operation is $I$ times a
+rotation, the axial-vector matrices are $\mat{R}(g)=\det\bigl(\mat{V}(g)\bigr)\,\mat{V}(g)$
+and
+\begin{equation}\label{eq:chiR}
+\chiR(g)=\det\bigl(\mat{V}(g)\bigr)\,\chiV(g).
+\end{equation}
+A counter-intuitive consequence: a mirror \emph{reverses} the components of a
+pseudovector parallel to the mirror and \emph{preserves} the perpendicular one,
+exactly the opposite of an ordinary vector. Think of a current loop and its mirror
+image: a magnetic field lying in the mirror plane flips, while the component normal
+to the mirror does not.
+
+For $\Cv{3}$: $\chiR=(3,0,-1)$, so $\GR=\irr{A}_2\oplus\irr{E}$ ($R_z$ spans $\irr{A}_2$,
+which explains the entry in \eqref{eq:C3vchar}).
+
+\section{The mechanical representation}\label{sec:mechanical}
+
+Label the atoms of a molecule $a=1,\dots,N$ and collect their displacements in the
+$3N$-component vector $\mat{u}=(\vec{u}_1,\dots,\vec{u}_N)$. A symmetry operation $g$
+does two things to a distortion:
+\begin{enumerate}
+\item it \emph{permutes} atoms of the same species: atom $a$ is carried to the position
+      of atom $g(a)$;
+\item it \emph{rotates} each displacement vector by $\mat{V}(g)$.
+\end{enumerate}
+Hence $\vec{u}'_{g(a)}=\mat{V}(g)\,\vec{u}_a$, and the $3N\times3N$ matrix $\mat{M}(g)$
+consists of $3\times3$ blocks equal to $\mat{V}(g)$, placed in block-row $g(a)$ and
+block-column $a$. For $\mathrm{CH_3D}$ with atoms ordered
+$(\mathrm{H}_1,\mathrm{H}_2,\mathrm{H}_3,\mathrm{D},\mathrm{C})$, the rotation $C_3^+$
+sends $\mathrm{H}_1\to\mathrm{H}_2\to\mathrm{H}_3\to\mathrm{H}_1$ and fixes D and C:
+\[
+\mat{M}(C_3^+)=\begin{pmatrix}
+0&0&\mat{V}&0&0\\
+\mat{V}&0&0&0&0\\
+0&\mat{V}&0&0&0\\
+0&0&0&\mat{V}&0\\
+0&0&0&0&\mat{V}
+\end{pmatrix},\qquad \mat{V}\equiv\mat{V}(C_3^+).
+\]
+Only blocks on the diagonal contribute to the trace, and a diagonal block appears
+exactly when an atom is left in place. Therefore
+\begin{keyresult}
+\begin{equation}\label{eq:chiM}
+  \chiM(g)=\Ninv(g)\,\chiV(g),
+\end{equation}
+where $\Ninv(g)$ is the number of atoms left invariant by $g$.
+\end{keyresult}
+There is no need to construct any $15\times15$ matrix: look at the molecule and count.
+
+\subsection{Removing translations and rotations}
+Uniform translations $\vec{u}_a=\vec{t}$ span a 3-dimensional invariant subspace that
+transforms as $\GV$. Rigid rotations about the centre of mass span another one that
+transforms as $\GR$. What is left is the space of pure vibrations:
+\begin{equation}
+  \Gvib=\GM\ominus\GV\ominus\GR,
+\end{equation}
+a formal subtraction of multiplicities (\cref{ch:ops1} shows that the three
+subspaces are orthogonal with respect to the mass-weighted inner product, so the
+subtraction is legitimate).
+
+\subsection{Worked example: \texorpdfstring{$\mathrm{CH_3D}$}{CH3D}}\label{sec:CH3D}
+\[
+\begin{array}{l|ccc}
+\Cv{3} & E & 2C_3 & 3\sd\\\hline
+\Ninv & 5 & 2 & 3\\
+\chiV & 3 & 0 & 1\\
+\chiM=\Ninv\chiV & 15 & 0 & 3\\
+\chiR & 3 & 0 & -1\\
+\chi_{\mathrm{vib}}=\chiM-\chiV-\chiR & 9 & 0 & 3
+\end{array}
+\]
+The identity leaves all five atoms in place; a $C_3$ rotation leaves C and D; each
+mirror contains C, D and one H. The reduction formula gives
+\begin{align*}
+m_{\irr{A}_1}&=\tfrac16(9+0+9)=3,\quad
+m_{\irr{A}_2}=\tfrac16(9+0-9)=0,\quad
+m_{\irr{E}}=\tfrac16(18+0+0)=3,
+\end{align*}
+so $\Gvib=3\,\irr{A}_1\oplus3\,\irr{E}$: three non-degenerate and three doubly
+degenerate frequencies. (Alternatively, $\GM=4\,\irr{A}_1\oplus\irr{A}_2\oplus5\,\irr{E}$,
+and subtracting $\GV=\irr{A}_1\oplus\irr{E}$ and $\GR=\irr{A}_2\oplus\irr{E}$ gives the
+same result.)
+
+\begin{keyresult}[Summary: the recipe for molecular vibrations]
+\begin{enumerate}
+\item Find the point group and its character table.
+\item For one element per class, write $\chiV$ from \eqref{eq:chiV} and count $\Ninv$.
+\item $\chiM=\Ninv\chiV$, $\chiR=\det\cdot\chiV$, $\chi_{\mathrm{vib}}=\chiM-\chiV-\chiR$.
+\item Reduce with \eqref{eq:magic}; read degeneracies from the dimensions and the
+      number of distinct frequencies from the multiplicities.
+\end{enumerate}
+\end{keyresult}
+
+\exercisesection
+
+\begin{exercise}[methane]\label{ex:2:CH4}
+Using the table \eqref{eq:Tdchar}, derive
+$\GM(\mathrm{CH_4})=\irr{A}_1\oplus\irr{E}\oplus\irr{T}_1\oplus3\,\irr{T}_2$ and
+$\Gvib=\irr{A}_1\oplus\irr{E}\oplus2\,\irr{T}_2$. You will need the number of atoms
+left invariant by each class of $\Td$.
+\end{exercise}
+
+\begin{solution}
+Classes $E,8C_3,3C_2,6S_4,6\sd$. The $C_3$ axes pass through C and one H; the $C_2$ and
+$S_4$ axes pass only through C; each $\sd$ contains C and two H. Hence
+\[
+\begin{array}{l|ccccc}
+ & E & 8C_3 & 3C_2 & 6S_4 & 6\sd\\\hline
+\Ninv & 5&2&1&1&3\\
+\chiV & 3&0&-1&-1&1\\
+\chiM & 15&0&-1&-1&3\\
+\chiR & 3&0&-1&1&-1
+\end{array}
+\]
+with $\chiV$ from \eqref{eq:chiV} ($S_4$: $-1+2\cos90^\circ=-1$). The reduction formula
+gives
+\begin{align*}
+m_{\irr{A}_1}&=\tfrac1{24}(15+0-3-6+18)=1, &
+m_{\irr{A}_2}&=\tfrac1{24}(15+0-3+6-18)=0,\\
+m_{\irr{E}}&=\tfrac1{24}(30+0-6+0+0)=1, &
+m_{\irr{T}_1}&=\tfrac1{24}(45+0+3-6-18)=1,\\
+m_{\irr{T}_2}&=\tfrac1{24}(45+0+3+6+18)=3,
+\end{align*}
+so $\GM=\irr{A}_1\oplus\irr{E}\oplus\irr{T}_1\oplus3\,\irr{T}_2$. Since
+$\chiV=\chi_{\irr{T}_2}$ and $\chiR=\chi_{\irr{T}_1}$,
+$\Gvib=\irr{A}_1\oplus\irr{E}\oplus2\,\irr{T}_2$.
+\end{solution}
+
+\begin{exercise}[ammonia]\label{ex:2:NH3}
+Find $\Gvib$ for the pyramidal molecule $\mathrm{NH_3}$ (point group $\Cv{3}$). How
+many distinct vibrational frequencies are there?
+\end{exercise}
+
+\begin{solution}
+$\Ninv=(4,1,2)$ (each mirror contains N and one H), $\chiM=(12,0,2)$, so
+$\GM=3\,\irr{A}_1\oplus\irr{A}_2\oplus4\,\irr{E}$. Subtracting
+$\GV=\irr{A}_1\oplus\irr{E}$ and $\GR=\irr{A}_2\oplus\irr{E}$:
+$\Gvib=2\,\irr{A}_1\oplus2\,\irr{E}$. Four distinct frequencies: two non-degenerate, two
+doubly degenerate ($2+4=6=3\cdot4-6$).
+\end{solution}
+
+\begin{exercise}[water]\label{ex:2:H2O}
+The water molecule lies in the $yz$ plane and has point group $\Cv{2}$, with elements
+$E$, $C_2$, $\sigma_{\mathrm{v}}(xz)$ and $\sigma'_{\mathrm{v}}(yz)$. Its character table is
+\[
+\begin{array}{c|cccc}
+\Cv{2} & E & C_2 & \sigma_{\mathrm{v}}(xz) & \sigma'_{\mathrm{v}}(yz)\\\hline
+\irr{A}_1 & 1&1&1&1\\ \irr{A}_2&1&1&-1&-1\\ \irr{B}_1&1&-1&1&-1\\ \irr{B}_2&1&-1&-1&1
+\end{array}
+\]
+Show that $\Gvib=2\,\irr{A}_1\oplus\irr{B}_2$.
+\end{exercise}
+
+\begin{solution}
+$\chiV=(3,-1,1,1)$, $\Ninv=(3,1,1,3)$ (the $xz$ mirror contains only O),
+$\chiM=(9,-1,1,3)$, $\chiR=\det\cdot\chiV=(3,-1,-1,-1)$,
+$\chi_{\mathrm{vib}}=\chiM-\chiV-\chiR=(3,1,1,3)$. Then
+$m_{\irr{A}_1}=\tfrac14(3+1+1+3)=2$, $m_{\irr{A}_2}=\tfrac14(3+1-1-3)=0$,
+$m_{\irr{B}_1}=\tfrac14(3-1+1-3)=0$, $m_{\irr{B}_2}=\tfrac14(3-1-1+3)=1$:
+$\Gvib=2\,\irr{A}_1\oplus\irr{B}_2$ (symmetric stretch, bend, antisymmetric stretch).
+\end{solution}
+
+\begin{exercise}[boron trifluoride]\label{ex:2:BF3}
+The planar molecule $\mathrm{BF_3}$ has point group $\Dh{3}$ with classes
+$E,\ 2C_3,\ 3C_2',\ \sh,\ 2S_3,\ 3\sv$ and character table
+\[
+\begin{array}{c|cccccc}
+\Dh{3}& E & 2C_3 & 3C_2' & \sh & 2S_3 & 3\sv\\\hline
+\irr{A}_1' &1&1&1&1&1&1\\
+\irr{A}_2' &1&1&-1&1&1&-1\\
+\irr{E}' &2&-1&0&2&-1&0\\
+\irr{A}_1''&1&1&1&-1&-1&-1\\
+\irr{A}_2''&1&1&-1&-1&-1&1\\
+\irr{E}''&2&-1&0&-2&1&0
+\end{array}
+\]
+Compute $\GV$, $\GR$, $\GM$ and $\Gvib$.
+\end{exercise}
+
+\begin{solution}
+With $\chiV$ from \eqref{eq:chiV} ($S_3$: $-1+2\cos120^\circ=-2$) and the invariant atoms
+(each $C_2'$ and each $\sv$ contains B and one F; $\sh$ contains all atoms):
+\[
+\begin{array}{l|cccccc}
+ & E&2C_3&3C_2'&\sh&2S_3&3\sv\\\hline
+\Ninv &4&1&2&4&1&2\\
+\chiV &3&0&-1&1&-2&1\\
+\chiM &12&0&-2&4&-2&2\\
+\chiR &3&0&-1&-1&2&-1
+\end{array}
+\]
+Reduction: $\GV=\irr{E}'\oplus\irr{A}_2''$, $\GR=\irr{A}_2'\oplus\irr{E}''$,
+$\GM=\irr{A}_1'\oplus\irr{A}_2'\oplus3\,\irr{E}'\oplus2\,\irr{A}_2''\oplus\irr{E}''$, and
+therefore $\Gvib=\irr{A}_1'\oplus2\,\irr{E}'\oplus\irr{A}_2''$ ($1+4+1=6$). For instance
+$m_{\irr{E}'}(\GM)=\tfrac1{12}(24+0+0+8+4+0)=3$.
+\end{solution}
+
+\begin{exercise}\label{ex:2:irredtest}
+Use $\inner{\chi}{\chi}$ to show that the vector representation of $\Td$ is
+irreducible, while that of $\Cv{3}$ is not.
+\end{exercise}
+
+\begin{solution}
+$\Td$: $\inner{\chiV}{\chiV}=\tfrac1{24}(9+0+3\cdot1+6\cdot1+6\cdot1)=1$: irreducible.
+$\Cv{3}$: $\tfrac16(9+0+3)=2=1^2+1^2$: the sum of two different irreps.
+\end{solution}

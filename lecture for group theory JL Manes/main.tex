@@ -1,0 +1,162 @@
+\documentclass[11pt,openright]{book}
+\input{preamble}
+
+\hypersetup{pdftitle={Group Theory in Condensed Matter: Companion Notes},
+            pdfsubject={Companion notes to the lecture series by J. L. Manes}}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\LARGE\bfseries Group Theory in Condensed Matter\par}
+\vspace{0.4cm}
+{\Large A Practical Introduction\par}
+\vspace{1.2cm}
+{\large Companion Notes to the Video Lectures of Prof.\ Juan Luis Ma\~nes\par}
+\vspace{0.3cm}
+{\normalsize (UPV/EHU, recorded Winter 2022; published on the \emph{Topological Matter School} channel)\par}
+\vspace{2cm}
+\begin{minipage}{0.8\textwidth}\small
+These notes were written independently as a study companion. They follow the
+order and the examples of the eight video lectures, but the text, derivations,
+figures and exercises are our own. They are neither written nor endorsed by the
+lecturer; any error is ours. Timestamps such as \ts{2}{2520}{42:00} are clickable
+links to the corresponding moment in the video.
+\end{minipage}
+\vfill
+{\small Playlist: \url{https://www.youtube.com/playlist?list=PLygH4pJ_4EhrbbYmYjEYlVRpaSrRRQTri}\par}
+\end{titlepage}
+
+\tableofcontents
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\markboth{\MakeUppercase{Preface}}{\MakeUppercase{Preface}}
+
+\section*{What these notes are}
+The lecture series \emph{Group Theory in Condensed Matter: A Practical Introduction}
+teaches group theory \emph{backwards}: first you see what a group-theory computation
+produces, then you learn to perform it, and only at the end you learn why it works.
+The lecturer states the key theorems without proof and devotes the time to
+applications, from molecular vibrations to topological quantum chemistry.
+
+These notes keep that order, so that each chapter can be read next to the
+corresponding lecture, and add three things:
+\begin{enumerate}
+\item a written, self-contained account of every lecture, with all computations
+      carried out explicitly and checked numerically;
+\item green boxes marked \emph{Beyond the lectures}, and sections marked \bstar{}
+      that fill the gaps a theorist will need later: cosets and quotient groups
+      (\cref{sec:cosets,sec:normal}), proofs of Schur's lemma and the orthogonality
+      theorems together with projection operators
+      (\cref{sec:unitarity,sec:proofs,sec:projectors}), the rotation group, $\SU{2}$
+      and Clebsch--Gordan series (\cref{sec:su2}), time reversal and Kramers
+      degeneracy (\cref{sec:TR,sec:TRcrystal}), and the method of invariants for
+      $\vec{k}\cdot\vec{p}$ Hamiltonians (\cref{sec:kp});
+\item exercises at the end of every chapter, each followed by its detailed solution.
+\end{enumerate}
+Each starred section is placed where the lectures first need it; it can be skipped
+on a first reading without losing the thread.
+
+\section*{How the chapters map onto the lectures}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lXll@{}}
+\toprule
+Chapter & Topic & Video & Length\\
+\midrule
+\ref{ch:intro} & Symmetries, degeneracies and representations & \lec{1} & 89 min\\
+\ref{ch:building} & Irreducible representations as building blocks & \lec{2} & 92 min\\
+\ref{ch:ops1} & Operations with representations I: tensors, invariants & \lec{3} & 91 min\\
+\ref{ch:ops2} & Operations with representations II: spectroscopy & \lec{4} & 84 min\\
+\ref{ch:spin} & Spin, double groups, crystal-field splitting & \lec{5} & 96 min\\
+\ref{ch:space} & Space groups and their representations & \lec{6} & 90 min\\
+\ref{ch:bands} & The group theory of electron bands & \lec{7} & 89 min\\
+\ref{ch:topology} & Group theory and topology & \lec{8} & 88 min\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Lectures~5 and~8 have no captions; their timestamps in these notes were read off
+the slides and are approximate.
+
+\section*{Prerequisites}
+Linear algebra (matrices, eigenvalues, change of basis), quantum mechanics at the
+level of the hydrogen atom and angular momentum, and an introductory solid-state
+course (Bravais lattices, reciprocal lattice, Bloch's theorem, tight binding).
+No previous knowledge of group theory is assumed.
+
+\section*{Notation and typographical conventions}
+The typesetting follows ISO~80000-2:
+\begin{itemize}
+\item Variables are italic; mathematical constants and operators with fixed meaning
+      are upright: the imaginary unit $\ii$, Euler's number $\ee$, the number $\cpi$,
+      the differential $\dd$ (as in $\dd x$), and named functions and operators
+      ($\exp$, $\sin$, $\tr$, $\det$).
+\item Vectors carry an arrow, $\vec{r}$, $\vec{k}$, $\vec{E}$; their components are
+      italic scalars, $r_x$, $k_i$.
+\item Matrices are bold italic, $\mat{D}(g)$; their elements are italic scalars,
+      $D_{ij}(g)$. The transpose is $\mat{A}\T$ and the hermitian conjugate
+      $\mat{A}\herm$.
+\item Labels that are not variables are upright: the ``v'' in $\Cv{3}$, the ``d''
+      in $\sd$, the ``g'' in $\irr{E}_{\mathrm{g}}$. Irreducible representations
+      carry upright Mulliken symbols, $\irr{A}_1$, $\irr{E}$, $\irr{T}_2$, while the
+      identity \emph{operation} is the italic $E$.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Symbol & Meaning\\
+\midrule
+$G$, $\abs{G}$ & a group and its order (number of elements)\\
+$g$, $h$ & group elements\\
+$\Gamma$, $\Gamma^{(\mu)}$ & a representation; the $\mu$-th irreducible representation (irrep)\\
+$\mat{D}(g)$ & matrix representing $g$\\
+$\chi(g)=\tr\mat{D}(g)$ & character\\
+$d_\mu$ & dimension of irrep $\mu$\\
+$m_\mu$ & multiplicity of irrep $\mu$ in a representation\\
+$\GV$, $\GR$ & vector and axial-vector (``rotational'') representations\\
+$\GM$, $\Gvib$ & mechanical and vibrational representations of a molecule\\
+$\oplus$, $\otimes$ & direct sum and (tensor/Kronecker) product\\
+$[\Gamma^2]$, $\{\Gamma^2\}$ & symmetric and antisymmetric squares\\
+$\Tgroup$ & translation group of a crystal\\
+$\seitz{R}{\vec{v}}$ & Seitz symbol: point operation $R$ followed by translation $\vec{v}$\\
+$G_{\vec{k}}$ & little group of $\vec{k}$\\
+$\TR$ & time-reversal operator\\
+\bottomrule
+\end{tabular}
+\end{center}
+In the lectures, general representations are denoted by $T$ and irreducible ones by
+$\tau$ (following Lyubarskii). We use $\Gamma$ throughout, because $T$ is also
+needed for the translation group and for the tetrahedral group $\Td$.
+
+Symmetry operations always act \emph{actively}: they move the physical object
+(a vector, a wave function, a molecule) and leave the coordinate axes fixed
+(\cref{sec:active}). A function transforms as $(\hat{O}_g f)(\vec{r})=f(g^{-1}\vec{r})$.
+
+\section*{Recommended textbooks}
+The lecturer recommends:
+G.\,Ya.\ Lyubarskii, \emph{The Application of Group Theory in Physics}
+(Pergamon, 1960), which he learned from;
+M.\,S.\ Dresselhaus, G.\ Dresselhaus and A.\ Jorio, \emph{Group Theory: Application
+to the Physics of Condensed Matter} (Springer, 2008), rich in applications; and
+C.\,J.\ Bradley and A.\,P.\ Cracknell, \emph{The Mathematical Theory of Symmetry in
+Solids} (Oxford, 1972), the reference for tables and for magnetic groups but not a
+book to learn from. For the topological part: J.\ Cano and B.\ Bradlyn,
+\emph{Band representations and topological quantum chemistry},
+Annu.\ Rev.\ Condens.\ Matter Phys.\ \textbf{12}, 225 (2021), arXiv:2006.04890.
+The tables in these notes use the conventions of the Bilbao Crystallographic Server
+(\url{https://www.cryst.ehu.es}) wherever possible.
+
+\mainmatter
+\include{ch1}
+\include{ch2}
+\include{ch3}
+\include{ch4}
+\include{ch5}
+\include{ch6}
+\include{ch7}
+\include{ch8}
+
+\end{document}

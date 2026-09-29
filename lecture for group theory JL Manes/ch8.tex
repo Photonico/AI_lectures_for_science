@@ -1,0 +1,308 @@
+\chapter{Group theory and topology}\label{ch:topology}
+
+\begin{watch}{\lec{8} (no captions; times read off the slides)}
+Band topology \ts{8}{600}{$\approx$10:00} $\cdot$
+Wannier representability \ts{8}{1100}{$\approx$18:20} $\cdot$
+Wannier representability and TQC \ts{8}{1500}{$\approx$25:00} $\cdot$
+classification of band representations \ts{8}{2100}{$\approx$35:00} $\cdot$
+EBRs from Wyckoff positions \ts{8}{2700}{$\approx$45:00} $\cdot$
+irreps from EBRs \ts{8}{3300}{$\approx$55:00} $\cdot$
+double-valued EBRs of $p6mm$ \ts{8}{3900}{$\approx$65:00} $\cdot$
+spinful $p_z$ orbitals in graphene \ts{8}{4400}{$\approx$73:20} $\cdot$
+EBR analysis \ts{8}{4800}{$\approx$80:00} $\cdot$
+what TQC can and cannot diagnose \ts{8}{5150}{$\approx$85:50}
+\end{watch}
+
+Topological quantum chemistry (TQC) connects the symmetry labels of \cref{ch:bands}
+with the global, topological properties of bands. Its central idea fits in one
+sentence: \emph{a set of bands is topologically trivial exactly when it can be
+described by localised, symmetric orbitals in real space; the irreps at
+high-symmetry points often reveal when this is impossible.}
+
+\section{Local versus global}
+
+A cylinder and a M\"obius strip are made by gluing two opposite edges of a rectangle,
+with or without a twist. Every small piece of either looks like a piece of rectangle:
+locally they are identical. Globally they differ, and no continuous deformation turns
+one into the other. Topology studies such global properties.
+
+Bands carry the same kind of structure. The Bloch Hamiltonian is periodic in
+reciprocal space, $\mat{H}(\vec{k}+\vec{G})=\mat{H}(\vec{k})$, so the Brillouin zone is
+a torus. At each $\vec{k}$ an isolated set of $n$ bands defines an $n$-dimensional
+subspace of states. As $\vec{k}$ runs over the torus these subspaces form a
+\emph{vector bundle}. Locally one can always choose smooth basis vectors (a gauge).
+Whether one can choose them smoothly and periodically over the \emph{whole} zone is a
+global question, and the answer can be no. The Chern number of a two-dimensional band
+is the simplest obstruction.
+
+\section{Wannier functions}
+
+From Bloch states $\psi_{n\vec{k}}$ of an isolated set of bands one builds
+\emph{Wannier functions}
+\begin{equation}
+w_{n\vec{t}}(\vec{r})=\frac{V_{\mathrm{cell}}}{(2\cpi)^d}\int_{\mathrm{BZ}}\dd^d k\;
+\ee^{-\ii\vec{k}\cdot\vec{t}}\sum_m U_{mn}(\vec{k})\,\psi_{m\vec{k}}(\vec{r}),
+\end{equation}
+labelled by a band index and a lattice vector, and related by translations,
+$w_{n\vec{t}}(\vec{r})=w_{n\vec{0}}(\vec{r}-\vec{t})$. The unitary matrix
+$\mat{U}(\vec{k})$ is the gauge freedom. Wannier functions are the real-space,
+orbital-like description of the bands, and their localisation depends on the gauge:
+a smooth, periodic gauge gives exponentially localised functions.
+
+\begin{keyresult}[Wannier representability]
+The Wannier functions of an isolated set of bands can be chosen
+\emph{exponentially localised and transforming among themselves under all the
+symmetries of the crystal} if and only if the bands are topologically trivial. Such a
+set of bands is called \emph{Wannier representable}.
+\end{keyresult}
+In TQC this equivalence \emph{defines} ``trivial''. For two-dimensional insulators
+without extra symmetry it contains the theorem that exponentially localised Wannier
+functions exist precisely when all Chern numbers vanish. The global property in
+reciprocal space (topology) is thus tied to a local property in real space
+(localisation of symmetric orbitals).
+
+\section{Band representations}
+
+\subsection{Definition}
+Take a Wyckoff position with sites $\vec{q}_1,\dots,\vec{q}_n$ in the cell,
+site-symmetry group $G_{\vec{q}_1}$, and a set of orbitals at $\vec{q}_1$ transforming as
+a representation $\rho$ of $G_{\vec{q}_1}$. Copy them to the other sites with the
+space-group operations (coset representatives: the cosets of $G_{\vec{q}_1}$ in $G$
+label the sites of the orbit, \cref{sec:cosets}) and to all cells with translations.
+The infinite set of orbitals so obtained is mapped onto itself by the space group:
+it carries a representation of $G$, the \emph{band representation}
+\begin{equation}
+\rho\uparrow G\qquad\text{(the representation \emph{induced} from $\rho$)}.
+\end{equation}
+In the Bilbao notation, $\rho@w$ ($w$ being the Wyckoff label); for instance
+$\irr{A}_1@2b$ is our graphene $p_z$ example. Fourier transforming to Bloch sums, the
+band representation becomes, at each $\vec{k}$, a finite representation of the little
+group, of dimension $n\dim\rho$, whose character is exactly
+\eqref{eq:bandchar}. Its small-irrep content at the high-symmetry points is
+the ``irrep vector'' of the band representation.
+
+A set of bands is Wannier representable if and only if it carries (is equivalent to)
+a band representation. The Wannier functions are then the orbitals from which the
+band representation was induced.
+
+\subsection{Elementary band representations}
+Band representations can be added. A band representation that cannot be written as a
+sum of other band representations is \emph{elementary} (EBR). EBRs are the building
+blocks of all atomic-limit band structures.
+\begin{itemize}
+\item Every EBR is induced from an irrep of the site-symmetry group of a \emph{maximal}
+      Wyckoff position (one whose site-symmetry group is not contained in that of
+      another position). Orbitals at non-maximal positions can be moved continuously
+      to a maximal one without breaking symmetry, so they give composite band
+      representations. (A few irreps at maximal positions also give composite band
+      representations; these exceptions are listed in the tables.)
+\item For each space group the number of EBRs is finite. They are tabulated, with
+      their irrep vectors, in the \texttt{BANDREP} application of the Bilbao
+      Crystallographic Server, for all 230 space groups (with and without spin--orbit
+      coupling) and for the magnetic groups.
+\end{itemize}
+
+For $p6mm$ the maximal positions are $1a$ ($\Cv{6}$), $2b$ ($\Cv{3}$) and $3c$
+($\Cv{2}$). Evaluating \eqref{eq:bandchar} for every irrep of each site group gives
+the spinless EBRs:
+\begin{equation}\label{eq:ebrp6mm}
+\begin{array}{llccc}
+\toprule
+\rho@w & \text{bands} & \Gamma\ (\Cv{6}) & K\ (\Cv{3}) & M\ (\Cv{2})\\
+\midrule
+\irr{A}_1@1a & 1 & \irr{A}_1 & \irr{A}_1 & \irr{A}_1\\
+\irr{A}_2@1a & 1 & \irr{A}_2 & \irr{A}_2 & \irr{A}_2\\
+\irr{B}_1@1a & 1 & \irr{B}_1 & \irr{A}_2 & \irr{B}_1\\
+\irr{B}_2@1a & 1 & \irr{B}_2 & \irr{A}_1 & \irr{B}_2\\
+\irr{E}_1@1a & 2 & \irr{E}_1 & \irr{E} & \irr{B}_1\oplus\irr{B}_2\\
+\irr{E}_2@1a & 2 & \irr{E}_2 & \irr{E} & \irr{A}_1\oplus\irr{A}_2\\
+\midrule
+\irr{A}_1@2b & 2 & \irr{A}_1\oplus\irr{B}_1 & \irr{E} & \irr{A}_1\oplus\irr{B}_1\\
+\irr{A}_2@2b & 2 & \irr{A}_2\oplus\irr{B}_2 & \irr{E} & \irr{A}_2\oplus\irr{B}_2\\
+\irr{E}@2b & 4 & \irr{E}_1\oplus\irr{E}_2 & \irr{A}_1\oplus\irr{A}_2\oplus\irr{E} &
+   \irr{A}_1\oplus\irr{A}_2\oplus\irr{B}_1\oplus\irr{B}_2\\
+\midrule
+\irr{A}_1@3c & 3 & \irr{A}_1\oplus\irr{E}_2 & \irr{A}_1\oplus\irr{E} & \irr{A}_1\oplus\irr{B}_1\oplus\irr{B}_2\\
+\irr{A}_2@3c & 3 & \irr{A}_2\oplus\irr{E}_2 & \irr{A}_2\oplus\irr{E} & \irr{A}_2\oplus\irr{B}_1\oplus\irr{B}_2\\
+\irr{B}_1@3c & 3 & \irr{B}_1\oplus\irr{E}_1 & \irr{A}_2\oplus\irr{E} & \irr{A}_1\oplus\irr{A}_2\oplus\irr{B}_1\\
+\irr{B}_2@3c & 3 & \irr{B}_2\oplus\irr{E}_1 & \irr{A}_1\oplus\irr{E} & \irr{A}_1\oplus\irr{A}_2\oplus\irr{B}_2\\
+\bottomrule
+\end{array}
+\end{equation}
+Conventions: the $\Cv{6}$ labels are those of \eqref{eq:C6vtable}. At $1a$ the site
+irrep $\irr{B}_1$ is even under the bond-containing mirrors $\sv$. At $3c$ the site
+irrep $\irr{B}_1$ is even under the mirror containing the bond, i.e.\ it is a
+$p$ orbital pointing along the bond. At $M$, $\irr{B}_1$ is odd under $C_2$ and even
+under $\sv$. The row $\irr{A}_1@2b$ is exactly the $\uppi$-band result of \cref{ch:bands}.
+In the Bilbao labels the same information appears as vectors of multiplicities, one
+entry per small irrep; always check the conventions of the table you use.
+
+\section{The TQC criterion}\label{sec:tqc}
+
+Every band representation has an irrep vector that is a sum of EBR vectors with
+non-negative integer coefficients. Consequently:
+\begin{keyresult}[Topological quantum chemistry]
+Take an isolated set of bands (separated by gaps from the rest) and list its small
+irreps at the maximal $\vec{k}$ points.
+\begin{enumerate}
+\item If this irrep vector \emph{cannot} be written as a sum of EBR vectors with
+      non-negative integer coefficients, the set is \emph{necessarily} topological:
+      no false positives.
+\item If it can be written only with some negative coefficients, the set is
+      \emph{fragile} topological: it becomes trivial when certain trivial bands are
+      added.
+\item If it can be written with non-negative coefficients, the set \emph{may} still
+      be topological: false negatives exist, because not all topology is
+      \emph{symmetry indicated}. Two sets of bands can have identical irreps
+      everywhere and different topology (a Chern insulator and a trivial insulator,
+      for example).
+\end{enumerate}
+\end{keyresult}
+A second, purely structural statement is often decisive.
+\begin{theorem}[Disconnected EBRs]
+If the bands of an EBR split into two or more groups separated by gaps, at least one
+of the groups is topological.
+\end{theorem}
+Indeed, if every group were Wannier representable, each would carry a band
+representation, and the EBR would be their sum, contradicting its elementarity.
+
+The compatibility relations of \cref{sec:compat} are what make band structures
+connected or disconnected. Along each line the subduced irreps must match. If there is
+no way of connecting the irreps at the high-symmetry points into two separated groups
+that satisfy all compatibility relations, the EBR is forced to be connected. A
+disconnection, when allowed, is a signal of topology.
+
+\section{Graphene without spin--orbit coupling}
+
+For the spinless $\uppi$ bands, $\irr{A}_1@2b$ has the two-dimensional irrep $\irr{E}$ at $K$.
+The two bands are forced to touch there, so the EBR cannot split: graphene is a
+semimetal with symmetry-enforced Dirac points. No gap, no topological insulator.
+
+\section{Graphene with spin--orbit coupling}
+
+With spin, each $p_z$ orbital becomes a Kramers doublet. At the $\Cv{3}$ site,
+$\irr{a}_1\otimes D_{1/2}=\bar{\irr{E}}_1$ (\cref{ch:spin}), so the four spinful $\pi$
+bands carry the double-valued EBR $\bar{\irr{E}}_1@2b$. Using the double-group
+characters of $\Cv{6}$, $\Cv{3}$ and $\Cv{2}$ (\cref{ex:8:spinful}) one finds
+\begin{equation}\label{eq:spinfulgraphene}
+\bar{\irr{E}}_1@2b:\qquad
+\Gamma:\ \bar{\irr{E}}_1\oplus\bar{\irr{E}}_2,\qquad
+K:\ \bar{\irr{E}}_1\oplus{}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}},\qquad
+M:\ 2\,\bar{\irr{E}} .
+\end{equation}
+In the Bilbao labels shown in the lecture these are
+$\Gamma_7\oplus\Gamma_8$, $K_4\oplus K_5\oplus K_6$ and $2M_5$, with $K_4$ the
+two-dimensional irrep at $K$.
+
+With spin--orbit coupling the degeneracy at $K$ need not be fourfold: the four bands can
+separate into two isolated pairs. In the lecture's example (a Kane--Mele-type model),
+\begin{itemize}
+\item one pair carries $\{\Gamma_7\,|\,K_4\,|\,M_5\}$. This is exactly the irrep vector of
+      the EBR $\bar{\irr{E}}_1@1a$ (spinful orbitals at the hexagon centres). By irreps
+      alone it \emph{could} be trivial: an ``obstructed atomic limit'' with Wannier
+      centres in the empty hexagons rather than on the atoms;
+\item the other pair carries $\{\Gamma_8\,|\,K_5\oplus K_6\,|\,M_5\}$. The two-band EBRs
+      of this group are $\bar{\irr{E}}_1@1a=\{\Gamma_7|K_4|M_5\}$,
+      $\bar{\irr{E}}_2@1a=\{\Gamma_8|K_4|M_5\}$ and $\bar{\irr{E}}_3@1a=\{\Gamma_9|K_5\oplus K_6|M_5\}$.
+      None of them matches, so this pair is necessarily topological.
+\end{itemize}
+This is consistent with the theorem on disconnected EBRs. In the Kane--Mele model the
+topological pair is the $\mathbb{Z}_2$ quantum spin Hall insulator. There, in fact,
+\emph{both} pairs are $\mathbb{Z}_2$ non-trivial. The pair whose irreps mimic an atomic
+limit is a false negative of the irrep criterion, a concrete instance of point 3 above.
+
+\begin{beyond}[Beyond the lectures: where to go next]
+\begin{itemize}
+\item The \texttt{BANDREP}, \texttt{Check Topological Mat.}\ and Topological Materials
+      Database tools of the Bilbao server apply this analysis to first-principles band
+      structures; programs such as \texttt{IrRep} extract the irreps from DFT output.
+\item Symmetry indicators (Po, Vishwanath, Watanabe) are the group of irrep vectors
+      modulo band representations; they classify what irreps can diagnose.
+\item Magnetic topological quantum chemistry extends everything to the 1651 magnetic
+      space groups, where time reversal combines with spatial operations
+      (\cref{sec:magnetic}).
+\item Review: J.\ Cano and B.\ Bradlyn, Annu.\ Rev.\ Condens.\ Matter Phys.\ \textbf{12},
+      225 (2021).
+\end{itemize}
+\end{beyond}
+
+\exercisesection
+
+\begin{exercise}\label{ex:8:A1at1a}
+Derive the rows $\irr{A}_1@1a$ and $\irr{E}_1@1a$ of \eqref{eq:ebrp6mm}. For orbitals
+at the origin all phases in \eqref{eq:bandchar} are trivial. Why does $\irr{E}_1@1a$
+split at $M$?
+\end{exercise}
+
+\begin{solution}
+An orbital at the origin is mapped onto itself by every point operation, with
+$\vec{t}_\alpha=0$, so $\chi_{\vec{k}}(g)=\chi_\rho(g)$: the band representation at $\vec{k}$ is
+simply $\rho$ subduced to $\bar{G}_{\vec{k}}$. For $\irr{A}_1$ this is the identity irrep
+everywhere. For $\irr{E}_1$: at $\Gamma$, $\irr{E}_1$; at $K$ the characters
+$(2,-1,0)$ on $(E,C_3,\sd)$ give $\irr{E}$; at $M$ the characters $(2,-2,0,0)$ on
+$(E,C_2,\sv,\sd)$ give $\irr{B}_1\oplus\irr{B}_2$. It splits because $\Cv{2}$ has only
+one-dimensional irreps.
+\end{solution}
+
+\begin{exercise}\label{ex:8:notsum}
+Show that $\irr{A}_1@2b$ is not the sum of EBRs induced from $1a$. Then explain why the
+two spinless $\uppi$ bands can never be separated into two isolated bands without
+breaking a symmetry of $p6mm$.
+\end{exercise}
+
+\begin{solution}
+One-band EBRs from $1a$ have one-dimensional irreps at $K$, so any sum of two of them
+has two one-dimensional irreps at $K$, not $\irr{E}$. The two-band EBRs from $1a$ have
+$\irr{E}_1$ or $\irr{E}_2$ at $\Gamma$, not $\irr{A}_1\oplus\irr{B}_1$. Hence $\irr{A}_1@2b$ is not a
+sum of $1a$ EBRs (the Wannier functions of the $\uppi$ bands sit on the atoms). The two
+$\uppi$ bands can never be separated: at $K$ they form the two-dimensional irrep $\irr{E}$,
+so they touch there for every symmetric Hamiltonian.
+\end{solution}
+
+\begin{exercise}\label{ex:8:obstructed}
+A hypothetical isolated band of a $p6mm$ crystal has irreps $\irr{B}_1$ at $\Gamma$,
+$\irr{A}_2$ at $K$ and $\irr{B}_1$ at $M$. Is it Wannier representable according to the
+irrep criterion? Where would its Wannier centres be?
+\end{exercise}
+
+\begin{solution}
+$\{\irr{B}_1|\irr{A}_2|\irr{B}_1\}$ is exactly the irrep vector of $\irr{B}_1@1a$
+\eqref{eq:ebrp6mm}. By the irrep criterion the band is compatible with a Wannier
+function centred at the hexagon centres ($1a$), with the symmetry of an
+$f$-like orbital (odd under the bond-bisecting mirrors). If the atoms sit at $2b$, such a
+band is an \emph{obstructed atomic limit}: trivial, but with Wannier centres away from
+the atoms. Irreps cannot exclude hidden topology (false negatives), but nothing in them
+requires it.
+\end{solution}
+
+\begin{exercise}[spinful $p_z$ orbitals]\label{ex:8:spinful}
+The double group of $\Cv{6}$ has three two-dimensional double-valued irreps with
+characters (classes $E$, $\Ebar$, $C_2$, $C_3$, $\bar{C}_3$, $C_6$, $\bar{C}_6$, $\sv$, $\sd$)
+\[
+\begin{array}{c|ccccccccc}
+ & E & \Ebar & C_2 & C_3 & \bar{C}_3 & C_6 & \bar{C}_6 & \sv & \sd\\\hline
+\bar{\irr{E}}_1 & 2&-2&0&1&-1&\sqrt3&-\sqrt3&0&0\\
+\bar{\irr{E}}_2 & 2&-2&0&1&-1&-\sqrt3&\sqrt3&0&0\\
+\bar{\irr{E}}_3 & 2&-2&0&-2&2&0&0&0&0
+\end{array}
+\]
+(class sizes $1,1,2,2,2,2,2,6,6$; $C_2$ and $\bar{C}_2$, and each mirror and its barred
+partner, fall in the same class).
+Using \eqref{eq:bandchar} with the spin character $\chi_{1/2}(\theta)=2\cos(\theta/2)$
+for rotations and $0$ for mirrors, derive \eqref{eq:spinfulgraphene}.
+\end{exercise}
+
+\begin{solution}
+Each site carries $\irr{a}_1\otimes D_{1/2}$; its site character is the spin character.
+At $\Gamma$: $E\to4$, $\Ebar\to-4$; $C_2$, $C_6$, $\sd$ exchange sublattices $\to0$; $C_3$
+keeps them with trivial phases, $\to2\chi_{1/2}(120^\circ)=2$, and $\bar{C}_3\to-2$;
+$\sv\to2\cdot0=0$. The reduction in the double group of $\Cv{6}$ (order 24, class sizes
+$1,1,2,2,2,2,2,6,6$) gives
+$m_{\bar{\irr{E}}_1}=m_{\bar{\irr{E}}_2}=\tfrac1{24}(8+8+4+4)=1$ and
+$m_{\bar{\irr{E}}_3}=\tfrac1{24}(8+8-8-8)=0$.
+At $K$: $C_3$ gives $(\omega+\omega^{*})\cdot1=-1$, $\bar{C}_3$ gives $+1$, the mirrors
+$0$, so $\chi_K=(4,-4,-1,1,0,0)=\chi_{D_{3/2}}$, i.e.\
+$\bar{\irr{E}}_1\oplus{}^{1}\bar{\irr{E}}\oplus{}^{2}\bar{\irr{E}}$ by \eqref{eq:C3vdouble}.
+At $M$: $(4,-4,0,0,0)$ on the five classes of the double group of $\Cv{2}$ (order 8),
+whose only double-valued irrep $\bar{\irr{E}}$ has $(2,-2,0,0,0)$: $2\,\bar{\irr{E}}$.
+\end{solution}

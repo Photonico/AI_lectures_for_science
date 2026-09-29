@@ -1,0 +1,292 @@
+\chapter{Operations with representations II: spectroscopy and selection rules}\label{ch:ops2}
+\chaptermark{Spectroscopy and selection rules}
+
+\begin{watch}{\lec{4}}
+Characters of product representations \ts{4}{123}{2:03} $\cdot$
+microwave and infrared spectroscopy (blackboard) \ts{4}{632}{10:32} $\cdot$
+counting bilinear invariants \ts{4}{1424}{23:44} $\cdot$
+microwave activity \ts{4}{1735}{28:55} $\cdot$
+infrared activity \ts{4}{1922}{32:02} $\cdot$
+symmetry-adapted vs normal coordinates \ts{4}{2557}{42:37} $\cdot$
+symmetric tensors and the symmetric square \ts{4}{2816}{46:56} $\cdot$
+Raman scattering (blackboard) \ts{4}{3304}{55:04} $\cdot$
+Raman activity \ts{4}{4570}{76:10}
+\end{watch}
+
+\section{Characters of product representations}
+
+Let $\Gamma_1$ and $\Gamma_2$ have matrices $\mat{D}_1(g)$ and $\mat{D}_2(g)$. The
+product representation acts on objects $t_{ij}$ with one index of each kind:
+\[
+t'_{ij}=\bigl[D_1(g)\bigr]_{ik}\bigl[D_2(g)\bigr]_{jl}\,t_{kl}
+\equiv\bigl[\mat{D}_1\otimes\mat{D}_2\bigr]_{(ij),(kl)}\,t_{kl}.
+\]
+The trace sets the double index $(kl)$ equal to $(ij)$ and sums:
+\[
+\chi_{\Gamma_1\otimes\Gamma_2}(g)=\sum_{i,j}\bigl[D_1(g)\bigr]_{ii}\bigl[D_2(g)\bigr]_{jj}
+=\chi_1(g)\,\chi_2(g).
+\]
+So, just as characters of direct sums add, characters of products multiply.
+
+\begin{example}[$\GV\otimes\GV$ for $\Cv{3}$]
+$\chiV=(3,0,1)$, hence $\chi_{\GV\otimes\GV}=(9,0,1)$ and
+\[
+m_{\irr{A}_1}=\tfrac16(9+0+3)=2,\quad m_{\irr{A}_2}=\tfrac16(9+0-3)=1,\quad
+m_{\irr{E}}=\tfrac16(18+0+0)=3,
+\]
+so $\GV\otimes\GV=2\,\irr{A}_1\oplus\irr{A}_2\oplus3\,\irr{E}$ ($2+1+6=9$).
+\end{example}
+
+\section{Counting bilinear invariants}\label{sec:countinv}
+
+A bilinear quantity $\sum b_{ij}x_iy_j$ built from $x\in\Gamma_1$ and $y\in\Gamma_2$
+belongs to $\Gamma_1\otimes\Gamma_2$. It is invariant if it lies in a copy of the
+identity representation $\irr{A}_1$ (all characters $1$). Therefore
+\begin{equation}\label{eq:ninv}
+\begin{aligned}
+\#\{\text{independent bilinear invariants}\}
+ &=m_{\irr{A}_1}(\Gamma_1\otimes\Gamma_2)\\
+ &=\frac{1}{\abs{G}}\sum_g\chi_1(g)\chi_2(g)
+ =\inner{\chi_1^{*}}{\chi_2}.
+\end{aligned}
+\end{equation}
+If $\Gamma_1=\Gamma^{(\mu)}$ and $\Gamma_2=\Gamma^{(\nu)}$ are irreps, orthogonality
+gives $m_{\irr{A}_1}=1$ when $\Gamma^{(\nu)}$ is equivalent to the complex conjugate
+of $\Gamma^{(\mu)}$ and $0$ otherwise. For real irreps
+($\Gamma^{(\mu)*}=\Gamma^{(\mu)}$): \emph{an invariant can only be formed from two
+copies of the same irrep}, and then there is exactly one, the scalar product. This
+proves the recipe of \cref{sec:invariants}.
+
+\section{Symmetric and antisymmetric squares}\label{sec:symsq}
+
+A \emph{symmetric} rank-2 tensor ($t_{ij}=t_{ji}$, like the polarizability) lives in
+the 6-dimensional subspace of $\mathbb{R}^3\otimes\mathbb{R}^3$ spanned by the
+symmetric products $x^2$, $y^2$, $z^2$, $xy$, $yz$, $zx$. It carries the \emph{symmetric square}
+$[\Gamma^2]$. The antisymmetric tensors ($t_{ij}=-t_{ji}$, 3 components) carry the
+\emph{antisymmetric square} $\{\Gamma^2\}$. Their characters are
+\begin{equation}\label{eq:symsq}
+\chi_{[\Gamma^2]}(g)=\tfrac12\bigl[\chi(g)^2+\chi(g^2)\bigr],\qquad
+\chi_{\{\Gamma^2\}}(g)=\tfrac12\bigl[\chi(g)^2-\chi(g^2)\bigr].
+\end{equation}
+\emph{Proof.} Diagonalise $\mat{D}(g)$ (possible for a unitary matrix) with
+eigenvalues $\lambda_i$. The symmetric products $e_ie_j$ ($i\le j$) are eigenvectors
+with eigenvalues $\lambda_i\lambda_j$, so
+$\chi_{[\Gamma^2]}=\sum_{i\le j}\lambda_i\lambda_j=\tfrac12\bigl[(\sum\lambda_i)^2+\sum\lambda_i^2\bigr]$,
+and $\sum_i\lambda_i^2=\tr\mat{D}(g)^2=\chi(g^2)$. The antisymmetric case is the same
+with $i<j$. \qed
+
+To use \eqref{eq:symsq} you need, for each class, the class of $g^2$. For $\Cv{3}$:
+$E^2=E$, $(C_3^{\pm})^2=C_3^{\mp}$ (same class), $\sigma^2=E$. Hence
+\[
+\begin{array}{l|ccc}
+\Cv{3} & E & 2C_3 & 3\sd\\\hline
+\chiV(g) & 3 & 0 & 1\\
+\chiV(g^2) & 3 & 0 & 3\\
+\chi_{[\GV^2]} & 6 & 0 & 2\\
+\chi_{\{\GV^2\}} & 3 & 0 & -1
+\end{array}
+\qquad\Longrightarrow\qquad
+[\GV^2]=2\,\irr{A}_1\oplus2\,\irr{E},\quad \{\GV^2\}=\irr{A}_2\oplus\irr{E}.
+\]
+Notice that $\{\GV^2\}=\GR$: an antisymmetric tensor $t_{ij}$ is equivalent to the
+axial vector $\tfrac12\varepsilon_{ijk}t_{jk}$, just as $\vec{r}\times\vec{p}$ is built
+from the antisymmetric products $x_ip_j-x_jp_i$ (\cref{ex:4:antisym}).
+
+For $\Td$ ($C_2^2=E$, $S_4^2=C_2$, $\sd^2=E$) one finds
+$[\GV^2]=\irr{A}_1\oplus\irr{E}\oplus\irr{T}_2$ and $\{\GV^2\}=\irr{T}_1=\GR$.
+
+\section{A little spectroscopy}
+
+We need only a qualitative picture of three kinds of molecular spectroscopy.
+
+\paragraph{Electric-dipole coupling.} A molecule is a neutral cloud of charges. To
+lowest order in the multipole expansion it couples to a (long-wavelength)
+electromagnetic field through its dipole moment, $H_{\mathrm{int}}=-\vec{p}\cdot\vec{E}$.
+
+\paragraph{Microwave (rotational) spectroscopy.} A molecule with a \emph{permanent}
+dipole $\vec{p}_0$ that rotates produces an oscillating dipole and can absorb or emit
+at its rotation frequencies. For a diatomic molecule $H=\hat{L}^2/2I$ gives levels
+$\hbar^2l(l+1)/2I$ and the selection rule $\Delta l=\pm1$ produces equally spaced
+lines in the microwave range. $\mathrm{HCl}$ is active; $\mathrm{H_2}$ has no
+dipole and is inactive.
+
+\paragraph{Infrared (vibrational) spectroscopy.} A vibration that makes the dipole
+oscillate, $\delta\vec{p}(t)\neq0$, absorbs infrared light at its frequency. The
+breathing mode of $\mathrm{BF_3}$ keeps the dipole zero and is inactive; a mode that
+pushes the boron out of the plane against the fluorines creates an oscillating dipole
+and is active.
+
+\paragraph{Raman scattering.} Light of frequency $\omega_0$ far from any electronic
+resonance induces a dipole $\vec{p}=\mat{\alpha}\vec{E}$ in the electron cloud, which
+re-radiates at $\omega_0$ (Rayleigh scattering, the blue of the sky). By the
+Born--Oppenheimer approximation the electron cloud follows the nuclei. If the molecule
+rotates or vibrates, $\mat{\alpha}(t)$ oscillates at the rotation or vibration
+frequency $\Omega$, and the product $\mat{\alpha}(t)\vec{E}_0\cos\omega_0t$ contains the
+frequencies $\omega_0\pm\Omega$: weak side lines. Quantum mechanically the photon
+loses energy to the molecule (Stokes line, $\omega_0-\Omega$) or gains it
+(anti-Stokes, $\omega_0+\Omega$). The anti-Stokes line needs a thermally excited
+vibration and is much weaker at room temperature.
+
+\section{Selection rules from invariants}\label{sec:raman}
+
+In each case we write the most general interaction energy allowed by symmetry and
+ask whether it can be non-zero. The strategy is always the same: the energy must be an
+\emph{invariant}, and \eqref{eq:ninv} tells when an invariant exists.
+
+\paragraph{Microwave activity.} A permanent dipole is a property of the molecule at
+rest, hence invariant under $G$. A non-zero invariant vector exists only if some
+component of a vector is invariant:
+\begin{keyresult}
+A molecule is microwave active $\iff$ $\irr{A}_1\subset\GV$. The permanent dipole lies
+in the $\irr{A}_1$ subspace.
+\end{keyresult}
+$\mathrm{CH_4}$: $\GV=\irr{T}_2$, inactive, with no need to know anything about its
+charge distribution. $\mathrm{CH_3D}$: $\GV=\irr{A}_1\oplus\irr{E}$, active, with the
+dipole along the three-fold axis.
+
+\paragraph{Infrared activity.} Expand the dipole in the normal coordinates,
+$\delta p_i=\sum_\alpha c_{i\alpha}Q_\alpha$. The interaction
+$H_{\mathrm{IR}}=-\sum_{i,\alpha}c_{i\alpha}E_iQ_\alpha$ is a bilinear invariant in
+$\GV\otimes\Gvib$. A mode transforming as $\Gamma^{(\mu)}$ appears in $H_{\mathrm{IR}}$
+only if $\Gamma^{(\mu)}$ is also contained in $\GV$ (for real irreps):
+\begin{keyresult}
+A vibrational mode of symmetry $\Gamma^{(\mu)}$ is infrared active $\iff$
+$\Gamma^{(\mu)}\subset\GV$.
+\end{keyresult}
+
+\paragraph{Rotational Raman activity.} A rotating molecule modulates $\mat{\alpha}$
+only if $\mat{\alpha}$ is anisotropic, $\mat{\alpha}\neq a\one$. The number of
+independent invariant symmetric tensors is $m_{\irr{A}_1}([\GV^2])$; one of them is
+always $\one$. Hence:
+\begin{keyresult}
+Rotational Raman activity $\iff$ $m_{\irr{A}_1}([\GV^2])\geq2$. For point groups this
+happens exactly when $\GV$ is reducible.
+\end{keyresult}
+
+\paragraph{Vibrational Raman activity.} To first order in the normal coordinates,
+$\delta\alpha_{ij}=\sum_\alpha a_{ij\alpha}Q_\alpha$, so the Raman Hamiltonian
+$H_{\mathrm{R}}=-\tfrac12\sum a_{ij\alpha}E_iE_jQ_\alpha$ is a trilinear invariant in
+$[\GV^2]\otimes\Gvib$:
+\begin{keyresult}
+A vibrational mode of symmetry $\Gamma^{(\mu)}$ is Raman active $\iff$
+$\Gamma^{(\mu)}\subset[\GV^2]$.
+\end{keyresult}
+
+\subsection{Methane and deuterated methane}
+\[
+\begin{array}{lcccc}
+\toprule
+ & \Gvib & \GV & [\GV^2] & \\
+\midrule
+\mathrm{CH_4}\ (\Td) & \irr{A}_1\oplus\irr{E}\oplus2\,\irr{T}_2 & \irr{T}_2 &
+   \irr{A}_1\oplus\irr{E}\oplus\irr{T}_2 &\\
+\mathrm{CH_3D}\ (\Cv{3}) & 3\,\irr{A}_1\oplus3\,\irr{E} & \irr{A}_1\oplus\irr{E} &
+   2\,\irr{A}_1\oplus2\,\irr{E} &\\
+\bottomrule
+\end{array}
+\]
+\begin{itemize}
+\item $\mathrm{CH_4}$: microwave inactive ($\irr{A}_1\not\subset\GV$); only the two
+      $\irr{T}_2$ frequencies are infrared active; all four frequencies
+      ($\irr{A}_1,\irr{E},\irr{T}_2,\irr{T}_2$) are Raman active; no rotational Raman
+      spectrum ($\GV$ irreducible, $\mat{\alpha}$ isotropic).
+\item $\mathrm{CH_3D}$: microwave active; all six frequencies are infrared and Raman
+      active; rotational Raman active.
+\end{itemize}
+This completes the list of predictions announced in \cref{sec:methane}.
+
+\begin{beyond}[Beyond the lectures: the general selection rule]
+In quantum mechanics the same reasoning is phrased with matrix elements. Let
+$\ket{\psi_i}$ belong to $\Gamma_i$, let the components of an operator $\hat{O}$ form a
+set transforming as $\Gamma_O$, and let $\ket{\psi_f}$ belong to $\Gamma_f$. Then
+\[
+\bra{\psi_f}\hat{O}\ket{\psi_i}\neq0\quad\text{only if}\quad
+\irr{A}_1\subset\Gamma_f^{*}\otimes\Gamma_O\otimes\Gamma_i
+\quad\Longleftrightarrow\quad
+\Gamma_f\subset\Gamma_O\otimes\Gamma_i .
+\]
+The matrix element is invariant under the group (it is a number), so it can only
+pick up the identity component of the triple product. For electric-dipole transitions
+$\Gamma_O=\GV$; for magnetic-dipole transitions $\Gamma_O=\GR$; for Raman and
+quadrupole transitions $\Gamma_O=[\GV^2]$. The Wigner--Eckart theorem
+(\cref{sec:wignereckart}) refines the statement: all non-zero matrix elements within a
+pair of multiplets are fixed up to one constant per copy of $\Gamma_f$ in
+$\Gamma_O\otimes\Gamma_i$.
+\end{beyond}
+
+\exercisesection
+
+\begin{exercise}\label{ex:4:antisym}
+Show from \eqref{eq:symsq} and \eqref{eq:chiV} that $\chi_{\{\GV^2\}}(g)=\chiR(g)$
+for every rotation $C(\theta)$ and every rotoreflection $S(\theta)$. Conclude that
+antisymmetric rank-2 tensors transform as axial vectors in every point group.
+\end{exercise}
+
+\begin{solution}
+Rotation: $\chi=1+2c$ ($c=\cos\theta$) and $g^2=C(2\theta)$ has $\chi(g^2)=1+2\cos2\theta=4c^2-1$.
+Then $\tfrac12[(1+2c)^2-(4c^2-1)]=1+2c=\chiV=\chiR$. Rotoreflection: $\chi=-1+2c$ and
+$S(\theta)^2=C(2\theta)$, so $\tfrac12[(2c-1)^2-(4c^2-1)]=1-2c=-\chiV=\chiR$. The characters
+agree on every element, so $\{\GV^2\}\cong\GR$ by \cref{thm:charequiv}.
+\end{solution}
+
+\begin{exercise}[$\mathrm{BF_3}$]\label{ex:4:BF3}
+Using \cref{ex:2:BF3}, decide which vibrational frequencies of $\mathrm{BF_3}$ are
+infrared active and which are Raman active. Is the molecule microwave active? Does it
+show a rotational Raman spectrum?
+\end{exercise}
+
+\begin{solution}
+The squares in $\Dh{3}$: $C_2'^2=\sh^2=\sv^2=E$, $C_3^2\in\{2C_3\}$, $S_3^2\in\{2C_3\}$. So
+$\chiV(g^2)=(3,0,3,3,0,3)$, $\chiV^2=(9,0,1,1,4,1)$ and $\chi_{[\GV^2]}=(6,0,2,2,2,2)$,
+giving $[\GV^2]=2\,\irr{A}_1'\oplus\irr{E}'\oplus\irr{E}''$. With
+$\Gvib=\irr{A}_1'\oplus2\,\irr{E}'\oplus\irr{A}_2''$ and $\GV=\irr{E}'\oplus\irr{A}_2''$:
+\begin{itemize}
+\item $\irr{A}_1'$ (breathing): Raman only;
+\item $\irr{A}_2''$ (out-of-plane): infrared only;
+\item the two $\irr{E}'$ modes: infrared and Raman.
+\end{itemize}
+Microwave inactive ($\irr{A}_1'\not\subset\GV$: no permanent dipole). Rotational Raman
+active ($\irr{A}_1'$ appears twice in $[\GV^2]$: anisotropic polarizability).
+\end{solution}
+
+\begin{exercise}[$\mathrm{H_2O}$]\label{ex:4:H2O}
+With the axes of \cref{ex:2:H2O}, find the irreps of $x$, $y$, $z$ and of the six
+quadratic functions. Which vibrations of water are infrared active, which are Raman
+active?
+\end{exercise}
+
+\begin{solution}
+$z\in\irr{A}_1$, $x\in\irr{B}_1$, $y\in\irr{B}_2$; $x^2,y^2,z^2\in\irr{A}_1$, $xy\in\irr{A}_2$,
+$xz\in\irr{B}_1$, $yz\in\irr{B}_2$. So $\GV=\irr{A}_1\oplus\irr{B}_1\oplus\irr{B}_2$ and
+$[\GV^2]=3\,\irr{A}_1\oplus\irr{A}_2\oplus\irr{B}_1\oplus\irr{B}_2$. All three modes
+($2\,\irr{A}_1\oplus\irr{B}_2$) are both infrared and Raman active.
+\end{solution}
+
+\begin{exercise}[mutual exclusion]\label{ex:4:exclusion}
+Suppose the point group contains the inversion $I$. Irreps are then even ($\mathrm{g}$,
+$\chi(I)=+d$) or odd ($\mathrm{u}$, $\chi(I)=-d$). Show that $\GV$ contains only odd
+irreps and $[\GV^2]$ only even ones. Conclude that no vibration of a centrosymmetric
+molecule is both infrared and Raman active.
+\end{exercise}
+
+\begin{solution}
+$\mat{V}(I)=-\one$, so every irrep contained in $\GV$ has $\mat{D}(I)=-\one$: odd. On symmetric
+tensors $I$ acts as $(-1)(-1)=+1$, so every irrep in $[\GV^2]$ is even. An infrared-active
+mode must be odd, a Raman-active one even; no mode is both. ($\mathrm{CO_2}$ is the textbook
+example.)
+\end{solution}
+
+\begin{exercise}[electronic transitions]\label{ex:4:dipole}
+An electronic state of a $\Cv{3}$ molecule has symmetry $\irr{A}_1$. To which
+states ($\irr{A}_1$, $\irr{A}_2$, $\irr{E}$) can it be excited by electric-dipole
+absorption, and with which light polarisation? Answer the same question for an
+initial state of symmetry $\irr{E}$.
+\end{exercise}
+
+\begin{solution}
+From $\irr{A}_1$: $\Gamma_f\subset\GV\otimes\irr{A}_1=\GV=\irr{A}_1\oplus\irr{E}$. Transitions to
+$\irr{A}_1$ need $z$-polarised light, to $\irr{E}$ in-plane polarisation; $\irr{A}_1\to\irr{A}_2$ is
+forbidden. From $\irr{E}$: $z$ polarisation gives $\irr{A}_1\otimes\irr{E}=\irr{E}$ (only
+$\irr{E}\to\irr{E}$), in-plane polarisation gives $\irr{E}\otimes\irr{E}=\irr{A}_1\oplus\irr{A}_2\oplus\irr{E}$
+(all final states allowed).
+\end{solution}

@@ -1,5 +1,17 @@
-# AI lectures for science
+# AI Lectures for Science
 
-AI-generated lectures on science
+AI-generated learning materials for science.
 
-Assisted by GPT and Claude
+## Contents
+
+* Tutorials: written lectures and notes
+* Subtitles: transcripts and translated captions
+* Videos: lecture videos
+
+## Contributors
+
+Lu Niu <lukeniu@outlook.com> Made with Claude, GPT, and DeepSeek
+
+## License
+
+[CC0 1.0](LICENSE): public domain, free to use for any purpose.

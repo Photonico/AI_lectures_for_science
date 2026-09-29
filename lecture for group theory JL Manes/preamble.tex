@@ -1,0 +1,157 @@
+% ---------------------------------------------------------------
+%  Preamble: default LaTeX fonts (Computer Modern), ISO 80000-2 style
+% ---------------------------------------------------------------
+\usepackage[b5paper,hmargin=19mm,top=20mm,bottom=22mm,headheight=14pt]{geometry}
+\usepackage{emptypage}             % blank pages before odd-page chapter starts
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage[Euler]{upgreek}        % upright \uppi only (ISO: constants upright)
+\usepackage{array,booktabs,multirow,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,patterns,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+\usepackage{esvect}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\emergencystretch}{2em}  % the B5 measure is narrow: allow looser lines, not overfull ones
+\raggedbottom                       % no stretched vertical gaps to fill a page
+
+% ---------------- page layout for B5 ----------------
+% Section headings ragged right, so long titles break instead of overflowing.
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}%
+  {\normalfont\Large\bfseries\raggedright}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
+  {\normalfont\large\bfseries\raggedright}}
+\makeatother
+% Running heads in a smaller size, so long chapter and section titles fit the line.
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\footnotesize\slshape\leftmark}
+\fancyhead[LO]{\footnotesize\slshape\rightmark}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------------- ISO 80000-2 conventions ----------------
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}      % differential d (upright)
+\newcommand{\ee}{\mathrm{e}}                  % Euler's number (upright)
+\newcommand{\ii}{\mathrm{i}}                  % imaginary unit (upright)
+\newcommand{\cpi}{\uppi}                      % the number pi (upright)
+\DeclareRobustCommand{\vec}[1]{\vv{#1}}       % vectors: arrow over italic letter
+\newcommand{\mat}[1]{\bm{#1}}                 % matrices: bold italic
+\newcommand{\one}{\mat{1}}                    % unit matrix
+\newcommand{\T}{^{\mathrm{T}}}                % transpose
+\newcommand{\herm}{^{\dagger}}                % hermitian conjugate
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Real}{Re}
+\newcommand{\SO}[1]{\mathrm{SO}(#1)}
+\newcommand{\SU}[1]{\mathrm{SU}(#1)}
+\newcommand{\Og}[1]{\mathrm{O}(#1)}
+\newcommand{\U}[1]{\mathrm{U}(#1)}
+\newcommand{\GL}[1]{\mathrm{GL}(#1)}
+% Schoenflies point-group names: letter italic, label subscript upright
+\newcommand{\Cv}[1]{C_{#1\mathrm{v}}}
+\newcommand{\Ch}[1]{C_{#1\mathrm{h}}}
+\newcommand{\Dh}[1]{D_{#1\mathrm{h}}}
+\newcommand{\Td}{T_{\mathrm{d}}}
+\newcommand{\Oh}{O_{\mathrm{h}}}
+\newcommand{\Ci}{C_{\mathrm{i}}}
+\newcommand{\Cs}{C_{\mathrm{s}}}
+% symmetry operations (group elements italic; labels upright)
+\newcommand{\sv}{\sigma_{\mathrm{v}}}
+\newcommand{\sd}{\sigma_{\mathrm{d}}}
+\newcommand{\sh}{\sigma_{\mathrm{h}}}
+\newcommand{\Ebar}{\bar{E}}
+% irreducible representations (Mulliken labels): upright
+\newcommand{\irr}[1]{\mathrm{#1}}
+% representations with fixed meaning (upright labels)
+\newcommand{\GV}{\Gamma_{\mathrm{V}}}
+\newcommand{\GR}{\Gamma_{\mathrm{R}}}
+\newcommand{\GM}{\Gamma_{\mathrm{M}}}
+\newcommand{\Gvib}{\Gamma_{\mathrm{vib}}}
+\newcommand{\chiV}{\chi_{\mathrm{V}}}
+\newcommand{\chiR}{\chi_{\mathrm{R}}}
+\newcommand{\chiM}{\chi_{\mathrm{M}}}
+\newcommand{\Ninv}{N_{\mathrm{inv}}}
+% misc
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\inner}[2]{\langle #1, #2\rangle}
+\newcommand{\Tgroup}{\mathcal{T}}
+\newcommand{\seitz}[2]{\{#1\,|\,#2\}}
+\newcommand{\TR}{\Theta}
+
+% ---------------- theorem-like environments ----------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Box titles are white on a dark bar, so links inside a title must be white too.
+\newcommand{\titlelinks}{\hypersetup{linkcolor=white,urlcolor=white}}
+\tcbset{
+  lecbox/.style={colback=blue!4,colframe=blue!45!black,boxrule=0.5pt,arc=1mm,
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks},
+  keybox/.style={colback=orange!6,colframe=orange!60!black,boxrule=0.5pt,arc=1mm,
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks},
+  gapbox/.style={colback=green!5,colframe=green!45!black,boxrule=0.5pt,arc=1mm,
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks}
+}
+\newenvironment{watch}[1]{\begin{tcolorbox}[lecbox,title={Video: #1}]\small}{\end{tcolorbox}}
+\newenvironment{keyresult}[1][Key result]{\begin{tcolorbox}[keybox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{beyond}[1][Beyond the lectures]{\begin{tcolorbox}[gapbox,title={#1}]\small}{\end{tcolorbox}}
+
+% Sections and subsections that go beyond the lectures carry a green star.
+\DeclareRobustCommand{\bstar}{\textcolor{green!45!black}{$\bigstar$}}
+\newcommand{\beyondmark}{\texorpdfstring{\ \bstar}{ *}}
+
+% ---------------- exercises and solutions ----------------
+\newcommand{\exercisesection}{%
+  \section*{Exercises and solutions}%
+  \addcontentsline{toc}{section}{Exercises and solutions}%
+  \markright{\MakeUppercase{Exercises and solutions}}}
+\newcounter{exercise}[chapter]
+\renewcommand{\theexercise}{\thechapter.\arabic{exercise}}
+\newenvironment{exercise}[1][]{\refstepcounter{exercise}\par\medskip\noindent
+  \textbf{Exercise~\theexercise}\if\relax\detokenize{#1}\relax\else\ \textit{(#1)}\fi.\ }{\par}
+% Each solution follows its exercise, set off by a grey rule on the left.
+\newtcolorbox{solution}{breakable,enhanced jigsaw,blanker,left=9pt,
+  borderline west={1pt}{0pt}{black!35},before skip=4pt,after skip=10pt,
+  before upper={\noindent\textit{Solution.}\ }}
+\crefname{exercise}{Exercise}{Exercises}
+
+% ---------------- links to the video lectures ----------------
+\newcommand{\lecid}[1]{%
+  \ifcase#1\or iHRC-f4SPxs\or 19uuuiJiY8Y\or BUZ-ZwHDl6M\or wTN-b-uhbAE\or
+  XYyzpEt\string_Vgk\or vUt\string_IAdrrN8\or oZ5iq\string_\string_MQgk\or rXGrZq4mZAY\fi}
+% \ts{lecture}{seconds}{mm:ss}: clickable timestamp (youtu.be short link)
+\newcommand{\ts}[3]{\href{https://youtu.be/\lecid{#1}?t=#2}{L#1\,@\,#3}}
+\newcommand{\lec}[1]{\href{https://youtu.be/\lecid{#1}}{Lecture~#1}}
