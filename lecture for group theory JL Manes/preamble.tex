@@ -1,14 +1,14 @@
 % ---------------------------------------------------------------
 %  Preamble: default LaTeX fonts (Computer Modern), ISO 80000-2 style
 % ---------------------------------------------------------------
-\usepackage[b5paper,hmargin=19mm,top=20mm,bottom=22mm,headheight=14pt]{geometry}
+\usepackage[b5paper,hmargin=19mm,top=20mm,bottom=22mm,headheight=16pt]{geometry}
 \usepackage{emptypage}             % blank pages before odd-page chapter starts
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{bm}
 \usepackage[Euler]{upgreek}        % upright \uppi only (ISO: constants upright)
 \usepackage{array,booktabs,multirow,tabularx}
 \usepackage{enumitem}
-\usepackage{etoolbox}
+\usepackage{xpatch}               % robust-command patches; loads etoolbox
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,decorations.markings,patterns,positioning}
@@ -20,6 +20,13 @@
 \usepackage{esvect}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!60!black]{hyperref}
 \usepackage[capitalise,nameinlink]{cleveref}
+
+% Body text: 16 pt baseline spacing at the existing 11 pt class font size.
+% Keep the separate small-text and heading sizes and spacing unchanged.
+\xpatchcmd{\normalsize}{13.6}{16}{}%
+  {\PackageError{lecture-notes}{Could not set 16 pt body line spacing}%
+    {Check the 11 pt book class definition of \string\normalsize.}}
+\normalsize
 
 \setlist{itemsep=2pt,topsep=4pt}
 \setlength{\parskip}{3pt}

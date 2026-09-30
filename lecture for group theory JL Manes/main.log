@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.2.6)  1 OCT 2026 02:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.2.6)  1 OCT 2026 05:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -51,7 +51,7 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@dimlist=\toks18
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/emptypage/emptypage.sty
-Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty 
+Package: emptypage 2010/05/30 v1.2 Suppress page numbers and headings on empty
 pages
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -249,10 +249,24 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \enit@count@id=\count296
 \enitdp@description=\count297
 )
+(/usr/local/texlive/2025/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-01-18 L3 programming layer (loader)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count298
+\l__pdf_internal_box=\box58
+))
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-08-16 L3 Experimental document command parser
+)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count298
-)
+\etb@tempcnta=\count299
+))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
@@ -285,7 +299,7 @@ x
 \pgfutil@tempdimb=\dimen192
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box58
+\pgfutil@abb=\box59
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
@@ -333,14 +347,14 @@ tered.code.tex
 \pgf@yd=\dimen260
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count299
-\c@pgf@countb=\count300
-\c@pgf@countc=\count301
-\c@pgf@countd=\count302
+\c@pgf@counta=\count300
+\c@pgf@countb=\count301
+\c@pgf@countc=\count302
+\c@pgf@countd=\count303
 \t@pgf@toka=\toks37
 \t@pgf@tokb=\toks38
 \t@pgf@tokc=\toks39
-\pgf@sys@id@count=\count303
+\pgf@sys@id@count=\count304
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
@@ -358,8 +372,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count304
-\pgfsyssoftpath@bigbuffer@items=\count305
+\pgfsyssoftpath@smallbuffer@items=\count305
+\pgfsyssoftpath@bigbuffer@items=\count306
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -371,8 +385,8 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen261
-\pgfmath@count=\count306
-\pgfmath@box=\box59
+\pgfmath@count=\count307
+\pgfmath@box=\box60
 \pgfmath@toks=\toks40
 \pgfmath@stack@operand=\toks41
 \pgfmath@stack@operation=\toks42
@@ -397,7 +411,7 @@ code.tex)
 erarithmetics.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count307
+\c@pgfmathroundto@lastzeros=\count308
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
@@ -432,10 +446,10 @@ File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box60
-\pgf@hbox=\box61
-\pgf@layerbox@main=\box62
-\pgf@picture@serial@count=\count308
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count309
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
@@ -470,8 +484,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 e.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen285
-\pgf@sys@shading@range@num=\count309
-\pgf@shadingcount=\count310
+\pgf@sys@shading@range@num=\count310
+\pgf@shadingcount=\count311
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -480,7 +494,7 @@ File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box63
+\pgfexternal@startupbox=\box64
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -501,7 +515,7 @@ File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box64
+\pgfnodeparttextbox=\box65
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -536,7 +550,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count311
+\pgf@plot@mark@count=\count312
 \pgfplotmarksize=\dimen290
 )
 \tikz@lastx=\dimen291
@@ -547,23 +561,23 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen296
 \tikzleveldistance=\dimen297
 \tikzsiblingdistance=\dimen298
-\tikz@figbox=\box65
-\tikz@figbox@bg=\box66
-\tikz@tempbox=\box67
-\tikz@tempbox@bg=\box68
-\tikztreelevel=\count312
-\tikznumberofchildren=\count313
-\tikznumberofcurrentchild=\count314
-\tikz@fig@count=\count315
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count313
+\tikznumberofchildren=\count314
+\tikznumberofcurrentchild=\count315
+\tikz@fig@count=\count316
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count316
-\pgfmatrixcurrentcolumn=\count317
-\pgf@matrix@numberofcolumns=\count318
+\pgfmatrixcurrentrow=\count317
+\pgfmatrixcurrentcolumn=\count318
+\pgf@matrix@numberofcolumns=\count319
 )
-\tikz@expandcount=\count319
+\tikz@expandcount=\count320
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -592,11 +606,11 @@ s.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen305
 \pgfdecoratedinputsegmentremainingdistance=\dimen306
 \pgf@decorate@distancetomove=\dimen307
-\pgf@decorate@repeatstate=\count320
+\pgf@decorate@repeatstate=\count321
 \pgfdecorationsegmentamplitude=\dimen308
 \pgfdecorationsegmentlength=\dimen309
 )
-\tikz@lib@dec@box=\box69
+\tikz@lib@dec@box=\box70
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
 brarydecorations.markings.code.tex))
@@ -621,8 +635,8 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \t@pgfplots@tokb=\toks46
 \t@pgfplots@tokc=\toks47
 \pgfplots@tmpa=\dimen310
-\c@pgfplots@coordindex=\count321
-\c@pgfplots@scanlineindex=\count322
+\c@pgfplots@coordindex=\count322
+\c@pgfplots@scanlineindex=\count323
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
 .code.tex))
@@ -647,13 +661,13 @@ liststructure.code.tex)
 liststructureext.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 array.code.tex
-\c@pgfplotsarray@tmp=\count323
+\c@pgfplotsarray@tmp=\count324
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 matrix.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
 shared.code.tex
-\c@pgfplotstable@counta=\count324
+\c@pgfplotstable@counta=\count325
 \t@pgfplotstable@a=\toks51
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
@@ -666,7 +680,7 @@ ta.code.tex))
 .code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
 s.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count325
+\c@pgfplotslibrarysurf@no=\count326
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
 .surfshading.pgfsys-pdftex.def)))
@@ -704,7 +718,7 @@ s/tikzlibrarydecorations.pathreplacing.code.tex
 brarydecorations.pathreplacing.code.tex))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.contourlua.code.tex)
-\pgfplots@numplots=\count326
+\pgfplots@numplots=\count327
 \pgfplots@xmin@reg=\dimen311
 \pgfplots@xmax@reg=\dimen312
 \pgfplots@ymin@reg=\dimen313
@@ -735,16 +749,16 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@hangindent=\dimen324
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count327
-\c@continuedfloat=\count328
+\c@caption@flags=\count328
+\c@continuedfloat=\count329
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count329
+\c@float@type=\count330
 \float@exts=\toks52
-\float@box=\box70
+\float@box=\box71
 \@float@everytoks=\toks53
-\@floatcapt=\box71
+\@floatcapt=\box72
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2024/10/22 version 6.4.1 text color boxes
@@ -761,26 +775,26 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/local/texlive/2025/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box72
-\tcb@upperbox=\box73
-\tcb@lowerbox=\box74
-\tcb@phantombox=\box75
-\c@tcbbreakpart=\count330
-\c@tcblayer=\count331
-\c@tcolorbox@number=\count332
-\l__tcobox_tmpa_box=\box76
+\tcb@titlebox=\box73
+\tcb@upperbox=\box74
+\tcb@lowerbox=\box75
+\tcb@phantombox=\box76
+\c@tcbbreakpart=\count331
+\c@tcblayer=\count332
+\c@tcolorbox@number=\count333
+\l__tcobox_tmpa_box=\box77
 \l__tcobox_tmpa_dim=\dimen325
-\tcb@temp=\box77
 \tcb@temp=\box78
 \tcb@temp=\box79
 \tcb@temp=\box80
+\tcb@temp=\box81
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.4.1'
-\c@tcbrastercolumn=\count333
-\c@tcbrasterrow=\count334
-\c@tcbrasternum=\count335
-\c@tcbraster=\count336
+\c@tcbrastercolumn=\count334
+\c@tcbrasterrow=\count335
+\c@tcbrasternum=\count336
+\c@tcbraster=\count337
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.4.1'
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -792,7 +806,7 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.co
 de.tex
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box81
+\l__tikzfill_img_box=\box82
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.4.1'
@@ -809,9 +823,9 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ))
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box82
-\tcb@totalupperbox=\box83
-\tcb@totallowerbox=\box84
+\tcb@testbox=\box83
+\tcb@totalupperbox=\box84
+\tcb@totallowerbox=\box85
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.4.1'
@@ -822,7 +836,7 @@ Library (tcolorbox): 'tcbfitting.code.tex' version '6.4.1'
 \tcbfitdim=\dimen326
 \tcb@lowerfitdim=\dimen327
 \tcb@upperfitdim=\dimen328
-\tcb@cur@hbadness=\count337
+\tcb@cur@hbadness=\count338
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.te
 x
@@ -830,17 +844,17 @@ Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.4.1'
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.4.1'
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count338
-\lst@gtempboxa=\box85
+\lst@mode=\count339
+\lst@gtempboxa=\box86
 \lst@token=\toks56
-\lst@length=\count339
+\lst@length=\count340
 \lst@currlwidth=\dimen329
-\lst@column=\count340
-\lst@pos=\count341
+\lst@column=\count341
+\lst@pos=\count342
 \lst@lostspace=\dimen330
 \lst@width=\dimen331
-\lst@newlines=\count342
-\lst@lineno=\count343
+\lst@newlines=\count343
+\lst@lineno=\count344
 \lst@maxwidth=\dimen332
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
@@ -848,9 +862,9 @@ File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count344
-\lst@skipnumbers=\count345
-\lst@framebox=\box86
+\c@lstnumber=\count345
+\lst@skipnumbers=\count346
+\lst@framebox=\box87
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
@@ -863,7 +877,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.4.1'
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.4.1'
 )
-\c@tcblisting=\count346
+\c@tcblisting=\count347
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -898,7 +912,7 @@ File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.4.1'
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/esvect/esvect.sty
-Package: esvect 
+Package: esvect
 \symesvector=\mathgroup10
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -925,11 +939,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count347
+\c@section@level=\count348
 )
 \@linkdim=\dimen333
-\Hy@linkcounter=\count348
-\Hy@pagecounter=\count349
+\Hy@linkcounter=\count349
+\Hy@pagecounter=\count350
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
@@ -939,7 +953,7 @@ Now handling font encoding PD1 ...
 (/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count350
+\Hy@SavedSpaceFactor=\count351
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
@@ -954,7 +968,7 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count351
+\c@Hy@tempcnt=\count352
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
@@ -970,7 +984,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count352
+\Fld@menulength=\count353
 \Field@Width=\dimen335
 \Fld@charsize=\dimen336
 Package hyperref Info: Hyper figures OFF on input line 6042.
@@ -985,9 +999,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count353
-\c@Item=\count354
-\c@Hfootnote=\count355
+\Hy@abspage=\count354
+\c@Item=\count355
+\c@Hfootnote=\count356
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -999,8 +1013,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count356
-\c@bookmark@seq@number=\count357
+\Fld@listcount=\count357
+\c@bookmark@seq@number=\count358
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
@@ -1055,24 +1069,28 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthR=\skip80
 \@temptokenb=\toks57
 )
-LaTeX Info: Redefining \vec on input line 70.
-\c@theorem=\count358
-\c@exercise=\count359
+LaTeX Info: Redefining \vec on input line 77.
+\c@theorem=\count359
+\c@exercise=\count360
 )
-(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count360
-\l__pdf_internal_box=\box87
-)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/main.aux
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch1.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch2.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch3.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch4.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch5.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch6.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch7.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch8.aux))
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/main.
+aux
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch1.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch2.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch3.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch4.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch5.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch6.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch7.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch8.a
+ux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -1101,7 +1119,7 @@ LaTeX Font Info:    ... okay on input line 7.
 * paper: b5paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: twoside
 * h-part:(L,W,R)=(54.06023pt, 392.64804pt, 54.06023pt)
 * v-part:(T,H,B)=(56.9055pt, 591.81734pt, 62.59605pt)
 * \paperwidth=500.7685pt
@@ -1110,8 +1128,8 @@ LaTeX Font Info:    ... okay on input line 7.
 * \textheight=591.81734pt
 * \oddsidemargin=-18.20976pt
 * \evensidemargin=-18.20976pt
-* \topmargin=-49.23828pt
-* \headheight=14.0pt
+* \topmargin=-51.23828pt
+* \headheight=16.0pt
 * \headsep=19.8738pt
 * \topskip=11.0pt
 * \footskip=27.46295pt
@@ -1166,15 +1184,16 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 )
 Package hyperref Info: Link coloring ON on input line 7.
 
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/main.out)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/main.out)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/main.
+out)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/main.
+out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
 
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
@@ -1183,11 +1202,11 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esvect on input line 
+LaTeX Font Info:    Trying to load font information for U+esvect on input line
 26.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/esvect/uesvect.fd
-File: uesvect.fd 
+File: uesvect.fd
 )
 
 [1
@@ -1199,32 +1218,35 @@ File: uesvect.fd
 [2
 
 ]
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/main.toc
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/main.
+toc
 
 [3]
 
 [4]
 
-[5])
+[5]
+
+[6])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 
 
-[6]
+[7]
 
-[7
+[8
 
 ]
-
-[8{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}]
 
 [9]
 
-[10
+[10{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
+c}]
 
-]
+[11]
+
+[12]
 \openout2 = `ch1.aux'.
 
  (./ch1.tex
@@ -1232,6 +1254,7 @@ Chapter 1.
 
 
 [1
+
 
 
 ]
@@ -1253,27 +1276,27 @@ Chapter 1.
 [9]
 Underfull \hbox (badness 1983) in paragraph at lines 448--456
 \OT1/cmr/m/it/10.95 Solution. \OT1/cmr/m/n/10.95 The as-sign-ment is $\OML/cmm/
-m/it/10.95 g \OMS/cmsy/m/n/10.95 7! [] \OML/cmm/b/it/10.95 V\OT1/cmr/m/n/10.95 
+m/it/10.95 g \OMS/cmsy/m/n/10.95 7! [] \OML/cmm/b/it/10.95 V\OT1/cmr/m/n/10.95
 (\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 )$, and $[]$ is mul-ti-plica-tive:
  []
 
-)
 
-[10]
+
+[10])
+
+[11]
 \openout2 = `ch2.aux'.
 
  (./ch2.tex
-Chapter 2.
 
-
-[11
+[12
 
 
 
 
 ]
+Chapter 2.
 
-[12]
 
 [13]
 
@@ -1291,77 +1314,77 @@ Chapter 2.
 
 [20]
 
-[21])
+[21]
 
 [22]
+
+[23]
+
+[24])
+
+[25]
 \openout2 = `ch3.aux'.
 
  (./ch3.tex
-Chapter 3.
 
-
-[23
+[26
 
 
 
 
 ]
+Chapter 3.
 
-[24]
-
-[25]
-
-[26]
 
 [27]
 
 [28]
 
-[29])
+[29]
 
 [30]
+
+[31]
+
+[32]
+
+[33])
+
+[34]
 \openout2 = `ch4.aux'.
 
  (./ch4.tex
 Chapter 4.
 
 
-[31
+[35
 
 
 
 
 ]
 
-[32]
-
-[33]
-
-[34]
-
-[35])
-
 [36]
+
+[37]
+
+[38]
+
+[39])
+
+[40]
 \openout2 = `ch5.aux'.
 
  (./ch5.tex
 Chapter 5.
 
 
-[37
+[41
 
 
 
 
 ]
-
-[38]
-
-[39]
-
-[40]
-
-[41]
 
 [42]
 
@@ -1369,49 +1392,39 @@ Chapter 5.
 
 [44]
 
-[45])
+[45]
 
 [46]
-\openout2 = `ch6.aux'.
 
- (./ch6.tex
-Chapter 6.
-
-
-[47
-
-
-
-
-]
+[47]
 
 [48]
 
 [49]
 
-[50]
+[50])
 
 [51]
+\openout2 = `ch6.aux'.
 
-[52]
+ (./ch6.tex
 
-[53]
-
-[54])
-
-[55]
-\openout2 = `ch7.aux'.
-
- (./ch7.tex
-
-[56
+[52
 
 
 
 
 ]
-Chapter 7.
+Chapter 6.
 
+
+[53]
+
+[54]
+
+[55]
+
+[56]
 
 [57]
 
@@ -1421,65 +1434,98 @@ Chapter 7.
 
 [60]
 
-[61]
+[61])
 
 [62]
+\openout2 = `ch7.aux'.
 
-[63]
-PGFPlots: reading {graphene_pi.dat}
-PGFPlots: reading {graphene_pi.dat}
-
-
-[64]
-
-[65])
-
-[66]
-\openout2 = `ch8.aux'.
-
- (./ch8.tex
-Chapter 8.
+ (./ch7.tex
+Chapter 7.
 
 
-[67
+[63
 
 
 
 
 ]
 
+[64]
+
+[65]
+
+[66]
+
+[67]
+
 [68]
 
 [69]
 
 [70]
+PGFPlots: reading {graphene_pi.dat}
+PGFPlots: reading {graphene_pi.dat}
 
-[71]
 
-[72])
+[71])
 
-[73]
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/main.aux
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch1.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch2.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch3.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch4.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch5.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch6.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch7.aux)
-(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory/build/ch8.aux))
+[72]
+\openout2 = `ch8.aux'.
+
+ (./ch8.tex
+Chapter 8.
+
+
+[73
+
+
+
+
+]
+
+[74]
+
+[75]
+
+[76]
+
+[77]
+
+[78]
+
+[79])
+
+[80]
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/main.
+aux
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch1.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch2.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch3.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch4.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch5.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch6.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch7.a
+ux)
+(/Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory-16pt/build/ch8.a
+ux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 1C4DEF09311CC6D826585A796EFC2422;23474.
- ) 
+ )
 Here is how much of TeX's memory you used:
- 44604 strings out of 473190
- 1039835 string characters out of 5715801
- 1617264 words of memory out of 5000000
- 66720 multiletter control sequences out of 15000+600000
+ 44827 strings out of 473190
+ 1045019 string characters out of 5715801
+ 1625817 words of memory out of 5000000
+ 66924 multiletter control sequences out of 15000+600000
  585073 words of font info for 137 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  107i,21n,110p,742b,2067s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1517,10 +1563,10 @@ st/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist
 /type1/public/esvect/vect7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/
 public/esvect/vect8.pfb>
 Output written on /Users/lu/Repos/AI_lectures_for_science/tmp/pdfs/group-theory
-/build/main.pdf (83 pages, 675374 bytes).
+-16pt/build/main.pdf (92 pages, 680120 bytes).
 PDF statistics:
- 1745 PDF objects out of 2073 (max. 8388607)
- 1522 compressed objects within 16 object streams
- 387 named destinations out of 1000 (max. 500000)
+ 1784 PDF objects out of 2073 (max. 8388607)
+ 1552 compressed objects within 16 object streams
+ 396 named destinations out of 1000 (max. 500000)
  1101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
