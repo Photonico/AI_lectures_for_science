@@ -8,12 +8,13 @@
 \usepackage[Euler]{upgreek}        % upright \uppi only (ISO: constants upright)
 \usepackage{array,booktabs,multirow,tabularx}
 \usepackage{enumitem}
+\usepackage{etoolbox}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,decorations.markings,patterns,positioning}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[font=small,labelfont=md]{caption}
 \usepackage{float}
 \usepackage[most]{tcolorbox}
 \usepackage{esvect}
@@ -29,12 +30,28 @@
 % ---------------- page layout for B5 ----------------
 % Section headings ragged right, so long titles break instead of overflowing.
 \makeatletter
+% Regular-weight text for tablet reading. Patch text styles individually so
+% mathematical bold (\mat and \one) keeps its matrix/scalar distinction.
+\newcommand{\regulartextstyle}[1]{%
+  \patchcmd{#1}{\bfseries}{\mdseries}{}%
+    {\PackageError{lecture-notes}{Could not set regular-weight text style}%
+      {Check the book class definition of \string#1.}}}
+\regulartextstyle{\@makechapterhead} % chapter number
+\regulartextstyle{\@makechapterhead} % chapter title
+\regulartextstyle{\@makeschapterhead}
+\regulartextstyle{\l@chapter}
+\regulartextstyle{\subsubsection}
+\regulartextstyle{\paragraph}
+\regulartextstyle{\subparagraph}
+\regulartextstyle{\descriptionlabel}
+\regulartextstyle{\labelitemii}
+\thm@headfont{\mdseries}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}%
-  {\normalfont\Large\bfseries\raggedright}}
+  {\normalfont\Large\mdseries\raggedright}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
-  {\normalfont\large\bfseries\raggedright}}
+  {\normalfont\large\mdseries\raggedright}}
 \makeatother
 % Running heads in a smaller size, so long chapter and section titles fit the line.
 \usepackage{fancyhdr}
@@ -119,11 +136,11 @@
 \newcommand{\titlelinks}{\hypersetup{linkcolor=white,urlcolor=white}}
 \tcbset{
   lecbox/.style={colback=blue!4,colframe=blue!45!black,boxrule=0.5pt,arc=1mm,
-                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks},
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\mdseries\small\titlelinks},
   keybox/.style={colback=orange!6,colframe=orange!60!black,boxrule=0.5pt,arc=1mm,
-                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks},
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\mdseries\small\titlelinks},
   gapbox/.style={colback=green!5,colframe=green!45!black,boxrule=0.5pt,arc=1mm,
-                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small\titlelinks}
+                 left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\mdseries\small\titlelinks}
 }
 \newenvironment{watch}[1]{\begin{tcolorbox}[lecbox,title={Video: #1}]\small}{\end{tcolorbox}}
 \newenvironment{keyresult}[1][Key result]{\begin{tcolorbox}[keybox,title={#1}]}{\end{tcolorbox}}
@@ -141,7 +158,7 @@
 \newcounter{exercise}[chapter]
 \renewcommand{\theexercise}{\thechapter.\arabic{exercise}}
 \newenvironment{exercise}[1][]{\refstepcounter{exercise}\par\medskip\noindent
-  \textbf{Exercise~\theexercise}\if\relax\detokenize{#1}\relax\else\ \textit{(#1)}\fi.\ }{\par}
+  \textmd{Exercise~\theexercise}\if\relax\detokenize{#1}\relax\else\ \textit{(#1)}\fi.\ }{\par}
 % Each solution follows its exercise, set off by a grey rule on the left.
 \newtcolorbox{solution}{breakable,enhanced jigsaw,blanker,left=9pt,
   borderline west={1pt}{0pt}{black!35},before skip=4pt,after skip=10pt,
